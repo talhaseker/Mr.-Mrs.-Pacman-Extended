@@ -35,7 +35,6 @@ public class Sprite {
     }
 
     public static BufferedImage getSprite(String file) {
-        System.out.println("here is the file name : " + file);
         if (spriteSheet == null) {
             spriteSheet = loadSprite(file);
         }

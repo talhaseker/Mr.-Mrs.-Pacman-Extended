@@ -1,5 +1,7 @@
 package GUI.uibase;
 
+import GUI.GameFrame;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,9 +12,12 @@ import java.awt.event.ActionListener;
  */
 public class PacPanel extends JPanel implements ActionListener{
 
-    public PacPanel(boolean isBackable){
+    private String backPanelName;
+
+    public PacPanel(boolean isBackable, String backPanelName){
         super();
-        this.setBackground(Color.BLACK);
+        this.backPanelName = backPanelName;
+        this.setBackground(Color.WHITE);
         if (isBackable){
             PacButton backButton = new PacButton("X", 24f);
             backButton.setBackground(Color.BLACK);
@@ -20,10 +25,11 @@ public class PacPanel extends JPanel implements ActionListener{
             backButton.setToolTipText("Close Screen");
             Dimension sizeMr = backButton.getPreferredSize();
             backButton.setBounds(10, 10, sizeMr.width, sizeMr.height);
+            //add(backButton);
         }
     }
 
     public void actionPerformed(ActionEvent event) {
-        //TODO: When back button clicked this method will call to switch from parent class.
+        GameFrame.uiManager.view(backPanelName);
     }
 }

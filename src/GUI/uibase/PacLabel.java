@@ -11,7 +11,7 @@ import java.awt.*;
 public class PacLabel extends JLabel{
 
     public PacLabel(String label, float fontSize){
-        super(label);
+        super(label, SwingConstants.CENTER);
         this.setFont(Utils.registeredFontWithSize(fontSize));
         this.setForeground(Color.YELLOW);
     }
