@@ -2,41 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="071a6dd3-ef6d-4b29-9082-cfe134c98e57" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/GUI/CreateMapPanel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/GUI/GameFrame.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/GUI/GameOverPanel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/GUI/GamePanel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/GUI/HelpPanel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/GUI/HighScorePanel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/GUI/MainMenuPanel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/GUI/PausePanel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/GUI/SavedGamesPanel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/GUI/SavedMapsListPanel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/GUI/ShieldPanel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/GUI/UIManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/GUI/uibase/WindowCloser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Reports/Design Report - Iteration I-1.pdf" afterPath="$PROJECT_DIR$/Reports/Design Report - Iteration I-1.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Mr.&amp;Mrs.Pac-ManExtended/ApplicationMain.class" afterPath="$PROJECT_DIR$/out/production/Mr.&amp;Mrs.Pac-ManExtended/ApplicationMain.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Mr.&amp;Mrs.Pac-ManExtended/GUI/SplashPanel.class" afterPath="$PROJECT_DIR$/out/production/Mr.&amp;Mrs.Pac-ManExtended/GUI/SplashPanel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Mr.&amp;Mrs.Pac-ManExtended/GUI/SplashScreen.class" afterPath="$PROJECT_DIR$/out/production/Mr.&amp;Mrs.Pac-ManExtended/GUI/SplashScreen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Mr.&amp;Mrs.Pac-ManExtended/GUI/uibase/PacButton.class" afterPath="$PROJECT_DIR$/out/production/Mr.&amp;Mrs.Pac-ManExtended/GUI/uibase/PacButton.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Mr.&amp;Mrs.Pac-ManExtended/GUI/uibase/PacLabel.class" afterPath="$PROJECT_DIR$/out/production/Mr.&amp;Mrs.Pac-ManExtended/GUI/uibase/PacLabel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Mr.&amp;Mrs.Pac-ManExtended/GUI/uibase/PacPanel.class" afterPath="$PROJECT_DIR$/out/production/Mr.&amp;Mrs.Pac-ManExtended/GUI/uibase/PacPanel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Mr.&amp;Mrs.Pac-ManExtended/gamelogic/Constants.class" afterPath="$PROJECT_DIR$/out/production/Mr.&amp;Mrs.Pac-ManExtended/gamelogic/Constants.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Mr.&amp;Mrs.Pac-ManExtended/gamelogic/ReferenceHolder.class" afterPath="$PROJECT_DIR$/out/production/Mr.&amp;Mrs.Pac-ManExtended/gamelogic/ReferenceHolder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Mr.&amp;Mrs.Pac-ManExtended/gamelogic/Utils.class" afterPath="$PROJECT_DIR$/out/production/Mr.&amp;Mrs.Pac-ManExtended/gamelogic/Utils.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Mr.&amp;Mrs.Pac-ManExtended/gamelogic/animationmanager/Animation.class" afterPath="$PROJECT_DIR$/out/production/Mr.&amp;Mrs.Pac-ManExtended/gamelogic/animationmanager/Animation.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Mr.&amp;Mrs.Pac-ManExtended/gamelogic/animationmanager/Sprite.class" afterPath="$PROJECT_DIR$/out/production/Mr.&amp;Mrs.Pac-ManExtended/gamelogic/animationmanager/Sprite.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Mr.&amp;Mrs.Pac-ManExtended/gamelogic/animationmanager/SpriteFrame.class" afterPath="$PROJECT_DIR$/out/production/Mr.&amp;Mrs.Pac-ManExtended/gamelogic/animationmanager/SpriteFrame.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ApplicationMain.java" afterPath="$PROJECT_DIR$/src/ApplicationMain.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GUI/uibase/PacButton.java" afterPath="$PROJECT_DIR$/src/GUI/uibase/PacButton.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GUI/uibase/PacLabel.java" afterPath="$PROJECT_DIR$/src/GUI/uibase/PacLabel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GUI/uibase/PacPanel.java" afterPath="$PROJECT_DIR$/src/GUI/uibase/PacPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamelogic/Constants.java" afterPath="$PROJECT_DIR$/src/gamelogic/Constants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamelogic/animationmanager/Sprite.java" afterPath="$PROJECT_DIR$/src/gamelogic/animationmanager/Sprite.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Diagrams/Sequence Diagrams/useShield.png" afterPath="$PROJECT_DIR$/Diagrams/Sequence Diagrams/useShield.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GameLogic/ScreenItems/Food.java" afterPath="$PROJECT_DIR$/src/GameLogic/ScreenItems/Food.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GameLogic/ScreenItems/Pacman.java" afterPath="$PROJECT_DIR$/src/GameLogic/ScreenItems/Pacman.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GameLogic/ScreenItems/PacmanObject.java" afterPath="$PROJECT_DIR$/src/GameLogic/ScreenItems/PacmanObject.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GameLogic/ScreenItems/Shield.java" afterPath="$PROJECT_DIR$/src/GameLogic/ScreenItems/Shield.java" />
     </list>
     <ignored path="Mr.&amp;Mrs.Pac-ManExtended.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -60,101 +30,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainMenuPanel.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/GUI/MainMenuPanel.java">
+      <file leaf-file-name="Pacman.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/GameLogic/ScreenItems/Pacman.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="50" column="11" lean-forward="false" selection-start-line="50" selection-start-column="10" selection-end-line="50" selection-end-column="11" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HighScorePanel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI/HighScorePanel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="24" lean-forward="false" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CreateMapPanel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI/CreateMapPanel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="24" lean-forward="false" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PausePanel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI/PausePanel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="799">
-              <caret line="52" column="59" lean-forward="false" selection-start-line="52" selection-start-column="59" selection-end-line="52" selection-end-column="59" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PacLabel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI/uibase/PacLabel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="14" column="59" lean-forward="false" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="59" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GameFrame.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI/GameFrame.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="8" column="24" lean-forward="false" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SavedGamesPanel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI/SavedGamesPanel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="6" column="24" lean-forward="false" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
-              <folding>
-                <element signature="e#196#197#0" expanded="true" />
-                <element signature="e#250#251#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SavedMapsListPanel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI/SavedMapsListPanel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="6" column="24" lean-forward="false" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
-              <folding>
-                <element signature="e#202#203#0" expanded="true" />
-                <element signature="e#256#257#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UIManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI/UIManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="8" column="24" lean-forward="false" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
+            <state relative-caret-position="782">
+              <caret line="87" column="5" lean-forward="false" selection-start-line="87" selection-start-column="5" selection-end-line="87" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -216,6 +96,10 @@
         <option value="$PROJECT_DIR$/src/GUI/SavedGamesPanel.java" />
         <option value="$PROJECT_DIR$/src/GUI/SavedMapsListPanel.java" />
         <option value="$PROJECT_DIR$/src/GUI/UIManager.java" />
+        <option value="$PROJECT_DIR$/src/GameLogic/ScreenItems/Shield.java" />
+        <option value="$PROJECT_DIR$/src/GameLogic/ScreenItems/PacmanObject.java" />
+        <option value="$PROJECT_DIR$/src/GameLogic/ScreenItems/Food.java" />
+        <option value="$PROJECT_DIR$/src/GameLogic/ScreenItems/Pacman.java" />
       </list>
     </option>
   </component>
@@ -225,10 +109,10 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-4" />
-    <option name="width" value="1370" />
-    <option name="height" value="768" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="y" value="27" />
+    <option name="width" value="960" />
+    <option name="height" value="1053" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -248,7 +132,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -270,22 +155,28 @@
               <item name="Mr.-Mrs.-Pacman-Extended" type="b2602c69:ProjectViewProjectNode" />
               <item name="Mr.-Mrs.-Pacman-Extended" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="GUI" type="462c0819:PsiDirectoryNode" />
+              <item name="GameLogic" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Mr.-Mrs.-Pacman-Extended" type="b2602c69:ProjectViewProjectNode" />
               <item name="Mr.-Mrs.-Pacman-Extended" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="GUI" type="462c0819:PsiDirectoryNode" />
-              <item name="uibase" type="462c0819:PsiDirectoryNode" />
+              <item name="GameLogic" type="462c0819:PsiDirectoryNode" />
+              <item name="Enums" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Mr.-Mrs.-Pacman-Extended" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Mr.-Mrs.-Pacman-Extended" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="GameLogic" type="462c0819:PsiDirectoryNode" />
+              <item name="ScreenItems" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="Scratches" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -778,7 +669,8 @@
     <option name="totallyTimeSpent" value="42493000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="0" width="1370" height="768" extended-state="0" />
+    <frame x="0" y="27" width="1920" height="1053" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -792,7 +684,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15509601" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21794872" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -862,42 +754,7 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/ApplicationMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/SplashPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamelogic/animationmanager/Animation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamelogic/animationmanager/Sprite.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="14" column="57" lean-forward="false" selection-start-line="14" selection-start-column="57" selection-end-line="14" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamelogic/animationmanager/SpriteFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="32" column="1" lean-forward="false" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamelogic/animationmanager/SpriteFrame.java" />
     <entry file="file://$PROJECT_DIR$/src/GUI/SplashScreen.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -920,27 +777,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamelogic/animationmanager/Animation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1275">
-          <caret line="91" column="0" lean-forward="false" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamelogic/animationmanager/Sprite.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamelogic/animationmanager/SpriteFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="16" column="43" lean-forward="false" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamelogic/animationmanager/Animation.java" />
+    <entry file="file://$PROJECT_DIR$/src/gamelogic/animationmanager/Sprite.java" />
+    <entry file="file://$PROJECT_DIR$/src/gamelogic/animationmanager/SpriteFrame.java" />
     <entry file="file://$PROJECT_DIR$/src/GUI/SplashScreen.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -963,27 +802,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamelogic/animationmanager/Animation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1275">
-          <caret line="91" column="0" lean-forward="false" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamelogic/animationmanager/Sprite.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="40" column="9" lean-forward="false" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamelogic/animationmanager/SpriteFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="16" column="43" lean-forward="false" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamelogic/animationmanager/Animation.java" />
+    <entry file="file://$PROJECT_DIR$/src/gamelogic/animationmanager/Sprite.java" />
+    <entry file="file://$PROJECT_DIR$/src/gamelogic/animationmanager/SpriteFrame.java" />
     <entry file="file://$PROJECT_DIR$/src/GUI/SplashScreen.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1026,49 +847,13 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamelogic/animationmanager/SpriteFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="32" column="1" lean-forward="false" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamelogic/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamelogic/ReferenceHolder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamelogic/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamelogic/animationmanager/SpriteFrame.java" />
+    <entry file="file://$PROJECT_DIR$/src/gamelogic/Utils.java" />
+    <entry file="file://$PROJECT_DIR$/src/gamelogic/ReferenceHolder.java" />
+    <entry file="file://$PROJECT_DIR$/src/gamelogic/Constants.java" />
     <entry file="file://$PROJECT_DIR$/img-src/icons/volume-24-512.png" />
-    <entry file="file://$PROJECT_DIR$/src/gamelogic/animationmanager/Animation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="19" column="16" lean-forward="false" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamelogic/animationmanager/Sprite.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="38" column="43" lean-forward="false" selection-start-line="38" selection-start-column="43" selection-end-line="38" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamelogic/animationmanager/Animation.java" />
+    <entry file="file://$PROJECT_DIR$/src/gamelogic/animationmanager/Sprite.java" />
     <entry file="file://$PROJECT_DIR$/src/GUI/SplashScreen.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -1103,7 +888,7 @@
         <state relative-caret-position="187">
           <caret line="14" column="23" lean-forward="false" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1121,7 +906,7 @@
         <state relative-caret-position="85">
           <caret line="10" column="24" lean-forward="false" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1150,48 +935,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/SavedMapsListPanel.java">
+    <entry file="file://$PROJECT_DIR$/src/GUI/MainMenuPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="6" column="24" lean-forward="false" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
+        <state relative-caret-position="486">
+          <caret line="76" column="16" lean-forward="true" selection-start-line="76" selection-start-column="16" selection-end-line="76" selection-end-column="16" />
           <folding>
-            <element signature="e#202#203#0" expanded="true" />
-            <element signature="e#256#257#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/UIManager.java">
+    <entry file="file://$PROJECT_DIR$/src/GUI/HighScorePanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="8" column="24" lean-forward="false" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/SavedGamesPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
+        <state relative-caret-position="108">
           <caret line="6" column="24" lean-forward="false" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
           <folding>
-            <element signature="e#196#197#0" expanded="true" />
-            <element signature="e#250#251#0" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/GameFrame.java">
+    <entry file="file://$PROJECT_DIR$/src/GUI/CreateMapPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="8" column="24" lean-forward="false" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/uibase/PacLabel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="14" column="59" lean-forward="false" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="59" />
+        <state relative-caret-position="90">
+          <caret line="5" column="24" lean-forward="false" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
           <folding />
         </state>
       </provider>
@@ -1204,31 +971,75 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/CreateMapPanel.java">
+    <entry file="file://$PROJECT_DIR$/src/GUI/uibase/PacLabel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="24" lean-forward="false" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+        <state relative-caret-position="198">
+          <caret line="14" column="59" lean-forward="false" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="59" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/HighScorePanel.java">
+    <entry file="file://$PROJECT_DIR$/src/GUI/GameFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="24" lean-forward="false" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="90">
+          <caret line="8" column="24" lean-forward="false" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/MainMenuPanel.java">
+    <entry file="file://$PROJECT_DIR$/src/GUI/SavedGamesPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="50" column="11" lean-forward="false" selection-start-line="50" selection-start-column="10" selection-end-line="50" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="90">
+          <caret line="6" column="24" lean-forward="false" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/SavedMapsListPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="24" lean-forward="false" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/UIManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="8" column="24" lean-forward="false" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameLogic/ScreenItems/Shield.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="71" lean-forward="false" selection-start-line="8" selection-start-column="71" selection-end-line="8" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameLogic/ScreenItems/Food.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameLogic/ScreenItems/PacmanObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="521">
+          <caret line="59" column="9" lean-forward="true" selection-start-line="59" selection-start-column="9" selection-end-line="59" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameLogic/ScreenItems/Pacman.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="87" column="5" lean-forward="false" selection-start-line="87" selection-start-column="5" selection-end-line="87" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>

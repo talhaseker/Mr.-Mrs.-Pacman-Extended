@@ -16,6 +16,12 @@ public class Food extends PacmanObject{
     private double sideEffectSeconds;
 
     //Constructors
+
+    /** Creates a Food object depending on its position and food type
+     * @param type enumeration of FoodType
+     * @param Xpos x-axis of image's upper left corner
+     * @param Ypos y-axis of image's upper left corner
+     */
     public Food(FoodType type, int Xpos, int Ypos){
         super();
         super.changePosition(Xpos, Ypos);
@@ -35,14 +41,24 @@ public class Food extends PacmanObject{
     }
 
     //Methods
+
+    /** Returns the points to be gained if the food it eaten
+     * @return point reward of the food
+     */
     public int getPoints() {
         return this.points;
     }
 
+    /** Returns the side effect enum of that particular food
+     * @return integer representation of the side effect
+     */
     public int getSideEffect() {
         return this.sideEffect;
     }
 
+    /** Returns the total seconds Pacman will be affected by the side effect if the food is eaten
+     * @return A double which contains the total duration of side effect, in seconds
+     */
     public double getSideEffectSeconds() {
         return this.sideEffectSeconds;
     }
