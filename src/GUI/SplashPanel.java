@@ -1,8 +1,8 @@
 package GUI;
 
 import GUI.uibase.PacLabel;
-import gamelogic.animationmanager.Animation;
-import gamelogic.animationmanager.Sprite;
+import GameLogic.AnimationManager.Animation;
+import GameLogic.AnimationManager.Sprite;
 
 import javax.swing.*;
 import java.awt.*;

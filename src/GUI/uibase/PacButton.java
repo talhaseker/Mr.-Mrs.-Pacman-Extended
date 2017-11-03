@@ -1,6 +1,6 @@
 package GUI.uibase;
 
-import gamelogic.Utils;
+import GameLogic.Utils;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,4 +1,4 @@
-package gamelogic;
+package GameLogic;
 
 import java.awt.*;
 import java.io.File;
