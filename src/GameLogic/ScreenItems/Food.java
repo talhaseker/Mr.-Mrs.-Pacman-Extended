@@ -16,6 +16,10 @@ public class Food extends PacmanObject{
     private double sideEffectSeconds;
 
     //Constructors
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
     /** Creates a Food object depending on its position and food type
      * @param type enumeration of FoodType
      * @param Xpos x-axis of image's upper left corner
