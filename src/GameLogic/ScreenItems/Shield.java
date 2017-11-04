@@ -1,7 +1,10 @@
 package GameLogic.ScreenItems;
 
-/**
- * Created by Ecem Ilgun on 02.11.2017.
+/** Shield (upgrade) object for Pacman
+ * @author Ecem Ilgun
+ * @version 1.8
+ * @since 1.0
  */
 public class Shield {
+    //TODO: Needed to be implemented before Design Report: Iteration II
 }
