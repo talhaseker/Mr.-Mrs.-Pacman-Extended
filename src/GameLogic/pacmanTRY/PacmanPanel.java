@@ -5,7 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 /*
  *
- * Baßak Þevval Ekici
+ * BaÃŸak Ãževval Ekici
  * 
  */
 public class PacmanPanel extends JPanel{
@@ -38,9 +38,9 @@ public class PacmanPanel extends JPanel{
   public void locateGhost(){
      ghostImg = new ImageIcon("pacmanTRY/ghost"+((int)(Math.random() * 5)+1)+".png");
      int rand1 = ((int)(Math.random() * 50)*10);
-      ghostX = rand1;  
+      ghost.ghostX = rand1;  
       int rand2 = ((int)(Math.random() * 50)*10);
-      ghostY = rand2;
+      ghost.ghostY = rand2;
   }
   public void paintComponent(Graphics g) { 
     super.paintComponent(g);
@@ -57,7 +57,7 @@ public class PacmanPanel extends JPanel{
     
   public void checkGhost(){
     if ((pacman.pacmanX == ghost.ghostX) && (pacman.pacmanY == ghost.ghostY)) {  
-      ghost.locateGhost();     
+      locateGhost();     
     }
   }
   
@@ -65,16 +65,16 @@ public class PacmanPanel extends JPanel{
   
   public void checkWalls(){
     
-    if (pacmanY >= height){
+    if (pacman.pacmanY >= height){
       inGame = false;
     }
-    if (pacmanY < 0){
+    if (pacman.pacmanY < 0){
       inGame = false;
     }
-    if (pacmanX >= width){
+    if (pacman.pacmanX >= width){
       inGame = false;
     }
-    if (pacmanX < 0){
+    if (pacman.pacmanX < 0){
       inGame = false;
     }
     if(!inGame){
@@ -105,29 +105,29 @@ public class PacmanPanel extends JPanel{
       int key = e.getKeyCode();
       
       if (key == KeyEvent.VK_LEFT){
-        left = true;
-        up = false;
-        down = false;  
-        right = false;
+        pacman.left = true;
+        pacman.up = false;
+        pacman.down = false;  
+        pacman.right = false;
       } 
       if (key == KeyEvent.VK_RIGHT){
-        right = true;
-        up = false;
-        down = false;
-        left = false;
+        pacman.right = true;
+        pacman.up = false;
+        pacman.down = false;
+        pacman.left = false;
       }
       
       if (key == KeyEvent.VK_UP){
-        up = true;
-        right = false;
-        left = false;
-        down = false;
+        pacman.up = true;
+        pacman.right = false;
+        pacman.left = false;
+        pacman.down = false;
       }
       if (key == KeyEvent.VK_DOWN){
-        down = true;
-        right = false;
-        left = false;
-        up = false;
+        pacman.down = true;
+        pacman.right = false;
+        pacman.left = false;
+        pacman.up = false;
       }
     }
   }
