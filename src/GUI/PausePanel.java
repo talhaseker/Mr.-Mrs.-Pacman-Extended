@@ -1,5 +1,7 @@
 package GUI;
 
+import GUI.uibase.PacButton;
+import GUI.uibase.PacLabel;
 import GUI.uibase.PacPanel;
 import gamelogic.Constants;
 import gamelogic.Utils;
@@ -15,58 +17,39 @@ public class PausePanel extends PacPanel {
     public PausePanel() {
 
         super(true, Constants.GAME_PANEL);
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.setBackground(Color.PINK);
+
         ImageIcon pauseIcon = new ImageIcon(("img-src/icons/pause2.png"));
-        JButton resumeButton;
-        JButton saveGameButton;
-        JButton exitButton;
-        JLabel pauseLabel = new JLabel("PAUSE GAME");
-        pauseLabel.setFont(Utils.registeredFontWithSize(20f));
+        PacButton resumeButton;
+        PacButton saveGameButton;
+        PacButton exitButton;
+
+        //Initialize Labels
+        PacLabel pauseLabel = new PacLabel("PAUSED", 24f);
+        pauseLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        pauseLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         JLabel label = new JLabel(pauseIcon);
+        label.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        resumeButton = new JButton("RESUME");
-        resumeButton.setOpaque(false);
-        resumeButton.setBackground(Color.white);
-        resumeButton.setForeground(Color.black);
-        resumeButton.setBorderPainted(true);
-        resumeButton.setFont(Utils.registeredFontWithSize(16f));
+        //Initialize Buttons
+        resumeButton = new PacButton("RESUME", 14f);
+        resumeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        saveGameButton = new PacButton("SAVE GAME", 14f);
+        saveGameButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        exitButton = new PacButton("EXIT", 14f);
+        exitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        saveGameButton = new JButton("SAVE GAME");
-        saveGameButton.setOpaque(false);
-        saveGameButton.setBackground(Color.white);
-        saveGameButton.setBorderPainted(true);
-        saveGameButton.setForeground(Color.black);
-        saveGameButton.setFont(Utils.registeredFontWithSize(16f));
-
-        exitButton = new JButton("EXIT");
-        exitButton.setOpaque(false);
-        exitButton.setBackground(Color.white);
-        exitButton.setBorderPainted(true);
-        exitButton.setForeground(Color.black);
-        exitButton.setFont(Utils.registeredFontWithSize(16f));
-
-        GroupLayout layout = new GroupLayout(this);
-        this.setLayout(layout);
-        layout.setAutoCreateGaps(true);
-        layout.setAutoCreateContainerGaps(true);
-        GroupLayout.SequentialGroup hGroup = layout.createSequentialGroup();
-        hGroup.addGroup(layout.createParallelGroup().
-                addComponent(pauseLabel).addComponent(label).addComponent(resumeButton).addComponent(saveGameButton).addComponent(exitButton));
-        layout.setHorizontalGroup(hGroup);
-        GroupLayout.SequentialGroup vGroup = layout.createSequentialGroup();
-
-        vGroup.addGroup(layout.createParallelGroup().
-                addComponent(pauseLabel));
-        vGroup.addGroup(layout.createParallelGroup().
-                addComponent(label));
-        vGroup.addGroup(layout.createParallelGroup().
-                addComponent(resumeButton));
-        vGroup.addGroup(layout.createParallelGroup().
-                addComponent(saveGameButton));
-        vGroup.addGroup(layout.createParallelGroup().
-                addComponent(exitButton));
-
-        layout.setVerticalGroup(vGroup);
-
+        //Add Items
+        this.add(pauseLabel);
+        this.add(Box.createRigidArea(new Dimension(0,5)));
+        this.add(label);
+        this.add(Box.createRigidArea(new Dimension(0,25)));
+        this.add(resumeButton);
+        this.add(Box.createRigidArea(new Dimension(0,15)));
+        this.add(saveGameButton);
+        this.add(Box.createRigidArea(new Dimension(0,15)));
+        this.add(exitButton);
     }
 }
 

@@ -50,8 +50,13 @@ public class UIManager extends JPanel {
         //viewMainMenu();
         //viewGameOver();
         //viewShield();
-        viewPause();
+        //viewPause();
+        viewHelp();
+        //viewSavedGames();
         //viewHelp();
+       // viewSavedMaps();
+        //viewHighScores();
+        //viewPause();
     }
 
     public void viewHelp(){
