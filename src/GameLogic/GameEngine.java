@@ -1,12 +1,13 @@
 package GameLogic;
 
-import GameLogic.Enums.GhostAnimationType;
-import GameLogic.Enums.GhostType;
-import GameLogic.ScreenItems.Pacman;
-import GameLogic.ScreenItems.PacmanObject;
+import GameLogic.ScreenItems.*;
+import GameLogic.Enums.*;
 
-import java.util.List;
-
+/** GameEngine class :
+ * @author Ecem Ilgun
+ * @version 1.8
+ * @since 1.0
+ */
 public class GameEngine {
     //Variables
     static final int  MAX_LIFE = 3;

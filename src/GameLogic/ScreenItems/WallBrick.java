@@ -5,21 +5,21 @@
  */
 package pacmangame;
 
+import GameLogic.ScreenItems.PacmanObject;
+
 import java.io.Serializable;
 
 /**
- *
  * @author SEVVAL EKICI
+ * @version 1.8
+ * @since 1.0
+ * @see PacmanObject
  */
 public class WallBrick extends PacmanObject implements Serializable {
         
     public WallBrick(int X, int Y) {
-		super.Xpos = X;
-                super.Ypos = Y;
-                super.width = 30;  //Just Random Values, will be changed.
-                super.height = 40; //Just Random Values, will be changed.
-                super.velocityX=0.0; //Object never moves
-                super.velocityY=0.0; //Object never moves
-	}
-
+		super();
+		super.changePosition(30,40);
+		super.setImage(""); //We need to find an image later
+    }
 }

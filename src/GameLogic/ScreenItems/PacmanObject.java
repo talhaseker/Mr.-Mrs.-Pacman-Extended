@@ -11,7 +11,6 @@ public class PacmanObject {
     //Variables
     private ImageIcon imageIcon; //This will be different for each chil
     private int Xpos, Ypos, width, height;
-    private double velocityX, velocityY;
 
     //Constructor(s)
     /** Default parent constructor called for any type of PacmanObject,
@@ -22,8 +21,6 @@ public class PacmanObject {
         Ypos = 0;
         width = 0;
         height = 0;
-        velocityX = 0.0;
-        velocityY = 0.0;
         imageIcon = null;
     }
 
@@ -45,18 +42,6 @@ public class PacmanObject {
         if (width > 0 && height > 0){
             this.width = width;
             this.height = height;
-        }
-        //Else display error message
-    }
-
-    /** Sets the velocity to the amount given by parameters.
-     * @param velocityX velocity of x-axis
-     * @param velocityY velocity of y-axis
-     */
-    public void setVelocity(int velocityX, int velocityY) {
-        if (velocityX > 0 && velocityY > 0){
-            this.velocityX = velocityX;
-            this.velocityY = velocityY;
         }
         //Else display error message
     }
