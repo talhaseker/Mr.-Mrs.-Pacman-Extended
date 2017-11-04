@@ -3,7 +3,8 @@ package GameLogic;
 import GameLogic.ScreenItems.*;
 import GameLogic.Enums.*;
 
-/** GameEngine class :
+/** GameEngine class : core game logic class, which holds and manipulates game entities and
+ *  controls interaction with UI package
  * @author Ecem Ilgun
  * @version 1.8
  * @since 1.0
