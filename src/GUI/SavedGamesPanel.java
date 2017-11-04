@@ -1,14 +1,12 @@
 package GUI;
 
-import GUI.uibase.PacButton;
-import GUI.uibase.PacLabel;
-import GUI.uibase.PacPanel;
-import gamelogic.Constants;
+import GUI.UIBase.PacButton;
+import GUI.UIBase.PacLabel;
+import GUI.UIBase.PacPanel;
+import GameLogic.Constants;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * Created by Aziz Osman on 30.10.2017.

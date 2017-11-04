@@ -1,6 +1,6 @@
 package GUI;
 
-import GUI.uibase.WindowCloser;
+import GUI.UIBase.WindowCloser;
 
 import javax.swing.*;
 import java.awt.*;

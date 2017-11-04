@@ -1,7 +1,6 @@
 package GUI;
 
-import GUI.uibase.PacButton;
-import gamelogic.Utils;
+import GameLogic.Utils;
 
 import javax.swing.*;
 import java.awt.*;

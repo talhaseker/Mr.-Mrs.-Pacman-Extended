@@ -1,10 +1,9 @@
 package GUI;
 
-import GUI.uibase.PacButton;
-import GUI.uibase.PacLabel;
-import GUI.uibase.PacPanel;
-import gamelogic.Constants;
-import gamelogic.Utils;
+import GUI.UIBase.PacButton;
+import GUI.UIBase.PacLabel;
+import GUI.UIBase.PacPanel;
+import GameLogic.Constants;
 
 import javax.swing.*;
 import java.awt.*;
