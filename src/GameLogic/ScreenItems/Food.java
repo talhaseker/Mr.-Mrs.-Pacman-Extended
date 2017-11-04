@@ -16,10 +16,6 @@ public class Food extends PacmanObject{
     private double sideEffectSeconds;
 
     //Constructors
-<<<<<<< HEAD
-=======
-
->>>>>>> master
     /** Creates a Food object depending on its position and food type
      * @param type enumeration of FoodType
      * @param Xpos x-axis of image's upper left corner
@@ -30,10 +26,13 @@ public class Food extends PacmanObject{
         super.changePosition(Xpos, Ypos);
         super.setSize(20,20);
 
-        if (type == FoodType.BIG){
+        if (type == FoodType.BASIC){
             super.setImage("ImageIcons/GhostScared1.gif"); //TODO: Sorry for putting a scared ghost, I don't have food img yet
             this.points = 50;
             this.sideEffectSeconds = 0.0;
+        }
+        else if(type == FoodType.BIG) {
+            //TODO
         }
         else if(type == FoodType.YELLOW) {
             //TODO

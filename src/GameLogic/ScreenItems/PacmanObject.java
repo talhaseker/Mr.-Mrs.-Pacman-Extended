@@ -7,7 +7,7 @@ import javax.swing.*;
  * @version 1.8
  * @since 1.0
  */
-public class PacmanObject implements Drawable{
+public class PacmanObject {
     //Variables
     private ImageIcon imageIcon; //This will be different for each chil
     private int Xpos, Ypos, width, height;
