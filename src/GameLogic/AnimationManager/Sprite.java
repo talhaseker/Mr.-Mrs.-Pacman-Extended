@@ -1,4 +1,4 @@
-package gamelogic.animationmanager; /**
+package GameLogic.AnimationManager; /**
  * Created by talhaseker on 6.10.2017.
  */
 
@@ -35,6 +35,7 @@ public class Sprite {
     }
 
     public static BufferedImage getSprite(String file) {
+        System.out.println("here is the file name : " + file);
         if (spriteSheet == null) {
             spriteSheet = loadSprite(file);
         }
