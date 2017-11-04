@@ -12,8 +12,7 @@ public class GameEngine {
     private int numPlayer, level, score, livesLeft;
     private double counter;
     private Pacman[] pacmans;
-    private int[][] foodInMap, wallsInGame;
-    private List<PacmanObject> gameItemsInMap;
+    private GameMap map;
     private boolean isPaused;
 
     //Constructor(s)
@@ -28,9 +27,8 @@ public class GameEngine {
 
         pacmans = new Pacman[numPlayer];
         pacmans[0] = new Pacman(); //default pacman object for now
-        //foodInMap = ;
-        //wallsInGame = ;
-        //gameItemsInMap = ;
+
+        map = new GameMap();
 
         counter = 3.0;
         isPaused = true;

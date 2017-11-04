@@ -24,7 +24,7 @@ public class Pacman extends PacmanObject{
      */
     public Pacman (){
         super();
-        super.setImage("ImageIcons/PacMan1.gif");
+        super.setImage("../img-scrImageIcons/PacMan1.gif");
         super.changePosition(100,100); //Pacman has a default starting grid
         super.setSize(50,50);
 
