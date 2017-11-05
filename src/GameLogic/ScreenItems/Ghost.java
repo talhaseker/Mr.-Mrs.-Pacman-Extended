@@ -6,9 +6,15 @@
 package GameLogic.ScreenItems;
 
 // import java.awt.Point;
-import GameLogic.Enums.GhostType;
 
+import GameLogic.Enums.GhostType;
+import GameLogic.Enums.Movement;
+
+import java.awt.*;
 import java.io.Serializable;
+
+import static GameLogic.Constants.ATTACK;
+import static GameLogic.Constants.SCATTER;
 
 /** Represent ghost's data
  * @author SEVVAL EKICI
@@ -25,6 +31,12 @@ public abstract class Ghost extends MovingObject implements Serializable {
                                      // since it can only be alive or dead. However, PacmanAnimationType
                                      // should be used. I don't know if using different approaches in
                                      // pacman and ghost is a good design choice - Ecem
+
+    public int countdownTimer = 0;
+    public boolean isAttacking = false;
+    private boolean scatter;
+    public Movement lastMovement = Movement.LEFT;
+    public Movement curMovement;
 
     //Constructor
 	public Ghost (GhostType type) {
@@ -58,6 +70,9 @@ public abstract class Ghost extends MovingObject implements Serializable {
 	public int getValue() {
 		return points;
 	}
+    public GhostType getGhostType() {
+        return type;
+    }
 	
 	public void chase()
 	{
@@ -69,6 +84,36 @@ public abstract class Ghost extends MovingObject implements Serializable {
         isAlive = false;
         }
         
-    public void blueMood(){}
+    public boolean isScattered(){
+        return scatter;
+    }
+
+    public void scatter(){
+        scatter = true;
+        //TODO: supposed to change animation
+    }
+
+    public void unScatter() {
+        scatter = false;
+        //TODO: supposed to change animation
+    }
+
+    public void respawnInCage() {
+        this.changePosition(100,100);
+        this.unScatter();
+    }
+
+    public Point getInitialOutOfCagePos() {
+            return new Point(this.getXpos(),205);
+    }
+
+    public void flipAttack(){
+        if(isAttacking){
+            countdownTimer = SCATTER;
+        } else{
+            countdownTimer = ATTACK;
+        }
+        isAttacking = !isAttacking;
+    }
 
 }

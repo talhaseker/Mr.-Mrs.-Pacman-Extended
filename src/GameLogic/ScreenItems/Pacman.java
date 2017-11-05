@@ -1,5 +1,6 @@
 package GameLogic.ScreenItems;
 
+import GameLogic.Enums.Movement;
 import GameLogic.Enums.PacmanAnimationType;
 import GameLogic.Enums.PacmanType;
 
@@ -15,6 +16,7 @@ public class Pacman extends MovingObject {
     PacmanAnimationType currentAnimation; // and here.
     double foodEffectSeconds;
     Shield shield;
+    public Movement curMovement;
 
     //Constructor(s)
 

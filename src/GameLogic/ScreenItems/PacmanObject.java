@@ -24,7 +24,22 @@ public class PacmanObject {
         imageIcon = null;
     }
 
-    //Methods
+    public int getXpos() {
+        return Xpos;
+    }
+
+    public void setXpos(int xpos) {
+        Xpos = xpos;
+    }
+
+    public int getYpos() {
+        return Ypos;
+    }
+
+    public void setYpos(int ypos) {
+        Ypos = ypos;
+    }
+//Methods
     /** Translates the object around the screen by Xpos and Ypos units.
      * @param Xpos x-axis translation coefficient
      * @param Ypos y-axis translation coefficient
