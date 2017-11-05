@@ -1,19 +1,22 @@
 package GameLogic;
 
-import GameLogic.ScreenItems.Pacman;
-import GameLogic.ScreenItems.PacmanObject;
+import GameLogic.ScreenItems.*;
+import GameLogic.Enums.*;
 
-import java.util.List;
-
+/** GameEngine class : core game logic class, which holds and manipulates game entities and
+ *  controls interaction with UI package
+ * @author Ecem Ilgun
+ * @version 1.8
+ * @since 1.0
+ */
 public class GameEngine {
     //Variables
     static final int  MAX_LIFE = 3;
-
-    private int numPlayer, level, score, livesLeft;
+    private int numPlayer, numGhost, level, score, livesLeft;
     private double counter;
     private Pacman[] pacmans;
-    private int[][] foodInMap, wallsInGame;
-    private List<PacmanObject> gameItemsInMap;
+    private Ghost[] ghosts;
+    private GameMap map;
     private boolean isPaused;
 
     //Constructor(s)
@@ -25,12 +28,19 @@ public class GameEngine {
         level = 1;
         score = 0;
         livesLeft = MAX_LIFE;
+        numGhost = 4;
 
         pacmans = new Pacman[numPlayer];
         pacmans[0] = new Pacman(); //default pacman object for now
-        //foodInMap = ;
-        //wallsInGame = ;
-        //gameItemsInMap = ;
+
+        ghosts = new Ghost[numGhost];
+
+        ghosts[0] = new Ghost(GhostType.BLINKY);
+        ghosts[1] = new Ghost(GhostType.PINKY);
+        ghosts[2] = new Ghost(GhostType.INKY);
+        ghosts[3] = new Ghost(GhostType.CLYDE);
+
+        map = new GameMap();
 
         counter = 3.0;
         isPaused = true;
@@ -44,7 +54,8 @@ public class GameEngine {
      * function in order to save this GameData object into our database
      */
     public void saveGame() {
-        //TODO: will be implemented after data-layer
+
+
     }
 
     /** Calls startCounter(). Countdown has now started. Continues
