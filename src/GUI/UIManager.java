@@ -1,6 +1,7 @@
 package GUI;
 
 import GameLogic.Constants;
+import GameLogic.GameEngine;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,6 +21,7 @@ public class UIManager extends JPanel {
     SavedGamesPanel savedGamesPanel;
     SavedMapsListPanel savedMapsListPanel;
     ShieldPanel shieldPanel;
+    static GameEngine gameEngine;
 
     public UIManager(){
         super(new CardLayout());
@@ -47,11 +49,11 @@ public class UIManager extends JPanel {
         this.add(savedMapsListPanel, Constants.SAVED_MAPS_LIST_PANEL);
         this.add(shieldPanel, Constants.SHIELD_PANEL);
 
-        //viewMainMenu();
+        viewMainMenu();
         //viewGameOver();
         //viewShield();
         //viewPause();
-        viewHelp();
+//        viewHelp();
         //viewSavedGames();
         //viewHelp();
        // viewSavedMaps();
@@ -76,6 +78,7 @@ public class UIManager extends JPanel {
 
     public void viewMainMenu(){
         CardLayout cl = (CardLayout)(this.getLayout());
+        gameEngine = new GameEngine(gamePanel);
         cl.show(this, Constants.MAIN_MENU_PANEL);
     }
 

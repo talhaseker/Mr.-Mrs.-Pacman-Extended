@@ -1,6 +1,6 @@
 package GameLogic.InputManager;
 
-import GUI.GamePanel;
+import GameLogic.GameEngine;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -14,12 +14,12 @@ public class PauseGameController {
     // PROPERTIES
     private InputMap inputMap;
     private ActionMap actionMap;
-    private GamePanel gamePanel;
+    private GameEngine gameEngine;
 
-    public PauseGameController(InputMap inputMap, ActionMap actionMap, GamePanel gamePanel){
+    public PauseGameController(InputMap inputMap, ActionMap actionMap, GameEngine gameEngine){
         this.inputMap = inputMap;
         this.actionMap = actionMap;
-        this.gamePanel = gamePanel;
+        this.gameEngine = gameEngine;
     }
 
     public void initPauseKeyBindings() {
@@ -37,12 +37,12 @@ public class PauseGameController {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-//            if (!gamePanel.isPaused()) { // pause request
-//                gamePanel.pauseGame();
-//            }
-//            else { // resume request
-//                gamePanel.resumeGame();
-//            }
+            if (!gameEngine.isPaused) { // pause request
+                gameEngine.pause();
+            }
+            else { // resume request
+                gameEngine.resume();
+            }
         }
     }
 }

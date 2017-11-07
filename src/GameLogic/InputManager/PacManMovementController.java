@@ -6,7 +6,6 @@ import GameLogic.ScreenItems.Pacman;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 
 /**
  * Created by talhaseker on 5.11.2017.
@@ -18,13 +17,13 @@ public class PacManMovementController {
 //    pacmanMovementKeyBindings.initMovementKeyBindings();
 
     // PROPERTIES
-    private ArrayList<Pacman> pacmans;
+    private Pacman[] pacmans;
     private InputMap inputMap;
     private ActionMap actionMap;
     private boolean isMultiplayer;
 
     // CONSTRUCTOR
-    public PacManMovementController(ArrayList<Pacman> pacmans, boolean isMultiplayer, InputMap inputMap, ActionMap actionMap) {
+    public PacManMovementController(Pacman[] pacmans, boolean isMultiplayer, InputMap inputMap, ActionMap actionMap) {
         this.pacmans = pacmans;
         this.inputMap = inputMap;
         this.actionMap = actionMap;
@@ -39,28 +38,28 @@ public class PacManMovementController {
                 KeyEvent.VK_RIGHT, 0, false);
         inputMap.put(keyStrokeRightPressed, "right.pressed");
         actionMap.put("right.pressed", new PacManMovementAction(
-                pacmans.get(0), Movement.RIGHT));
+                pacmans[0], Movement.RIGHT));
 
         // left pressed
         KeyStroke keyStrokeLeftPressed = KeyStroke.getKeyStroke(
                 KeyEvent.VK_LEFT, 0, false);
         inputMap.put(keyStrokeLeftPressed, "left.pressed");
         actionMap.put("left.pressed", new PacManMovementAction(
-                pacmans.get(0), Movement.LEFT));
+                pacmans[0], Movement.LEFT));
 
         // up pressed
         KeyStroke keyStrokeUpPressed = KeyStroke.getKeyStroke(
                 KeyEvent.VK_UP, 0, false);
         inputMap.put(keyStrokeUpPressed, "up.pressed");
         actionMap.put("up.pressed", new PacManMovementAction(
-                pacmans.get(0), Movement.UP));
+                pacmans[0], Movement.UP));
 
         // up pressed
         KeyStroke keyStrokeDownPressed = KeyStroke.getKeyStroke(
                 KeyEvent.VK_DOWN, 0, false);
         inputMap.put(keyStrokeDownPressed, "down.pressed");
         actionMap.put("down.pressed", new PacManMovementAction(
-                pacmans.get(0), Movement.DOWN));
+                pacmans[0], Movement.DOWN));
 
         if (isMultiplayer){
             // right released
@@ -68,28 +67,28 @@ public class PacManMovementController {
                     KeyEvent.VK_D, 0, false);
             inputMap.put(keyStrokeRightReleased, "rightsecond.pressed");
             actionMap.put("rightsecond.pressed", new PacManMovementAction(
-                    pacmans.get(1), Movement.RIGHT));
+                    pacmans[1], Movement.RIGHT));
 
             // left released
             KeyStroke keyStrokeLeftReleased = KeyStroke.getKeyStroke(
                     KeyEvent.VK_A, 0, false);
             inputMap.put(keyStrokeLeftReleased, "leftsecond.pressed");
             actionMap.put("leftsecond.pressed", new PacManMovementAction(
-                    pacmans.get(1), Movement.LEFT));
+                    pacmans[1], Movement.LEFT));
 
             // up released
             KeyStroke keyStrokeUpReleased = KeyStroke.getKeyStroke(
                     KeyEvent.VK_W, 0, false);
             inputMap.put(keyStrokeUpReleased, "upsecond.pressed");
             actionMap.put("upsecond.pressed", new PacManMovementAction(
-                    pacmans.get(1), Movement.UP));
+                    pacmans[1], Movement.UP));
 
             // down released
             KeyStroke keyStrokeDownReleased = KeyStroke.getKeyStroke(
                     KeyEvent.VK_S, 0, false);
             inputMap.put(keyStrokeDownReleased, "downsecond.pressed");
             actionMap.put("downsecond.pressed", new PacManMovementAction(
-                    pacmans.get(1), Movement.DOWN));
+                    pacmans[1], Movement.DOWN));
         }
     }
 

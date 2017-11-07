@@ -15,8 +15,8 @@ public class GameFrame extends JFrame {
 
     public GameFrame(){
         this.setVisible(true);
-        //this.setPreferredSize(new Dimension(800,600));
-        this.setPreferredSize(new Dimension(400,300));
+        this.setPreferredSize(new Dimension(800,600));
+//        this.setPreferredSize(new Dimension(400,300));
         //this.setPreferredSize(new Dimension(200,250));
         this.setResizable(false);
         this.getContentPane().add(uiManager);

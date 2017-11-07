@@ -22,7 +22,7 @@ import static GameLogic.Constants.SCATTER;
  * @since 1.0
  * @see PacmanObject
  */
-public abstract class Ghost extends MovingObject implements Serializable {
+public class Ghost extends MovingObject implements Serializable {
     //Properties
     private GhostType type;
     private int points;

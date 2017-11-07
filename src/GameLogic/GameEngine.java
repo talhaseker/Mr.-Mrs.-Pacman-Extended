@@ -1,7 +1,14 @@
 package GameLogic;
 
-import GameLogic.ScreenItems.*;
-import GameLogic.Enums.*;
+import GUI.GameFrame;
+import GUI.GamePanel;
+import GameLogic.Enums.GhostType;
+import GameLogic.InputManager.PacManMovementController;
+import GameLogic.InputManager.PauseGameController;
+import GameLogic.ScreenItems.Ghost;
+import GameLogic.ScreenItems.Pacman;
+
+import static javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW;
 
 /** GameEngine class : core game logic class, which holds and manipulates game entities and
  *  controls interaction with UI package
@@ -17,18 +24,23 @@ public class GameEngine {
     private Pacman[] pacmans;
     private Ghost[] ghosts;
     private GameMap map;
-    private boolean isPaused;
+    public boolean isPaused;
+    private GamePanel gamePanel;
+    private PacManMovementController pacmanMovementKeyBindings;
+    private PauseGameController pauseGameController;
 
     //Constructor(s)
 
     /** Constructs a game engine with default configurations
      */
-    public GameEngine() {
+    public GameEngine(GamePanel gamePanel) {
         numPlayer = 1;
         level = 1;
         score = 0;
         livesLeft = MAX_LIFE;
         numGhost = 4;
+
+        this.gamePanel = gamePanel;
 
         pacmans = new Pacman[numPlayer];
         pacmans[0] = new Pacman(); //default pacman object for now
@@ -43,7 +55,12 @@ public class GameEngine {
         map = new GameMap();
 
         counter = 3.0;
-        isPaused = true;
+        isPaused = false;
+        pacmanMovementKeyBindings = new PacManMovementController(pacmans, (numPlayer == 2), gamePanel.getInputMap(WHEN_IN_FOCUSED_WINDOW), gamePanel.getActionMap());
+        pacmanMovementKeyBindings.initMovementKeyBindings();
+
+        pauseGameController = new PauseGameController(gamePanel.getInputMap(WHEN_IN_FOCUSED_WINDOW), gamePanel.getActionMap(), this);
+        pauseGameController.initPauseKeyBindings();
     }
 
 
@@ -62,6 +79,13 @@ public class GameEngine {
      * the game once startCounter returns.
      */
     public void resume() {
+        isPaused = false;
+        //TODO
+    }
+
+    public void pause() {
+        isPaused = true;
+        GameFrame.uiManager.viewPause();
         //TODO
     }
 
@@ -70,8 +94,9 @@ public class GameEngine {
 
             level++;
         }
-        else
-            gameOver(); //calls gameOver for now, we can change it to gameCompleted later
+        else {
+//            gameOver(); //calls gameOver for now, we can change it to gameCompleted later
+        }
     }
 
 }
