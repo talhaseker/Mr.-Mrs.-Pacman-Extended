@@ -17,6 +17,7 @@ public class Pacman extends MovingObject {
     double foodEffectSeconds;
     Shield shield;
     public Movement curMovement;
+    private int livesLeft = 5;
 
     //Constructor(s)
 
@@ -64,5 +65,13 @@ public class Pacman extends MovingObject {
         if (sideEffect == 0) {
             //TODO: Change animation accordingly
         }
+    }
+
+    public int getLivesLeft() {
+        return livesLeft;
+    }
+
+    public void setLivesLeft(int livesLeft) {
+        this.livesLeft = livesLeft;
     }
 }
