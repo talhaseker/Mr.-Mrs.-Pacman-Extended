@@ -74,7 +74,7 @@ public class GamePanel extends JPanel {
 
     public void prepareGUI(){
         this.setLayout(new BorderLayout());
-        this.setBackground(Color.blue);
+        this.setBackground(Color.BLACK);
 
         bottomPanel = new JPanel();
         bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.X_AXIS));
@@ -106,8 +106,8 @@ public class GamePanel extends JPanel {
         getReadyLabel.setSize(dimension);
 
         this.add(mainPanel, BorderLayout.CENTER);
-//        this.add(foodPanel, BorderLayout.CENTER);
-//        this.add(movementPanel, BorderLayout.CENTER);
+        this.add(foodPanel, BorderLayout.CENTER);
+        this.add(movementPanel, BorderLayout.CENTER);
 
 //        System.out.println(mainPanel.getPreferredSize().getHeight() + " " + mainPanel.getPreferredSize().getWidth());
 

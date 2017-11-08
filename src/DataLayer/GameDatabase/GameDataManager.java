@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GameDatabase;
+package DataLayer.GameDatabase;
 
 /**
  *
  * @author mbpro
  */
-public class GameData {
+public class GameDataManager {
     
 }
