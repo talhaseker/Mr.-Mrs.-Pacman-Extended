@@ -26,7 +26,7 @@ public class Pacman extends MovingObject {
      */
     public Pacman () {
         super();
-        super.setImage("../img-scrImageIcons/PacMan1.gif");
+        super.setImage("ImageIcons/PacMan1");
         super.changePosition(100,100); //Pacman has a default starting grid
         super.setSize(50,50);
 
@@ -46,7 +46,7 @@ public class Pacman extends MovingObject {
         this();
 
         if (type == PacmanType.MRSPACMAN){
-            super.setImage(""); //TODO: Find an image for Mrs. Pacman
+            super.setImage("ImageIcons/GhostScared1"); //TODO: Find an image for Mrs. Pacman
         }
 
         this.changePosition(Xpos,Ypos);

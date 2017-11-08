@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pacmangame;
-
-import GameLogic.ScreenItems.PacmanObject;
-
+package GameLogic.ScreenItems;
+import java.awt.*;
+import java.awt.image.ImageObserver;
 import java.io.Serializable;
 
 /**
@@ -17,9 +16,11 @@ import java.io.Serializable;
  */
 public class WallBrick extends PacmanObject implements Serializable {
         
-    public WallBrick(int X, int Y) {
+    public WallBrick(Graphics g, ImageObserver imageObserver, int X, int Y) {
 		super();
-		super.changePosition(30,40);
-		super.setImage(""); //We need to find an image later
+		super.changePosition(X,Y);
+		super.setImage("icons/copperShield"); //We need to find an image later
+        super.setSize(28, 28);
+		super.draw(g, imageObserver);
     }
 }

@@ -38,10 +38,10 @@ public class PauseGameController {
         public void actionPerformed(ActionEvent e) {
 
             if (!gameEngine.isPaused) { // pause request
-                gameEngine.pause();
+                gameEngine.pauseGame();
             }
             else { // resume request
-                gameEngine.resume();
+                gameEngine.resumeGame();
             }
         }
     }

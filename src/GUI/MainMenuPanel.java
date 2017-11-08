@@ -121,13 +121,13 @@ public class MainMenuPanel extends JPanel{
     public class onePlayerListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            GameFrame.uiManager.view(Constants.GAME_PANEL);
+            GameFrame.uiManager.viewGame(1);
         }
     }
     public class twoPlayersListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            GameFrame.uiManager.view(Constants.GAME_PANEL);
+            GameFrame.uiManager.viewGame(2);
         }
     }
     public class createMapListener implements ActionListener {

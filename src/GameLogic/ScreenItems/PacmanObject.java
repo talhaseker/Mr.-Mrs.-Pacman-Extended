@@ -1,6 +1,10 @@
 package GameLogic.ScreenItems;
 
-import javax.swing.*;
+import GameLogic.AnimationManager.Sprite;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
 
 /** Parent class of each drawable game object
  * @author Ecem Ilgun
@@ -9,7 +13,7 @@ import javax.swing.*;
  */
 public class PacmanObject {
     //Variables
-    private ImageIcon imageIcon; //This will be different for each chil
+    private BufferedImage imageIcon; //This will be different for each chil
     private int Xpos, Ypos, width, height;
 
     //Constructor(s)
@@ -65,11 +69,20 @@ public class PacmanObject {
      * @param imgSrc A string parameter of the relative path of image source
      */
     public void setImage(String imgSrc){
-        this.imageIcon = new ImageIcon(imgSrc);
+        this.imageIcon = Sprite.getSprite(imgSrc);
     }
 
     /** Returns the imageIcon of the object
      * @return imageIcon of the object
      */
-    public ImageIcon getImage(){ return this.imageIcon; }
+    public BufferedImage getImage(){ return this.imageIcon; }
+
+    public void draw(Graphics g, ImageObserver imageObserver){
+        Graphics2D g2 = (Graphics2D) g;
+        System.out.println(imageIcon.getHeight() + "  " + imageIcon.getWidth());
+        System.out.println(Xpos + " " + Ypos + " " +  width + " " + height);
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
+        g2.drawImage(imageIcon, Xpos, Ypos, width, height, imageObserver);
+    }
 }
