@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GameDatabase;
+package DataLayer.src.GameDatabase;
 
 /**
  *
- * @author mbpro
+ * @author Başak Şevval Ekici
  */
 public class GameData {
-    
+    int[] gameInfo = { Game.hp, Game.level, Game.mana, Game.expTotal,
+            Game.goldTotal, Game.arrow, Game.shuriken, Game.bomb,
+            Game.hpPotion, Game.mpPotion, Game.potion, Game.items };
 }

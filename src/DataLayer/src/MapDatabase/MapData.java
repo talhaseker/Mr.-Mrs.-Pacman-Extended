@@ -3,17 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MapDatabase;
+package DataLayer.src.MapDatabase;
 
 /**
  *
- * @author mbpro
+ * @author Başak Şevval Ekici
  */
 public class MapData {
     
     //Properties
-    Pacman mr;
-    Pacman mrs;
-    Ghost ghosts[] = new Ghost[4];
+    int[] mapInfo = {  };
     
 }

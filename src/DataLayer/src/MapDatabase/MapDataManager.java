@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MapDatabase;
+package DataLayer.src.MapDatabase;
 
 /**
  *
- * @author mbpro
+ * @author Başak Şevval Ekici
  */
+
 public class MapDataManager {
     
 }
