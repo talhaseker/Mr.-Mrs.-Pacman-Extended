@@ -2,7 +2,10 @@ package GameLogic.ScreenItems;
 
 import GameLogic.Enums.FoodType;
 
-import javax.swing.*;
+// import javax.swing.*;
+import java.awt.*;
+import java.awt.image.ImageObserver;
+import java.io.Serializable;
 
 /** Represents food items Pacman will eat
  * @author Ecem Ilgun
@@ -10,34 +13,47 @@ import javax.swing.*;
  * @since 1.0
  * @see PacmanObject
  */
-public class Food extends PacmanObject{
+public class Food extends PacmanObject implements Serializable{
     //Variables
     private int points, sideEffect;
     private double sideEffectSeconds;
 
     //Constructors
-
     /** Creates a Food object depending on its position and food type
      * @param type enumeration of FoodType
      * @param Xpos x-axis of image's upper left corner
      * @param Ypos y-axis of image's upper left corner
      */
-    public Food(FoodType type, int Xpos, int Ypos){
+    public Food(FoodType type, Graphics g, ImageObserver imageObserver, int Xpos, int Ypos){
         super();
         super.changePosition(Xpos, Ypos);
-        super.setSize(20,20);
+        super.setSize(28,28);
 
-        if (type == FoodType.BIG){
-            super.setImage("ImageIcons/GhostScared1.gif"); //TODO: Sorry for putting a scared ghost, I don't have food img yet
-            this.points = 50;
+        this.points = 50;
+
+        if (type == FoodType.BASIC){
+            super.setImage("ImageIcons/GhostScared1"); //TODO: Sorry for putting a scared ghost, I don't have food img yet
             this.sideEffectSeconds = 0.0;
+            this.sideEffect = 0;
+        }
+        else if(type == FoodType.BIG) {
+            super.setImage("ImageIcons/GhostScared1"); //TODO: Sorry for putting a scared ghost, I don't have food img yet
+            this.points = 100;
+            this.sideEffectSeconds = 5.0;
+            this.sideEffect = 1;
         }
         else if(type == FoodType.YELLOW) {
-            //TODO
+            super.setImage("ImageIcons/GhostScared1"); //TODO: Sorry for putting a scared ghost, I don't have food img yet
+            this.sideEffectSeconds = 5.0;
+            this.sideEffect = 2;
         }
         else if(type == FoodType.GREEN) {
-            //TODO
+            super.setImage("ImageIcons/GhostScared1"); //TODO: Sorry for putting a scared ghost, I don't have food img yet
+            this.sideEffectSeconds = 5.0;
+            this.sideEffect = 3;
         }
+
+        super.draw(g, imageObserver);
     }
 
     //Methods

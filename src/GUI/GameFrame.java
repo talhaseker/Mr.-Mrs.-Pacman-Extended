@@ -1,6 +1,6 @@
 package GUI;
 
-import GUI.uibase.WindowCloser;
+import GUI.UIBase.WindowCloser;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,13 +10,14 @@ import java.awt.*;
  */
 public class GameFrame extends JFrame {
 
-//    GameEngine engine = new GameEngine();
+//   GameEngine engine = new GameEngine();
     public static UIManager uiManager = new UIManager();
 
     public GameFrame(){
         this.setVisible(true);
-        //this.setPreferredSize(new Dimension(800,600));
-        this.setPreferredSize(new Dimension(400,300));
+        this.setPreferredSize(new Dimension(800,600));
+//        this.setPreferredSize(new Dimension(400,300));
+        //this.setPreferredSize(new Dimension(200,250));
         this.setResizable(false);
         this.getContentPane().add(uiManager);
         this.pack();

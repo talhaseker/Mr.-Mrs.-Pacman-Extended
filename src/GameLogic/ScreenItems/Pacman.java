@@ -10,21 +10,23 @@ import GameLogic.Enums.PacmanType;
  * @since 1.0
  * @see PacmanObject
  */
-public class Pacman extends PacmanObject{
+public class Pacman extends MovingObject {
     //Variables
-    private int foodEffect, score;       //We can (should) switch to enum later here,
+    private int foodEffect, score;        //We can (should) switch to enum later here,
     PacmanAnimationType currentAnimation; // and here.
     double foodEffectSeconds;
     Shield shield;
+    public Movement curMovement;
+    private int livesLeft = 5;
 
     //Constructor(s)
 
     /** Default constructor of Pacman class.
      *  Initializes a not moving Mr. Pacman object.
      */
-    public Pacman (){
+    public Pacman () {
         super();
-        super.setImage("ImageIcons/PacMan1.gif");
+        super.setImage("ImageIcons/PacMan1");
         super.changePosition(100,100); //Pacman has a default starting grid
         super.setSize(50,50);
 
@@ -40,11 +42,11 @@ public class Pacman extends PacmanObject{
      * @param Xpos X-axis location of the upper left corner of Pacman object
      * @param Ypos Y-axis location of the upper left corner of Pacman object
      */
-    public Pacman(PacmanType type, int Xpos, int Ypos){
+    public Pacman(PacmanType type, int Xpos, int Ypos) {
         this();
 
         if (type == PacmanType.MRSPACMAN){
-            super.setImage(""); //TODO: Find an image for Mrs. Pacman
+            super.setImage("ImageIcons/GhostScared1"); //TODO: Find an image for Mrs. Pacman
         }
 
         this.changePosition(Xpos,Ypos);
@@ -55,7 +57,7 @@ public class Pacman extends PacmanObject{
     /** Manages Pacman object's state if it collides with a food object.
      * @param food The food which Pacman collided with
      */
-    public void eatFood(Food food){
+    public void eatFood(Food food) {
         score += food.getPoints();
         this.foodEffectSeconds = food.getSideEffectSeconds();
         int sideEffect = food.getSideEffect();
@@ -65,25 +67,11 @@ public class Pacman extends PacmanObject{
         }
     }
 
-    // move is called each time a arrow key is
-    // pressed, pacman cannot move to 2 different
-    // ways at the same time (etc. up and left is forbidden)
+    public int getLivesLeft() {
+        return livesLeft;
+    }
 
-    /** Manages pacman objects position. It's called each time user presses an arrow button
-     * @param movement Movement enumeration, indicating the direction Pacman will move
-     */
-    public void move(Movement movement) {
-        if (movement == Movement.DOWN) {
-            this.changePosition(0, 20);
-        }
-        else if (movement == Movement.UP) {
-            this.changePosition(0, -20);
-        }
-        else if (movement == Movement.LEFT) {
-            this.changePosition(20, 0);
-        }
-        else if (movement == Movement.RIGHT) {
-            this.changePosition(-20, 0);
-        }
+    public void setLivesLeft(int livesLeft) {
+        this.livesLeft = livesLeft;
     }
 }

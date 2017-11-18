@@ -1,8 +1,8 @@
 package GUI;
 
-import GUI.uibase.PacButton;
-import GUI.uibase.PacLabel;
-import gamelogic.animationmanager.Sprite;
+import GUI.UIBase.PacButton;
+import GUI.UIBase.PacLabel;
+import GameLogic.AnimationManager.Sprite;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,16 +1,18 @@
 package GUI;
 
-import GUI.uibase.PacButton;
-import GUI.uibase.PacLabel;
+import GUI.UIBase.PacButton;
+import GUI.UIBase.PacLabel;
+import GameLogic.Constants;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by Aziz Osman on 30.10.2017.
  */
-public class MainMenuPanel extends JPanel {
-
+public class MainMenuPanel extends JPanel{
     public MainMenuPanel(){
         super(new GridBagLayout());
         this.setBackground(Color.BLACK);
@@ -92,6 +94,58 @@ public class MainMenuPanel extends JPanel {
         c.gridx = 0;
         c.gridy = 0;
         this.add(helpPanel, c);
+
+        //Add buttons to action listener
+        helpButton.addActionListener(new helpButtonListener());
+        highScoreButton.addActionListener(new highScoreListener());
+        onePlayerButton.addActionListener(new onePlayerListener());
+        twoPlayersButton.addActionListener(new twoPlayersListener());
+        createMapButton.addActionListener(new createMapListener());
+        loadGameButton.addActionListener(new loadGameListener());
+        loadMapButton.addActionListener(new loadMapListener());
+        //soundButton.addActionListener(new soundListener());
     }
 
+    public class helpButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            GameFrame.uiManager.view(Constants.HELP_PANEL);
+        }
+    }
+    public class highScoreListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            GameFrame.uiManager.view(Constants.HIGHSCORE_PANEL);
+        }
+    }
+    public class onePlayerListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            GameFrame.uiManager.viewGame(1);
+        }
+    }
+    public class twoPlayersListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            GameFrame.uiManager.viewGame(2);
+        }
+    }
+    public class createMapListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            GameFrame.uiManager.view(Constants.CREATE_MAP_PANEL);
+        }
+    }
+    public class loadMapListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            GameFrame.uiManager.view(Constants.SAVED_MAPS_LIST_PANEL);
+        }
+    }
+    public class loadGameListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            GameFrame.uiManager.view(Constants.SAVED_GAME_PANEL);
+        }
+    }
 }

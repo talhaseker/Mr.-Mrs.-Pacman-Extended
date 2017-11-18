@@ -1,6 +1,10 @@
 package GameLogic.ScreenItems;
 
-import javax.swing.*;
+import GameLogic.AnimationManager.Sprite;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
 
 /** Parent class of each drawable game object
  * @author Ecem Ilgun
@@ -9,9 +13,8 @@ import javax.swing.*;
  */
 public class PacmanObject {
     //Variables
-    private ImageIcon imageIcon; //This will be different for each chil
+    private BufferedImage imageIcon; //This will be different for each chil
     private int Xpos, Ypos, width, height;
-    private double velocityX, velocityY;
 
     //Constructor(s)
     /** Default parent constructor called for any type of PacmanObject,
@@ -22,12 +25,25 @@ public class PacmanObject {
         Ypos = 0;
         width = 0;
         height = 0;
-        velocityX = 0.0;
-        velocityY = 0.0;
         imageIcon = null;
     }
 
-    //Methods
+    public int getXpos() {
+        return Xpos;
+    }
+
+    public void setXpos(int xpos) {
+        Xpos = xpos;
+    }
+
+    public int getYpos() {
+        return Ypos;
+    }
+
+    public void setYpos(int ypos) {
+        Ypos = ypos;
+    }
+//Methods
     /** Translates the object around the screen by Xpos and Ypos units.
      * @param Xpos x-axis translation coefficient
      * @param Ypos y-axis translation coefficient
@@ -49,27 +65,24 @@ public class PacmanObject {
         //Else display error message
     }
 
-    /** Sets the velocity to the amount given by parameters.
-     * @param velocityX velocity of x-axis
-     * @param velocityY velocity of y-axis
-     */
-    public void setVelocity(int velocityX, int velocityY) {
-        if (velocityX > 0 && velocityY > 0){
-            this.velocityX = velocityX;
-            this.velocityY = velocityY;
-        }
-        //Else display error message
-    }
-
     /** Sets the imageIcon of the object according to its parameter
      * @param imgSrc A string parameter of the relative path of image source
      */
     public void setImage(String imgSrc){
-        this.imageIcon = new ImageIcon(imgSrc);
+        this.imageIcon = Sprite.getSprite(imgSrc);
     }
 
     /** Returns the imageIcon of the object
      * @return imageIcon of the object
      */
-    public ImageIcon getImage(){ return this.imageIcon; }
+    public BufferedImage getImage(){ return this.imageIcon; }
+
+    public void draw(Graphics g, ImageObserver imageObserver){
+        Graphics2D g2 = (Graphics2D) g;
+        System.out.println(imageIcon.getHeight() + "  " + imageIcon.getWidth());
+        System.out.println(Xpos + " " + Ypos + " " +  width + " " + height);
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
+        g2.drawImage(imageIcon, Xpos, Ypos, width, height, imageObserver);
+    }
 }

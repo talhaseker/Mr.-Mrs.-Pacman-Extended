@@ -1,4 +1,4 @@
-package GUI.uibase;
+package GUI.UIBase;
 
 import GUI.GameFrame;
 
