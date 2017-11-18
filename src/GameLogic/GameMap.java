@@ -9,6 +9,9 @@ public class GameMap {
     //Variables
     private static final int GRID_SIZE = 28;
     private int[][] foodMap, wallMap;
+    public int[][] map1 = {{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},{1,2,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,2,1}, {1,0,1,1,0,1,1,0,1,1,1,1,1,0,1,0,1,1,0,1}
+
+};
 
     //Constructor(s)
     /**

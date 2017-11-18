@@ -3,19 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package HighScoreDatabase;
+package DataLayer.MapDatabase;
 
 /**
  *
  * @author mbpro
  */
-public class HighScoreDataManager {
-    
-    //Properties
-    //Constructor
-    //Methods
-    HighScore[] getHighScore(){
-    
-    }
+public class MapDataManager {
     
 }

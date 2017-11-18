@@ -1,6 +1,7 @@
 package GUI;
 
 import GameLogic.Constants;
+import GameLogic.GameEngine;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +13,7 @@ public class UIManager extends JPanel {
 
     CreateMapPanel createMapPanel;
     GameOverPanel gameOverPanel;
-    GamePanel gamePanel;
+//    GamePanel gamePanel;
     HelpPanel helpPanel;
     HighScorePanel highScorePanel;
     MainMenuPanel mainMenuPanel;
@@ -20,13 +21,13 @@ public class UIManager extends JPanel {
     SavedGamesPanel savedGamesPanel;
     SavedMapsListPanel savedMapsListPanel;
     ShieldPanel shieldPanel;
+    static GameEngine gameEngine;
 
     public UIManager(){
         super(new CardLayout());
 
         createMapPanel = new CreateMapPanel();
         gameOverPanel = new GameOverPanel();
-        gamePanel = new GamePanel();
         helpPanel = new HelpPanel();
         highScorePanel = new HighScorePanel();
         mainMenuPanel = new MainMenuPanel();
@@ -38,7 +39,7 @@ public class UIManager extends JPanel {
         this.add(mainMenuPanel, Constants.MAIN_MENU_PANEL);
         this.add(createMapPanel, Constants.CREATE_MAP_PANEL);
         this.add(gameOverPanel, Constants.GAME_OVER_PANEL);
-        this.add(gamePanel, Constants.GAME_PANEL);
+//        this.add(gamePanel, Constants.GAME_PANEL);
         this.add(helpPanel, Constants.HELP_PANEL);
         this.add(highScorePanel, Constants.HIGHSCORE_PANEL);
         this.add(mainMenuPanel, Constants.MAIN_MENU_PANEL);
@@ -47,11 +48,11 @@ public class UIManager extends JPanel {
         this.add(savedMapsListPanel, Constants.SAVED_MAPS_LIST_PANEL);
         this.add(shieldPanel, Constants.SHIELD_PANEL);
 
-        //viewMainMenu();
+        viewMainMenu();
         //viewGameOver();
         //viewShield();
         //viewPause();
-        viewHelp();
+//        viewHelp();
         //viewSavedGames();
         //viewHelp();
        // viewSavedMaps();
@@ -69,8 +70,9 @@ public class UIManager extends JPanel {
         cl.show(this, Constants.HIGHSCORE_PANEL);
     }
 
-    public void viewGame(){
+    public void viewGame(int playerNum){
         CardLayout cl = (CardLayout)(this.getLayout());
+        gameEngine = new GameEngine(this, playerNum);
         cl.show(this, Constants.GAME_PANEL);
     }
 

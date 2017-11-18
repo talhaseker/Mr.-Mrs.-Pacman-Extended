@@ -1,5 +1,6 @@
 package GameLogic.ScreenItems;
 
+import GameLogic.Enums.Movement;
 import GameLogic.Enums.PacmanAnimationType;
 import GameLogic.Enums.PacmanType;
 
@@ -15,6 +16,8 @@ public class Pacman extends MovingObject {
     PacmanAnimationType currentAnimation; // and here.
     double foodEffectSeconds;
     Shield shield;
+    public Movement curMovement;
+    private int livesLeft = 5;
 
     //Constructor(s)
 
@@ -23,7 +26,7 @@ public class Pacman extends MovingObject {
      */
     public Pacman () {
         super();
-        super.setImage("../img-scrImageIcons/PacMan1.gif");
+        super.setImage("ImageIcons/PacMan1");
         super.changePosition(100,100); //Pacman has a default starting grid
         super.setSize(50,50);
 
@@ -43,7 +46,7 @@ public class Pacman extends MovingObject {
         this();
 
         if (type == PacmanType.MRSPACMAN){
-            super.setImage(""); //TODO: Find an image for Mrs. Pacman
+            super.setImage("ImageIcons/GhostScared1"); //TODO: Find an image for Mrs. Pacman
         }
 
         this.changePosition(Xpos,Ypos);
@@ -62,5 +65,13 @@ public class Pacman extends MovingObject {
         if (sideEffect == 0) {
             //TODO: Change animation accordingly
         }
+    }
+
+    public int getLivesLeft() {
+        return livesLeft;
+    }
+
+    public void setLivesLeft(int livesLeft) {
+        this.livesLeft = livesLeft;
     }
 }

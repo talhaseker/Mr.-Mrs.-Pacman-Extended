@@ -3,12 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GameDatabase;
+package DataLayer.HighScoreDatabase;
 
 /**
  *
  * @author mbpro
  */
-public class GameDataManager {
+public class HighScoreDataManager {
+    
+    //Properties
+    //Constructor
+    //Methods
+    public HighScoreData[] getHighScore(){
+        return null;
+    }
     
 }

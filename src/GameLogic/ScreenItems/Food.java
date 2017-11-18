@@ -3,6 +3,8 @@ package GameLogic.ScreenItems;
 import GameLogic.Enums.FoodType;
 
 // import javax.swing.*;
+import java.awt.*;
+import java.awt.image.ImageObserver;
 import java.io.Serializable;
 
 /** Represents food items Pacman will eat
@@ -22,34 +24,36 @@ public class Food extends PacmanObject implements Serializable{
      * @param Xpos x-axis of image's upper left corner
      * @param Ypos y-axis of image's upper left corner
      */
-    public Food(FoodType type, int Xpos, int Ypos){
+    public Food(FoodType type, Graphics g, ImageObserver imageObserver, int Xpos, int Ypos){
         super();
         super.changePosition(Xpos, Ypos);
-        super.setSize(20,20);
+        super.setSize(28,28);
 
         this.points = 50;
 
         if (type == FoodType.BASIC){
-            super.setImage("ImageIcons/GhostScared1.gif"); //TODO: Sorry for putting a scared ghost, I don't have food img yet
+            super.setImage("ImageIcons/GhostScared1"); //TODO: Sorry for putting a scared ghost, I don't have food img yet
             this.sideEffectSeconds = 0.0;
             this.sideEffect = 0;
         }
         else if(type == FoodType.BIG) {
-            super.setImage("ImageIcons/GhostScared1.gif"); //TODO: Sorry for putting a scared ghost, I don't have food img yet
+            super.setImage("ImageIcons/GhostScared1"); //TODO: Sorry for putting a scared ghost, I don't have food img yet
             this.points = 100;
             this.sideEffectSeconds = 5.0;
             this.sideEffect = 1;
         }
         else if(type == FoodType.YELLOW) {
-            super.setImage("ImageIcons/GhostScared1.gif"); //TODO: Sorry for putting a scared ghost, I don't have food img yet
+            super.setImage("ImageIcons/GhostScared1"); //TODO: Sorry for putting a scared ghost, I don't have food img yet
             this.sideEffectSeconds = 5.0;
             this.sideEffect = 2;
         }
         else if(type == FoodType.GREEN) {
-            super.setImage("ImageIcons/GhostScared1.gif"); //TODO: Sorry for putting a scared ghost, I don't have food img yet
+            super.setImage("ImageIcons/GhostScared1"); //TODO: Sorry for putting a scared ghost, I don't have food img yet
             this.sideEffectSeconds = 5.0;
             this.sideEffect = 3;
         }
+
+        super.draw(g, imageObserver);
     }
 
     //Methods

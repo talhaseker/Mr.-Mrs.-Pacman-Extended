@@ -1,7 +1,16 @@
 package GameLogic;
 
-import GameLogic.ScreenItems.*;
-import GameLogic.Enums.*;
+import GUI.GameFrame;
+import GUI.GamePanel;
+import GUI.UIManager;
+import GameLogic.Enums.GhostType;
+import GameLogic.InputManager.PacManMovementController;
+import GameLogic.InputManager.PauseGameController;
+import GameLogic.ScreenItems.Ghost;
+import GameLogic.ScreenItems.Pacman;
+import GameLogic.UpdateManager.TimeController;
+
+import static javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW;
 
 /** GameEngine class : core game logic class, which holds and manipulates game entities and
  *  controls interaction with UI package
@@ -13,18 +22,23 @@ public class GameEngine {
     //Variables
     static final int  MAX_LIFE = 3;
     private int numPlayer, numGhost, level, score, livesLeft;
+    public int[][] gameMap;
     private double counter;
     private Pacman[] pacmans;
     private Ghost[] ghosts;
     private GameMap map;
-    private boolean isPaused;
+    public boolean isPaused;
+    private GamePanel gamePanel;
+    private PacManMovementController pacmanMovementKeyBindings;
+    private PauseGameController pauseGameController;
+    private TimeController timeController;
 
     //Constructor(s)
 
     /** Constructs a game engine with default configurations
      */
-    public GameEngine() {
-        numPlayer = 1;
+    public GameEngine(UIManager uiManager, int numPlayer) {
+        numPlayer = numPlayer;
         level = 1;
         score = 0;
         livesLeft = MAX_LIFE;
@@ -41,13 +55,34 @@ public class GameEngine {
         ghosts[3] = new Ghost(GhostType.CLYDE);
 
         map = new GameMap();
+        gameMap = map.map1;
+
+        this.gamePanel = new GamePanel(gameMap);
+        uiManager.add(gamePanel, Constants.GAME_PANEL);
 
         counter = 3.0;
-        isPaused = true;
+        isPaused = false;
+        pacmanMovementKeyBindings = new PacManMovementController(pacmans, (numPlayer == 2), gamePanel.getInputMap(WHEN_IN_FOCUSED_WINDOW), gamePanel.getActionMap());
+        pacmanMovementKeyBindings.initMovementKeyBindings();
+
+        pauseGameController = new PauseGameController(gamePanel.getInputMap(WHEN_IN_FOCUSED_WINDOW), gamePanel.getActionMap(), this);
+        pauseGameController.initPauseKeyBindings();
+
+        timeController = new TimeController(pacmans, (numPlayer == 2), ghosts, gamePanel);
+
+        startGame();
     }
 
 
     //Methods
+
+    public void startGame(){
+        gamePanel.prepareGUI();
+        gamePanel.updateLives(3);
+        gamePanel.updateScore(0);
+        gamePanel.repaintRequest(gameMap);
+        timeController.startTimer();
+    }
 
     /** Constructs a GameData object with all of the attributes in
      * GameEngine. Calls DataLayer.GameDataBase.GameDataManager.setGameData()
@@ -61,7 +96,18 @@ public class GameEngine {
     /** Calls startCounter(). Countdown has now started. Continues
      * the game once startCounter returns.
      */
-    public void resume() {
+    public void resumeGame() {
+        isPaused = false;
+        GameFrame.uiManager.viewGame(numPlayer);
+        timeController.startTimer();
+        //TODO
+    }
+
+    public void pauseGame() {
+        timeController.stopTimer();
+        isPaused = true;
+        GameFrame.uiManager.viewPause();
+
         //TODO
     }
 
@@ -70,8 +116,9 @@ public class GameEngine {
 
             level++;
         }
-        else
-            gameOver(); //calls gameOver for now, we can change it to gameCompleted later
+        else {
+//            gameOver(); //calls gameOver for now, we can change it to gameCompleted later
+        }
     }
 
 }
