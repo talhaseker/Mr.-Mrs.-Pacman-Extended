@@ -5,7 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 /*
  *
- * Baﬂak ﬁevval Ekici
+ * Ba√üak √ûevval Ekici
  * 
  */
 public class PacmanPanel extends JPanel{
@@ -38,9 +38,9 @@ public class PacmanPanel extends JPanel{
   public void locateGhost(){
      ghostImg = new ImageIcon("pacmanTRY/ghost"+((int)(Math.random() * 5)+1)+".png");
      int rand1 = ((int)(Math.random() * 50)*10);
-      ghostX = rand1;  
+      ghost.ghostX = rand1;  
       int rand2 = ((int)(Math.random() * 50)*10);
-      ghostY = rand2;
+      ghost.ghostY = rand2;
   }
   public void paintComponent(Graphics g) { 
     super.paintComponent(g);
