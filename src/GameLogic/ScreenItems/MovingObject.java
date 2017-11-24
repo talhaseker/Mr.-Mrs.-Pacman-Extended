@@ -8,7 +8,8 @@ public class MovingObject extends PacmanObject {
     //Variables
     private double velocityX, velocityY;
     private int speed;
-    public Movement lastMovement, curMovement = Movement.LEFT;
+    public Movement curMovement = Movement.RIGHT;
+    public Movement lastMovement = Movement.RIGHT;
 
     public MovingObject(){
         super();

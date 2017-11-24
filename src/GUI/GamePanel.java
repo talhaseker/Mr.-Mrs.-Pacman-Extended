@@ -90,6 +90,9 @@ public class GamePanel extends JPanel {
                         wb.draw(g, mainPanel);
                     }
                 }
+//                System.out.println("here is the position for the walls!!!");
+//                for (WallBrick w : wallBricks)
+//                    System.out.println(w.getXpos()+ " : " + w.getYpos());
                 super.paintComponent(g);
             }
         };
@@ -127,6 +130,9 @@ public class GamePanel extends JPanel {
                         f.draw(g, foodPanel);
                     }
                 }
+//                System.out.println("here is the position for the foods!!!");
+//                for (Food w : foods)
+//                    System.out.println(w.getXpos()+ " : " + w.getYpos());
                 super.paintComponent(g);
             }
         };
@@ -141,6 +147,11 @@ public class GamePanel extends JPanel {
                     pm.draw(g, this);
                 for (Ghost gh : ghosts)
                     gh.draw(g, this);
+//            System.out.println("here is the positions of the moving objects!!!");
+//                for (Pacman pm : pacmans)
+//                    System.out.println("Pacman->" +pm.getXpos() + " : " + pm.getYpos() + " : " + pm.lastMovement + " : " + pm.curMovement);
+//                for (Ghost pm : ghosts)
+//                    System.out.println("Ghost-> "+ pm.getGhostType() + " : " +pm.getXpos() + " : " + pm.getYpos() + " : " + pm.lastMovement + " : " + pm.curMovement);
             }
         };
         movementPanel.setLayout(null);

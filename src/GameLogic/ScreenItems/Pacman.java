@@ -65,6 +65,12 @@ public class Pacman extends MovingObject {
         }
     }
 
+    public void changeMovement(){
+        System.out.println("change movement called for pacman");
+        lastMovement = curMovement;
+        //TODO: change the movement animation here
+    }
+
     public int getLivesLeft() {
         return livesLeft;
     }

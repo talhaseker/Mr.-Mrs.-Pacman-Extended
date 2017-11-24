@@ -19,6 +19,15 @@ public class GhostController {
     private int[][] gameMap;
     int pacLives = 3;
 
+    final int cageBeginX = 344;
+    final int cageEndX = 456;
+    final int cageBeginY = 236;
+    final int cageEndY = 264;
+    final int initialOutOfCageX = 372;
+    final int initialOutOfCageY = 208;
+    final int gameEndX = 680;
+    final int gameEndY = 404;
+
     int cageTimerInky, cageTimerPinky, cageTimerBlinky, cageTimerClyde = 0;
     boolean MovementUPInky, MovementUPPinky, MovementUPBlinky, MovementUPClyde = false;
     int mod = 7;
@@ -29,7 +38,10 @@ public class GhostController {
     boolean moveOpposite = false;
     int oppCounter = 0;
 
-    public GhostController(int[][] gameMap, Ghost[] ghosts, Pacman pm){
+    InteractionCheckerAndHandler interactionCheckerAndHandler;
+
+    public GhostController(InteractionCheckerAndHandler interactionCheckerAndHandler, int[][] gameMap, Ghost[] ghosts, Pacman pm){
+        this.interactionCheckerAndHandler = interactionCheckerAndHandler;
         this.gameMap = gameMap;
         this.ghosts = ghosts;
         this.pm = pm;
@@ -90,16 +102,16 @@ public class GhostController {
                 ghost.setYpos(ghost.getInitialOutOfCagePos().y);
             }
         } else {
-            if ((curY > 250 && curY <= 308) && (curX >= 231 && curX <= 368)) {
+            if ((curY >= cageBeginY && curY <= cageEndY) && (curX >= cageBeginX && curX <= cageEndX)) {
                 cageTimerInky = deathTimer;
             }
             int targetX = 250, targetY = 350;
             if(ghost.isScattered()){
-                targetX = 558 - pm.getXpos();
-                targetY = 551 - pm.getYpos();
+                targetX = gameEndX - pm.getXpos();
+                targetY = gameEndY - pm.getYpos();
             } else if(!ghost.isAttacking){
-                targetX = 558 - pm.getXpos();
-                targetY = 551 - pm.getYpos();
+                targetX = gameEndX - pm.getXpos();
+                targetY = gameEndY - pm.getYpos();
                 ghost.countdownTimer --;
             } else {
 
@@ -148,17 +160,17 @@ public class GhostController {
             }
         } else {
             // check to see if in center (just spawned)
-            if ((curY > 250 && curY <= 308) && (curX >= 231 && curX <= 368)) {
+            if ((curY >= cageBeginY && curY <= cageEndY) && (curX >= cageBeginX && curX <= cageEndX)) {
                 cageTimerPinky = deathTimer;
             }
 
             int targetX = 250, targetY = 350;
             if(ghost.isScattered()){
-                targetX = 558 - pm.getXpos();
-                targetY = 551 - pm.getYpos();
+                targetX = gameEndX - pm.getXpos();
+                targetY = gameEndY - pm.getYpos();
             }  else if(!ghost.isAttacking){
-                targetX = 558 - pm.getXpos();
-                targetY = 551 - pm.getYpos();
+                targetX = gameEndX - pm.getXpos();
+                targetY = gameEndY - pm.getYpos();
                 ghost.countdownTimer --;
             }else {
                 targetX = pm.getXpos();
@@ -221,16 +233,16 @@ public class GhostController {
                 ghost.setYpos(ghost.getInitialOutOfCagePos().y);
             }
         } else {
-            if ((curY > 249 && curY <= 310) && (curX >= 230 && curX <= 370)) {
+            if ((curY >= cageBeginY && curY <= cageEndY) && (curX >= cageBeginX && curX <= cageEndX)) {
                 cageTimerBlinky = deathTimer;
             }
             int targetX = 250, targetY = 350;
             if(ghost.isScattered()){
-                targetX = 558 - pm.getXpos();
-                targetY = 551 - pm.getYpos();
+                targetX = gameEndX - pm.getXpos();
+                targetY = gameEndY - pm.getYpos();
             } else if(!ghost.isAttacking){
-                targetX = 558 - pm.getXpos();
-                targetY = 551 - pm.getYpos();
+                targetX = gameEndX - pm.getXpos();
+                targetY = gameEndY - pm.getYpos();
                 ghost.countdownTimer --;
             }else {
                 targetX = pm.getXpos();
@@ -280,16 +292,16 @@ public class GhostController {
                 ghost.setYpos(ghost.getInitialOutOfCagePos().y);
             }
         } else {
-            if ((curY > 249 && curY <= 310) && (curX >= 230 && curX <= 370)) {
+            if ((curY >= cageBeginY && curY <= cageEndY) && (curX >= cageBeginX && curX <= cageEndX)) {
                 cageTimerClyde = deathTimer;
             }
             int targetX = 250, targetY = 350;
             if(ghost.isScattered()){
-                targetX = 558 - pm.getXpos();
-                targetY = 551 - pm.getYpos();
+                targetX = gameEndX - pm.getXpos();
+                targetY = gameEndY - pm.getYpos();
             }  else if(!ghost.isAttacking){
-                targetX = 558 - pm.getXpos();
-                targetY = 551 - pm.getYpos();
+                targetX = gameEndX - pm.getXpos();
+                targetY = gameEndY - pm.getYpos();
                 ghost.countdownTimer --;
             }else {
                 targetX = pm.getXpos();
@@ -306,8 +318,8 @@ public class GhostController {
                             moveOpposite = false;
                             oppCounter = 0;
                         }
-                        targetX = 558 - targetX;
-                        targetY = 551 - targetY;
+                        targetX = gameEndX - targetX;
+                        targetY = gameEndY - targetY;
                     } else {
                         if (numGen.nextInt(40) == 1) { // 1 in 40 chance
                             moveOpposite = true;
@@ -385,11 +397,6 @@ public class GhostController {
     }
 
     private boolean moveIsAllowed(Ghost ghost, Movement curMovement){
-//        Random r = new Random();
-//        int n = r.nextInt(3);
-//        if (n == 0)
-//            return true;
-        return InteractionCheckerAndHandler.isMoveAllowed(ghost, curMovement);
-//        return true;
+        return interactionCheckerAndHandler.isMoveAllowed(ghost, curMovement);
     }
 }

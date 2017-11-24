@@ -2,7 +2,6 @@ package GameLogic.InputManager;
 
 import GameLogic.Enums.Movement;
 import GameLogic.ScreenItems.Pacman;
-import GameLogic.UpdateManager.InteractionCheckerAndHandler;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -106,8 +105,6 @@ public class PacManMovementController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            boolean isAllowed = InteractionCheckerAndHandler.isMoveAllowed(pacman, movement);
-            if (isAllowed)
                 pacman.curMovement = movement;
         }
     }

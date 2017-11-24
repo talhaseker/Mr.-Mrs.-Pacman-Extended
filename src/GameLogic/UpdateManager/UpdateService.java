@@ -28,50 +28,21 @@ public class UpdateService {
         this.gamePanel = gamePanel;
         this.gameMap = gameMap;
         this.foods = foods;
-        this.ghostController = new GhostController(gameMap, ghosts, pacmans[0]);
         this.interactionCheckerAndHandler = new InteractionCheckerAndHandler(gameMap, foods, pacmans, ghosts);
+        this.ghostController = new GhostController(interactionCheckerAndHandler, gameMap, ghosts, pacmans[0]);
     }
 
     public void updateObjects(){
-        Pacman pm = pacmans[0];
-            switch (pm.curMovement){
-                case LEFT:
-                    pm.setXpos(pm.getXpos() - pm.getSpeed());
-                    break;
-                case RIGHT:
-                    pm.setXpos(pm.getXpos() + pm.getSpeed());
-                    break;
-                case UP:
-                    pm.setYpos(pm.getYpos() - pm.getSpeed());
-                    break;
-                case DOWN:
-                    pm.setYpos(pm.getYpos() + pm.getSpeed());
-                    break;
-                default:
-                    break;
-            }
 
+        updatePacman(pacmans[0]);
         if (isMultiplayer){
-            Pacman pm2 = pacmans[1];
-            switch (pm.curMovement){
-                case LEFT:
-                    pm2.setXpos(pm.getXpos() - pm.getSpeed());
-                    break;
-                case RIGHT:
-                    pm2.setXpos(pm.getXpos() + pm.getSpeed());
-                    break;
-                case UP:
-                    pm2.setYpos(pm.getYpos() - pm.getSpeed());
-                    break;
-                case DOWN:
-                    pm2.setYpos(pm.getYpos() + pm.getSpeed());
-                    break;
-                default:
-                    break;
-            }
+            updatePacman(pacmans[1]);
         }
+
         ghostController.move();
         for (Ghost g: ghosts){
+            if (interactionCheckerAndHandler.isMoveAllowed(g, g.lastMovement)){
+                System.out.println("last movememnt is allowed no problem");
             switch (g.lastMovement){
                 case LEFT:
                     g.setXpos(g.getXpos() - g.getSpeed());
@@ -87,8 +58,32 @@ public class UpdateService {
                     break;
                 default:
                     break;
-            }
+            }}
         }
         gamePanel.repaintRequest(gameMap);
+    }
+
+    private void updatePacman(Pacman pm){
+        if (pm.curMovement != pm.lastMovement && interactionCheckerAndHandler.isMoveAllowed(pm, pm.curMovement))
+            pm.changeMovement();
+
+        if (interactionCheckerAndHandler.isMoveAllowed(pm, pm.lastMovement)) {
+            switch (pm.lastMovement) {
+                case LEFT:
+                    pm.setXpos(pm.getXpos() - pm.getSpeed());
+                    break;
+                case RIGHT:
+                    pm.setXpos(pm.getXpos() + pm.getSpeed());
+                    break;
+                case UP:
+                    pm.setYpos(pm.getYpos() - pm.getSpeed());
+                    break;
+                case DOWN:
+                    pm.setYpos(pm.getYpos() + pm.getSpeed());
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }
