@@ -30,25 +30,24 @@ public class Food extends PacmanObject implements Serializable{
         super.setSize(28,28);
 
         this.points = 50;
-
         if (type == FoodType.BASIC){
-            super.setImage("ImageIcons/GhostScared1"); //TODO: Sorry for putting a scared ghost, I don't have food img yet
+            super.setImage("ImageIcons/basic"); //TODO: Sorry for putting a scared ghost, I don't have food img yet
             this.sideEffectSeconds = 0.0;
             this.sideEffect = 0;
         }
         else if(type == FoodType.BIG) {
-            super.setImage("ImageIcons/GhostScared1"); //TODO: Sorry for putting a scared ghost, I don't have food img yet
+            super.setImage("ImageIcons/big"); //TODO: Sorry for putting a scared ghost, I don't have food img yet
             this.points = 100;
             this.sideEffectSeconds = 5.0;
             this.sideEffect = 1;
         }
         else if(type == FoodType.YELLOW) {
-            super.setImage("ImageIcons/GhostScared1"); //TODO: Sorry for putting a scared ghost, I don't have food img yet
+            super.setImage("ImageIcons/yellow"); //TODO: Sorry for putting a scared ghost, I don't have food img yet
             this.sideEffectSeconds = 5.0;
             this.sideEffect = 2;
         }
         else if(type == FoodType.GREEN) {
-            super.setImage("ImageIcons/GhostScared1"); //TODO: Sorry for putting a scared ghost, I don't have food img yet
+            super.setImage("ImageIcons/green"); //TODO: Sorry for putting a scared ghost, I don't have food img yet
             this.sideEffectSeconds = 5.0;
             this.sideEffect = 3;
         }

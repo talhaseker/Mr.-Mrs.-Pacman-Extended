@@ -8,7 +8,6 @@ package GameLogic.ScreenItems;
 // import java.awt.Point;
 
 import GameLogic.Enums.GhostType;
-import GameLogic.Enums.Movement;
 
 import java.awt.*;
 import java.io.Serializable;
@@ -35,15 +34,29 @@ public class Ghost extends MovingObject implements Serializable {
     public int countdownTimer = 0;
     public boolean isAttacking = false;
     private boolean scatter;
-    public Movement lastMovement = Movement.LEFT;
-    public Movement curMovement;
 
     //Constructor
 	public Ghost (GhostType type) {
         super();
-        super.setSize(30,40); //Just Random Values, will be changed.
-
+        super.setSize(28,28); //Just Random Values, will be changed.
+        switch (type){
+            case INKY:
+                super.setImage("ImageIcons/Ghost1");
+                break;
+            case PINKY:
+                super.setImage("ImageIcons/GhostScared1");
+                break;
+            case CLYDE:
+                super.setImage("ImageIcons/PacMan2down");
+                break;
+            case BLINKY:
+                super.setImage("ImageIcons/green");
+                break;
+            default:
+                break;
+        }
 	    this.type = type;
+        super.changePosition(344,236);
         isAlive = true;
 	}
         
@@ -99,7 +112,7 @@ public class Ghost extends MovingObject implements Serializable {
     }
 
     public void respawnInCage() {
-        this.changePosition(100,100);
+        this.changePosition(200,200);
         this.unScatter();
     }
 

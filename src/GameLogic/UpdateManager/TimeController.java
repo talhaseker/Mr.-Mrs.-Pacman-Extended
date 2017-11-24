@@ -1,12 +1,14 @@
 package GameLogic.UpdateManager;
 
 import GUI.GamePanel;
+import GameLogic.ScreenItems.Food;
 import GameLogic.ScreenItems.Ghost;
 import GameLogic.ScreenItems.Pacman;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
  * Created by talhaseker on 5.11.2017.
@@ -21,8 +23,12 @@ public class TimeController implements ActionListener {
     private Pacman[] pacmans;
     private Ghost[] ghosts;
     private GamePanel gamePanel;
+    private int[][] gameMap;
+    private ArrayList<Food> foods;
 
-    public TimeController(Pacman[] pacmans, boolean isMultiplayer, Ghost[] ghosts, GamePanel gamePanel){
+    public TimeController(int[][] gameMap, ArrayList<Food> foods, Pacman[] pacmans, boolean isMultiplayer, Ghost[] ghosts, GamePanel gamePanel){
+        this.gameMap = gameMap;
+        this.foods = foods;
         this.isMultiplayer = isMultiplayer;
         this.pacmans = pacmans;
         this.ghosts = ghosts;
@@ -33,7 +39,7 @@ public class TimeController implements ActionListener {
     // start timer
     public void startTimer() {
         timer.start();
-        waitCounter = 180;
+        waitCounter = 100;
         gamePanel.showGetReady();
     }
 
@@ -57,7 +63,7 @@ public class TimeController implements ActionListener {
         }
 
         // do updates which also include collision handles
-        UpdateService updateService = new UpdateService(pacmans, isMultiplayer, ghosts, gamePanel);
+        UpdateService updateService = new UpdateService(gameMap, foods, pacmans, isMultiplayer, ghosts, gamePanel);
         updateService.updateObjects();
 
         count++;

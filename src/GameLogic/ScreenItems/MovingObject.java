@@ -1,20 +1,30 @@
 package GameLogic.ScreenItems;
 
 import GameLogic.Enums.Movement;
-import GameLogic.ScreenItems.PacmanObject;
 /**
      * @return x-axis velocity of movable pacman object
      */
 public class MovingObject extends PacmanObject {
     //Variables
     private double velocityX, velocityY;
+    private int speed;
+    public Movement lastMovement, curMovement = Movement.LEFT;
 
     public MovingObject(){
         super();
         velocityX = 0.0;
         velocityY = 0.0;
+        speed = 2;
     }
-/**
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+    /**
      * @return x-axis velocity of movable pacman object
      */
     /** Sets the velocity to the amount given by parameters.

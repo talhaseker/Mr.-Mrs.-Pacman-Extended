@@ -1,6 +1,5 @@
 package GameLogic.ScreenItems;
 
-import GameLogic.Enums.Movement;
 import GameLogic.Enums.PacmanAnimationType;
 import GameLogic.Enums.PacmanType;
 
@@ -16,8 +15,7 @@ public class Pacman extends MovingObject {
     PacmanAnimationType currentAnimation; // and here.
     double foodEffectSeconds;
     Shield shield;
-    public Movement curMovement;
-    private int livesLeft = 5;
+    private int livesLeft = 3;
 
     //Constructor(s)
 
@@ -27,8 +25,8 @@ public class Pacman extends MovingObject {
     public Pacman () {
         super();
         super.setImage("ImageIcons/PacMan1");
-        super.changePosition(100,100); //Pacman has a default starting grid
-        super.setSize(50,50);
+        super.changePosition(370,348); //Pacman has a default starting grid
+        super.setSize(28,28);
 
         this.score = 0;
         this.foodEffect = 0;

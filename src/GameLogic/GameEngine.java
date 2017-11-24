@@ -10,6 +10,8 @@ import GameLogic.ScreenItems.Ghost;
 import GameLogic.ScreenItems.Pacman;
 import GameLogic.UpdateManager.TimeController;
 
+import javax.swing.*;
+
 import static javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW;
 
 /** GameEngine class : core game logic class, which holds and manipulates game entities and
@@ -57,7 +59,7 @@ public class GameEngine {
         map = new GameMap();
         gameMap = map.map1;
 
-        this.gamePanel = new GamePanel(gameMap);
+        this.gamePanel = new GamePanel(gameMap, pacmans, ghosts);
         uiManager.add(gamePanel, Constants.GAME_PANEL);
 
         counter = 3.0;
@@ -68,9 +70,12 @@ public class GameEngine {
         pauseGameController = new PauseGameController(gamePanel.getInputMap(WHEN_IN_FOCUSED_WINDOW), gamePanel.getActionMap(), this);
         pauseGameController.initPauseKeyBindings();
 
-        timeController = new TimeController(pacmans, (numPlayer == 2), ghosts, gamePanel);
+        timeController = new TimeController(gameMap, gamePanel.foods, pacmans, (numPlayer == 2), ghosts, gamePanel);
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                startGame();
+            }});
 
-        startGame();
     }
 
 
@@ -80,7 +85,7 @@ public class GameEngine {
         gamePanel.prepareGUI();
         gamePanel.updateLives(3);
         gamePanel.updateScore(0);
-        gamePanel.repaintRequest(gameMap);
+//        gamePanel.repaintRequest(gameMap);
         timeController.startTimer();
     }
 

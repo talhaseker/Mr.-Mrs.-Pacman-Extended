@@ -69,7 +69,7 @@ public class PacmanObject {
      * @param imgSrc A string parameter of the relative path of image source
      */
     public void setImage(String imgSrc){
-        this.imageIcon = Sprite.getSprite(imgSrc);
+        this.imageIcon = Sprite.loadSprite(imgSrc);
     }
 
     /** Returns the imageIcon of the object
@@ -79,8 +79,6 @@ public class PacmanObject {
 
     public void draw(Graphics g, ImageObserver imageObserver){
         Graphics2D g2 = (Graphics2D) g;
-        System.out.println(imageIcon.getHeight() + "  " + imageIcon.getWidth());
-        System.out.println(Xpos + " " + Ypos + " " +  width + " " + height);
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
         g2.drawImage(imageIcon, Xpos, Ypos, width, height, imageObserver);
