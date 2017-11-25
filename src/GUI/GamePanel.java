@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class GamePanel extends JPanel {
 
     JPanel bottomPanel;
-    JPanel mainPanel;
+    JPanel mainPanel; //drawing walls blocks
     JPanel foodPanel;
     JPanel movementPanel;
     PacLabel scoreLabel;

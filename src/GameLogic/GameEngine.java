@@ -34,6 +34,7 @@ public class GameEngine {
     private PacManMovementController pacmanMovementKeyBindings;
     private PauseGameController pauseGameController;
     private TimeController timeController;
+    private UIManager uiManager;
 
     //Constructor(s)
 
@@ -45,6 +46,7 @@ public class GameEngine {
         score = 0;
         livesLeft = MAX_LIFE;
         numGhost = 4;
+        this.uiManager = uiManager;
 
         pacmans = new Pacman[numPlayer];
         pacmans[0] = new Pacman(); //default pacman object for now
@@ -118,12 +120,14 @@ public class GameEngine {
 
     public void passLevel() {
         if (level < 3) {
-
             level++;
         }
         else {
-//            gameOver(); //calls gameOver for now, we can change it to gameCompleted later
+             gameOver();
         }
+    }
+    public void gameOver(){
+        this.uiManager.viewGameOver();
     }
 
 }

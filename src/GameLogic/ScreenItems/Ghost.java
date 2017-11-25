@@ -41,16 +41,16 @@ public class Ghost extends MovingObject implements Serializable {
         super.setSize(28,28); //Just Random Values, will be changed.
         switch (type){
             case INKY:
-                super.setImage("ImageIcons/Ghost1");
+                super.setImage("ImageIcons/inky1");
                 break;
             case PINKY:
-                super.setImage("ImageIcons/GhostScared1");
+                super.setImage("ImageIcons/pinky1");
                 break;
             case CLYDE:
-                super.setImage("ImageIcons/PacMan2down");
+                super.setImage("ImageIcons/clyde1");
                 break;
             case BLINKY:
-                super.setImage("ImageIcons/green");
+                super.setImage("ImageIcons/blinky1");
                 break;
             default:
                 break;
