@@ -51,10 +51,12 @@ public class InteractionCheckerAndHandler {
                     if (firstIndexColumns+2 <= lastIndexColumns && gameMap[firstIndexRows+1][firstIndexColumns+2] == 1){
                         return false;
                     }else{
-                        if (firstIndexColumns+3 <= lastIndexColumns && gameMap[firstIndexRows+1][firstIndexColumns+3] == 1)
-                            if ((firstIndexColumns+3)*28 > currentX)
-                                return true;
-                        return false;
+                        if (firstIndexColumns+3 <= lastIndexColumns && gameMap[firstIndexRows+1][firstIndexColumns+3] == 1){
+                            if ((firstIndexColumns+3)*28 > currentX){
+                                return true;}
+                        }
+
+                        return true;
                     }
                 }else{
                     return false;
@@ -67,7 +69,7 @@ public class InteractionCheckerAndHandler {
                         if (firstIndexRows+3 <= lastIndexRows && gameMap[firstIndexRows+3][firstIndexColumns+1] == 1)
                             if ((firstIndexRows+3)*28 > currentY)
                                 return true;
-                        return false;
+                        return true;
                     }
                 }else{
                     return false;

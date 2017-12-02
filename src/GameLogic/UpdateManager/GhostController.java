@@ -23,8 +23,6 @@ public class GhostController {
     final int cageEndX = 456;
     final int cageBeginY = 236;
     final int cageEndY = 264;
-    final int initialOutOfCageX = 372;
-    final int initialOutOfCageY = 208;
     final int gameEndX = 680;
     final int gameEndY = 404;
 
@@ -50,6 +48,9 @@ public class GhostController {
     public void move(){
         for (Ghost ghost:ghosts) {
             specificMove(ghost);
+        }
+        if(pm.getLivesLeft() != pacLives){
+            pacLives = pm.getLivesLeft();
         }
     }
 
@@ -79,7 +80,6 @@ public class GhostController {
         int curY = ghost.getYpos();
 
         if(pm.getLivesLeft() != pacLives){
-            pacLives = pm.getLivesLeft();
             cageTimerInky = COUNTDOWN;
             ghost.isAttacking = false;
             ghost.countdownTimer = SCATTER;
@@ -88,10 +88,10 @@ public class GhostController {
         if(cageTimerInky > 0){
             if(cageTimerInky%mod==0){
                 if(MovementUPInky){
-                    ghost.curMovement = Movement.UP;
+                    ghost.curMovement = Movement.LEFT;
                 }
                 else{
-                    ghost.curMovement = Movement.DOWN;
+                    ghost.curMovement = Movement.RIGHT;
                 }
                 MovementUPInky = !MovementUPInky;
             }
@@ -105,7 +105,7 @@ public class GhostController {
             if ((curY >= cageBeginY && curY <= cageEndY) && (curX >= cageBeginX && curX <= cageEndX)) {
                 cageTimerInky = deathTimer;
             }
-            int targetX = 250, targetY = 350;
+            int targetX = cageBeginX+28, targetY = cageBeginY;
             if(ghost.isScattered()){
                 targetX = gameEndX - pm.getXpos();
                 targetY = gameEndY - pm.getYpos();
@@ -114,7 +114,6 @@ public class GhostController {
                 targetY = gameEndY - pm.getYpos();
                 ghost.countdownTimer --;
             } else {
-
                 targetX = pm.getXpos();
                 targetY = pm.getYpos();
                 ghost.countdownTimer --;
@@ -136,7 +135,6 @@ public class GhostController {
         int curY = ghost.getYpos();
 
         if(pm.getLivesLeft() != pacLives){
-            pacLives = pm.getLivesLeft();
             cageTimerPinky = COUNTDOWN;
             ghost.isAttacking = false;
             ghost.countdownTimer = SCATTER;
@@ -145,10 +143,10 @@ public class GhostController {
         if(cageTimerPinky > 0){
             if(cageTimerPinky%mod==0){
                 if(MovementUPPinky){
-                    ghost.curMovement = Movement.UP;
+                    ghost.curMovement = Movement.LEFT;
                 }
                 else{
-                    ghost.curMovement = Movement.DOWN;
+                    ghost.curMovement = Movement.RIGHT;
                 }
                 MovementUPPinky = !MovementUPPinky;
             }
@@ -164,7 +162,7 @@ public class GhostController {
                 cageTimerPinky = deathTimer;
             }
 
-            int targetX = 250, targetY = 350;
+            int targetX = cageBeginX+28, targetY = cageBeginY;
             if(ghost.isScattered()){
                 targetX = gameEndX - pm.getXpos();
                 targetY = gameEndY - pm.getYpos();
@@ -210,7 +208,6 @@ public class GhostController {
         int curY = ghost.getYpos();
 
         if(pm.getLivesLeft() != pacLives){
-            pacLives = pm.getLivesLeft();
             cageTimerBlinky = COUNTDOWN;
             ghost.isAttacking = false;
             ghost.countdownTimer = SCATTER;
@@ -219,10 +216,10 @@ public class GhostController {
         if(cageTimerBlinky > 0){
             if(cageTimerBlinky%mod==0){
                 if(MovementUPBlinky){
-                    ghost.curMovement = Movement.UP;
+                    ghost.curMovement = Movement.LEFT;
                 }
                 else{
-                    ghost.curMovement = Movement.DOWN;
+                    ghost.curMovement = Movement.RIGHT;
                 }
                 MovementUPBlinky = !MovementUPBlinky;
             }
@@ -236,7 +233,7 @@ public class GhostController {
             if ((curY >= cageBeginY && curY <= cageEndY) && (curX >= cageBeginX && curX <= cageEndX)) {
                 cageTimerBlinky = deathTimer;
             }
-            int targetX = 250, targetY = 350;
+            int targetX = cageBeginX+28, targetY = cageBeginY;
             if(ghost.isScattered()){
                 targetX = gameEndX - pm.getXpos();
                 targetY = gameEndY - pm.getYpos();
@@ -269,7 +266,6 @@ public class GhostController {
         int curY = ghost.getYpos();
 
         if(pm.getLivesLeft() != pacLives){
-            pacLives = pm.getLivesLeft();
             cageTimerClyde = COUNTDOWN;
             ghost.isAttacking = false;
             ghost.countdownTimer = SCATTER;
@@ -278,10 +274,10 @@ public class GhostController {
         if(cageTimerClyde > 0){
             if(cageTimerClyde%mod==0){
                 if(MovementUPClyde){
-                    ghost.curMovement = Movement.UP;
+                    ghost.curMovement = Movement.LEFT;
                 }
                 else{
-                    ghost.curMovement = Movement.DOWN;
+                    ghost.curMovement = Movement.RIGHT;
                 }
                 MovementUPClyde = !MovementUPClyde;
             }
@@ -295,7 +291,7 @@ public class GhostController {
             if ((curY >= cageBeginY && curY <= cageEndY) && (curX >= cageBeginX && curX <= cageEndX)) {
                 cageTimerClyde = deathTimer;
             }
-            int targetX = 250, targetY = 350;
+            int targetX = cageBeginX+28, targetY = cageBeginY;
             if(ghost.isScattered()){
                 targetX = gameEndX - pm.getXpos();
                 targetY = gameEndY - pm.getYpos();

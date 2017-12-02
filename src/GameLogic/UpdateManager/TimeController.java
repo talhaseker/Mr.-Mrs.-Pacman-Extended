@@ -25,6 +25,7 @@ public class TimeController implements ActionListener {
     private GamePanel gamePanel;
     private int[][] gameMap;
     private ArrayList<Food> foods;
+    private UpdateService updateService;
 
     public TimeController(int[][] gameMap, ArrayList<Food> foods, Pacman[] pacmans, boolean isMultiplayer, Ghost[] ghosts, GamePanel gamePanel){
         this.gameMap = gameMap;
@@ -33,6 +34,7 @@ public class TimeController implements ActionListener {
         this.pacmans = pacmans;
         this.ghosts = ghosts;
         this.gamePanel = gamePanel;
+        this.updateService = new UpdateService(gameMap, foods, pacmans, isMultiplayer, ghosts, gamePanel);
         this.timer = new Timer(15, this);
     }
 
@@ -62,8 +64,6 @@ public class TimeController implements ActionListener {
             return;
         }
 
-        // do updates which also include collision handles
-        UpdateService updateService = new UpdateService(gameMap, foods, pacmans, isMultiplayer, ghosts, gamePanel);
         updateService.updateObjects();
 
         count++;

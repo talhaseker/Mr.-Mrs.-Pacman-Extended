@@ -77,10 +77,11 @@ public class PacmanObject {
      */
     public BufferedImage getImage(){ return this.imageIcon; }
 
-    public void draw(Graphics g, ImageObserver imageObserver){
+    public void draw(Graphics g, ImageObserver imageObserver) {
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
         g2.drawImage(imageIcon, Xpos, Ypos, width, height, imageObserver);
+
     }
 }

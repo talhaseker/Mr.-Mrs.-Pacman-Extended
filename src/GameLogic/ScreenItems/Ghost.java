@@ -34,6 +34,8 @@ public class Ghost extends MovingObject implements Serializable {
     public int countdownTimer = 0;
     public boolean isAttacking = false;
     private boolean scatter;
+    final int initialOutOfCageX = 372;
+    final int initialOutOfCageY = 208;
 
     //Constructor
 	public Ghost (GhostType type) {
@@ -56,7 +58,7 @@ public class Ghost extends MovingObject implements Serializable {
                 break;
         }
 	    this.type = type;
-        super.changePosition(344,236);
+        startPosition();
         isAlive = true;
 	}
         
@@ -68,13 +70,13 @@ public class Ghost extends MovingObject implements Serializable {
     public void startPosition()
 	{
         if (this.type == GhostType.BLINKY)
-            super.changePosition(10,10);
+            super.changePosition(344,236);
         if(this.type == GhostType.INKY)
-            super.changePosition(50,50);
+            super.changePosition(372,236);
         if(this.type == GhostType.PINKY)
-            super.changePosition(100,100);
+            super.changePosition(400,236);
         if(this.type == GhostType.CLYDE)
-            super.changePosition(90,80);
+            super.changePosition(428,236);
 	}
 
     /**
@@ -112,12 +114,12 @@ public class Ghost extends MovingObject implements Serializable {
     }
 
     public void respawnInCage() {
-        this.changePosition(200,200);
+        this.changePosition(344,236);
         this.unScatter();
     }
 
     public Point getInitialOutOfCagePos() {
-            return new Point(this.getXpos(),205);
+            return new Point(this.getXpos(),initialOutOfCageY);
     }
 
     public void flipAttack(){

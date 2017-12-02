@@ -17,5 +17,4 @@ public class Constants {
     public static final int SCATTER = 100;
     public static final int ATTACK = 280;
     public static final int COUNTDOWN = 150;
-
 }

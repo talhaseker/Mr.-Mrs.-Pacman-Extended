@@ -42,7 +42,6 @@ public class UpdateService {
         ghostController.move();
         for (Ghost g: ghosts){
             if (interactionCheckerAndHandler.isMoveAllowed(g, g.lastMovement)){
-                System.out.println("last movememnt is allowed no problem");
             switch (g.lastMovement){
                 case LEFT:
                     g.setXpos(g.getXpos() - g.getSpeed());
