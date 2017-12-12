@@ -259,9 +259,6 @@ public class GhostController {
 
     private void clydeMove(Ghost ghost){
 
-
-
-
         int curX = ghost.getXpos();
         int curY = ghost.getYpos();
 
