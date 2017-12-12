@@ -233,7 +233,7 @@ public class GhostController {
             if ((curY >= cageBeginY && curY <= cageEndY) && (curX >= cageBeginX && curX <= cageEndX)) {
                 cageTimerBlinky = deathTimer;
             }
-            int targetX = cageBeginX+28, targetY = cageBeginY;
+            int targetX = numGen.nextInt(560) + 120, targetY = numGen.nextInt(308) + 96;
             if(ghost.isScattered()){
                 targetX = gameEndX - pm.getXpos();
                 targetY = gameEndY - pm.getYpos();
@@ -242,8 +242,6 @@ public class GhostController {
                 targetY = gameEndY - pm.getYpos();
                 ghost.countdownTimer --;
             }else {
-                targetX = pm.getXpos();
-                targetY = pm.getYpos();
                 ghost.countdownTimer --;
             }
 

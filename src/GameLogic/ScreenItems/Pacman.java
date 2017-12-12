@@ -17,6 +17,7 @@ public class Pacman extends MovingObject {
     double foodEffectSeconds;
     Shield shield;
     private int livesLeft = 3;
+    private PacmanType pacmanType;
 
     //Constructor(s)
 
@@ -25,6 +26,7 @@ public class Pacman extends MovingObject {
      */
     public Pacman (PacmanType type) {
         super();
+        pacmanType = type;
         if (type == PacmanType.MRPACMAN){
             super.setImage("ImageIcons/PacMan1");
             super.changePosition(370,348); //Pacman has a default starting grid
@@ -51,7 +53,6 @@ public class Pacman extends MovingObject {
      */
     public Pacman(PacmanType type, int Xpos, int Ypos) {
         this(type);
-
         if (type == PacmanType.MRSPACMAN){
             super.setImage("ImageIcons/GhostScared1"); //TODO: Find an image for Mrs. Pacman
         }
@@ -85,5 +86,13 @@ public class Pacman extends MovingObject {
 
     public void setLivesLeft(int livesLeft) {
         this.livesLeft = livesLeft;
+    }
+
+    public PacmanType getPacmanType() {
+        return pacmanType;
+    }
+
+    public void setPacmanType(PacmanType pacmanType) {
+        this.pacmanType = pacmanType;
     }
 }

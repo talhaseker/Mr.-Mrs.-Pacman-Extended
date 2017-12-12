@@ -1,6 +1,7 @@
 package GameLogic.UpdateManager;
 
 import GUI.GamePanel;
+import GameLogic.Enums.PacmanType;
 import GameLogic.ScreenItems.Food;
 import GameLogic.ScreenItems.Ghost;
 import GameLogic.ScreenItems.Pacman;
@@ -20,7 +21,8 @@ public class UpdateService {
     private int[][] gameMap;
     private ArrayList<Food> foods;
     private InteractionCheckerAndHandler interactionCheckerAndHandler;
-    private int pacMoveThreshold = 10;
+    private int pacMrMoveThreshold = 10;
+    private int pacMrsMoveThreshold = 10;
 
     public UpdateService(int[][] gameMap, ArrayList<Food> foods, Pacman[] pacmans, boolean isMultiplayer, Ghost[] ghosts, GamePanel gamePanel){
         this.isMultiplayer = isMultiplayer;
@@ -64,14 +66,25 @@ public class UpdateService {
     }
 
     private void updatePacman(Pacman pm){
-        if (pm.curMovement != pm.lastMovement && interactionCheckerAndHandler.isMoveAllowed(pm, pm.curMovement)){
-            pm.changeMovement();
-        }else if (pacMoveThreshold == 0){
-            pm.curMovement = pm.lastMovement;
-            pacMoveThreshold = 10;
-        }else {
-            pacMoveThreshold--;
-        }
+        if (pm.getPacmanType() == PacmanType.MRPACMAN)
+            if (pm.curMovement != pm.lastMovement && interactionCheckerAndHandler.isMoveAllowed(pm, pm.curMovement)){
+                pm.changeMovement();
+            }else if (pacMrMoveThreshold == 0){
+                pm.curMovement = pm.lastMovement;
+                pacMrMoveThreshold = 10;
+            }else {
+                pacMrMoveThreshold--;
+            }
+
+        if (pm.getPacmanType() == PacmanType.MRSPACMAN)
+            if (pm.curMovement != pm.lastMovement && interactionCheckerAndHandler.isMoveAllowed(pm, pm.curMovement)){
+                pm.changeMovement();
+            }else if (pacMrsMoveThreshold == 0){
+                pm.curMovement = pm.lastMovement;
+                pacMrsMoveThreshold = 10;
+            }else {
+                pacMrsMoveThreshold--;
+            }
 
         if (interactionCheckerAndHandler.isMoveAllowed(pm, pm.lastMovement)) {
             switch (pm.lastMovement) {
