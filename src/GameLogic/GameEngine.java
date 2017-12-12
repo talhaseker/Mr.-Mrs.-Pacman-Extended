@@ -4,6 +4,7 @@ import GUI.GameFrame;
 import GUI.GamePanel;
 import GUI.UIManager;
 import GameLogic.Enums.GhostType;
+import GameLogic.Enums.PacmanType;
 import GameLogic.InputManager.PacManMovementController;
 import GameLogic.InputManager.PauseGameController;
 import GameLogic.ScreenItems.Ghost;
@@ -49,7 +50,10 @@ public class GameEngine {
         this.uiManager = uiManager;
 
         pacmans = new Pacman[numPlayer];
-        pacmans[0] = new Pacman(); //default pacman object for now
+        pacmans[0] = new Pacman(PacmanType.MRPACMAN); //default pacman object for now
+        if (numPlayer == 2){
+            pacmans[1] = new Pacman(PacmanType.MRSPACMAN);
+        }
 
         ghosts = new Ghost[numGhost];
 

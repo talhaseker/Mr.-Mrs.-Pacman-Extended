@@ -1,5 +1,6 @@
 package GameLogic.ScreenItems;
 
+import GameLogic.Enums.Movement;
 import GameLogic.Enums.PacmanAnimationType;
 import GameLogic.Enums.PacmanType;
 
@@ -22,10 +23,18 @@ public class Pacman extends MovingObject {
     /** Default constructor of Pacman class.
      *  Initializes a not moving Mr. Pacman object.
      */
-    public Pacman () {
+    public Pacman (PacmanType type) {
         super();
-        super.setImage("ImageIcons/PacMan1");
-        super.changePosition(370,348); //Pacman has a default starting grid
+        if (type == PacmanType.MRPACMAN){
+            super.setImage("ImageIcons/PacMan1");
+            super.changePosition(370,348); //Pacman has a default starting grid
+        }else {
+            super.setImage("ImageIcons/PacMan2");
+            super.changePosition(330,348); //Pacman has a default starting grid
+            super.curMovement = Movement.LEFT;
+            super.lastMovement = Movement.LEFT;
+        }
+
         super.setSize(28,28);
         super.setSpeed(2);
         this.score = 0;
@@ -41,7 +50,7 @@ public class Pacman extends MovingObject {
      * @param Ypos Y-axis location of the upper left corner of Pacman object
      */
     public Pacman(PacmanType type, int Xpos, int Ypos) {
-        this();
+        this(type);
 
         if (type == PacmanType.MRSPACMAN){
             super.setImage("ImageIcons/GhostScared1"); //TODO: Find an image for Mrs. Pacman
