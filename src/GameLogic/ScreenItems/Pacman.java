@@ -27,7 +27,7 @@ public class Pacman extends MovingObject {
         super.setImage("ImageIcons/PacMan1");
         super.changePosition(370,348); //Pacman has a default starting grid
         super.setSize(28,28);
-
+        super.setSpeed(2);
         this.score = 0;
         this.foodEffect = 0;
         this.foodEffectSeconds = 0.0;
@@ -66,7 +66,6 @@ public class Pacman extends MovingObject {
     }
 
     public void changeMovement(){
-        System.out.println("change movement called for pacman");
         lastMovement = curMovement;
         //TODO: change the movement animation here
     }

@@ -52,10 +52,10 @@ public class UIManager extends JPanel {
         //viewGameOver();
         //viewShield();
         //viewPause();
-//        viewHelp();
+        //viewHelp();
         //viewSavedGames();
         //viewHelp();
-       // viewSavedMaps();
+        //viewSavedMaps();
         //viewHighScores();
         //viewPause();
     }
@@ -72,7 +72,9 @@ public class UIManager extends JPanel {
 
     public void viewGame(int playerNum){
         CardLayout cl = (CardLayout)(this.getLayout());
-        gameEngine = new GameEngine(this, playerNum);
+        if (gameEngine == null){
+            gameEngine = new GameEngine(this, playerNum);
+        }
         cl.show(this, Constants.GAME_PANEL);
     }
 

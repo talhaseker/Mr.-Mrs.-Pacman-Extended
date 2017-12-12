@@ -43,16 +43,20 @@ public class Ghost extends MovingObject implements Serializable {
         super.setSize(28,28); //Just Random Values, will be changed.
         switch (type){
             case INKY:
-                super.setImage("ImageIcons/inky1");
+                super.setSpeed(2);
+                super.setImage("icons/inky1");
                 break;
             case PINKY:
-                super.setImage("ImageIcons/pinky1");
+                super.setSpeed(2);
+                super.setImage("icons/pinky1");
                 break;
             case CLYDE:
-                super.setImage("ImageIcons/clyde1");
+                super.setSpeed(2);
+                super.setImage("icons/clyde1");
                 break;
             case BLINKY:
-                super.setImage("ImageIcons/blinky1");
+                super.setSpeed(2);
+                super.setImage("icons/blinky1");
                 break;
             default:
                 break;
@@ -114,7 +118,7 @@ public class Ghost extends MovingObject implements Serializable {
     }
 
     public void respawnInCage() {
-        this.changePosition(344,236);
+        this.startPosition();
         this.unScatter();
     }
 

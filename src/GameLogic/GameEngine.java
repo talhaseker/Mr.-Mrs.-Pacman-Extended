@@ -41,7 +41,7 @@ public class GameEngine {
     /** Constructs a game engine with default configurations
      */
     public GameEngine(UIManager uiManager, int numPlayer) {
-        numPlayer = numPlayer;
+        this.numPlayer = numPlayer;
         level = 1;
         score = 0;
         livesLeft = MAX_LIFE;

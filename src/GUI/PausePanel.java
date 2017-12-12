@@ -7,11 +7,16 @@ import GameLogic.Constants;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 /**
  * Created by Aziz Osman on 30.10.2017.
  */
 public class PausePanel extends PacPanel {
+
+    PacButton resumeButton;
+    PacButton saveGameButton;
+    PacButton exitButton;
 
     public PausePanel() {
 
@@ -20,9 +25,6 @@ public class PausePanel extends PacPanel {
         this.setBackground(Color.PINK);
 
         ImageIcon pauseIcon = new ImageIcon(("img-src/icons/pause2.png"));
-        PacButton resumeButton;
-        PacButton saveGameButton;
-        PacButton exitButton;
 
         //Initialize Labels
         PacLabel pauseLabel = new PacLabel("PAUSED", 24f);
@@ -33,10 +35,13 @@ public class PausePanel extends PacPanel {
 
         //Initialize Buttons
         resumeButton = new PacButton("RESUME", 14f);
+        resumeButton.addActionListener(this);
         resumeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         saveGameButton = new PacButton("SAVE GAME", 14f);
+        saveGameButton.addActionListener(this);
         saveGameButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         exitButton = new PacButton("EXIT", 14f);
+        exitButton.addActionListener(this);
         exitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         //Add Items
@@ -49,6 +54,19 @@ public class PausePanel extends PacPanel {
         this.add(saveGameButton);
         this.add(Box.createRigidArea(new Dimension(0,15)));
         this.add(exitButton);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent event) {
+        if (event.getSource() == resumeButton){
+            UIManager.gameEngine.resumeGame();
+        }else if(event.getSource() == saveGameButton){
+
+        }else if (event.getSource() == exitButton){
+
+        }else {
+            GameFrame.uiManager.view(Constants.GAME_PANEL);
+        }
     }
 }
 
