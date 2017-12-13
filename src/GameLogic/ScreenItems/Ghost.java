@@ -73,14 +73,22 @@ public class Ghost extends MovingObject implements Serializable {
      */
     public void startPosition()
 	{
-        if (this.type == GhostType.BLINKY)
-            super.changePosition(344,236);
-        if(this.type == GhostType.INKY)
-            super.changePosition(372,236);
-        if(this.type == GhostType.PINKY)
-            super.changePosition(400,236);
-        if(this.type == GhostType.CLYDE)
-            super.changePosition(428,236);
+        if (this.type == GhostType.BLINKY){
+            super.setXpos(344);
+            super.setYpos(236);
+        }
+        if(this.type == GhostType.INKY){
+            super.setXpos(372);
+            super.setYpos(236);
+        }
+        if(this.type == GhostType.PINKY){
+            super.setXpos(400);
+            super.setYpos(236);
+        }
+        if(this.type == GhostType.CLYDE){
+            super.setXpos(428);
+            super.setYpos(236);
+        }
 	}
 
     /**
