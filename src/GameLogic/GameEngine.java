@@ -13,7 +13,9 @@ import GameLogic.UpdateManager.TimeController;
 
 import javax.swing.*;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 
 import static javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW;
 
@@ -78,7 +80,7 @@ public class GameEngine {
         pauseGameController = new PauseGameController(gamePanel.getInputMap(WHEN_IN_FOCUSED_WINDOW), gamePanel.getActionMap(), this);
         pauseGameController.initPauseKeyBindings();
 
-        timeController = new TimeController(gameMap, gamePanel.foods, pacmans, (numPlayer == 2), ghosts, gamePanel);
+        timeController = new TimeController(this, gameMap, gamePanel.foods, pacmans, (numPlayer == 2), ghosts, gamePanel);
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 startGame();
@@ -93,7 +95,17 @@ public class GameEngine {
         gamePanel.prepareGUI();
         gamePanel.updateLives(3);
         gamePanel.updateScore(0);
-//      gamePanel.repaintRequest(gameMap);
+//        gamePanel.repaintRequest(gameMap);
+        timeController.startTimer();
+    }
+
+    private void reStartGame(){
+        for (Ghost g: ghosts) {
+            g.respawnInCage();
+        }
+        for (Pacman pm:pacmans) {
+            pm.respawn();
+        }
         timeController.startTimer();
     }
 
@@ -104,27 +116,15 @@ public class GameEngine {
     public void saveGame(String saveName) {
         File outputFile;
         BufferedWriter outWriter;
+
         try{
             outputFile = new File(saveName + ".txt");
             outWriter = new BufferedWriter(new FileWriter(outputFile));
-            //outWriter.write("data");
             outWriter.close();
         }catch (Exception e){
             e.printStackTrace();
         }
-    }
 
-    public void loadGame(String loadName){
-        File inputFile;
-        BufferedReader inReader;
-        try{
-            inputFile = new File(loadName + ".txt");
-            inReader = new BufferedReader(new FileReader(inputFile));
-            String text = inReader.readLine();
-            inReader.close();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
     }
 
     /** Calls startCounter(). Countdown has now started. Continues
@@ -156,4 +156,25 @@ public class GameEngine {
     public void gameOver(){
         this.uiManager.viewGameOver();
     }
+
+    public void addScore(int scr){
+        score+=scr;
+        gamePanel.updateScore(score);
+    }
+
+    public void pacmanDied(){
+        livesLeft = livesLeft-1;
+        if (livesLeft == 0){
+            gameOver();
+        }else {
+            pacmans[0].setLivesLeft(pacmans[0].getLivesLeft() - 1);
+            if (numPlayer == 2){
+                pacmans[1].setLivesLeft(pacmans[1].getLivesLeft() - 1);
+            }
+
+            gamePanel.updateLives(livesLeft);
+            reStartGame();
+        }
+    }
+
 }

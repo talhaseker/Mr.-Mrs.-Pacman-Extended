@@ -75,6 +75,20 @@ public class Pacman extends MovingObject {
         }
     }
 
+    public void respawn(){
+        if (pacmanType == PacmanType.MRPACMAN){
+            super.setXpos(370);
+            super.setYpos(348);
+            super.curMovement = Movement.RIGHT;
+            super.lastMovement = Movement.RIGHT;
+        }else {
+            super.setXpos(330);
+            super.setYpos(348);
+            super.curMovement = Movement.LEFT;
+            super.lastMovement = Movement.LEFT;
+        }
+    }
+
     public void changeMovement(){
         lastMovement = curMovement;
         //TODO: change the movement animation here

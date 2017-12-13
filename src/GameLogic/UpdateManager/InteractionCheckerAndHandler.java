@@ -91,15 +91,16 @@ public class InteractionCheckerAndHandler {
         return true;
     }
 
-    public boolean doEatFood(){
+    public int doEatFood(){
         if (isMultiplayer){
-            return checkPandFood(pacmans[0]) || checkPandFood(pacmans[1]);
+            return checkPandFood(pacmans[0]) + checkPandFood(pacmans[1]);
         }
         return checkPandFood(pacmans[0]);
     }
 
-    private boolean checkPandFood(Pacman pm){
+    private int checkPandFood(Pacman pm){
         boolean retVal = false;
+        int score = 0;
         int firstIndexY = (pm.getYpos() - 96)/28;
         int firstIndexX = (pm.getXpos() - 120)/28;
         ArrayList<Food> foodsToRemove;
@@ -114,6 +115,7 @@ public class InteractionCheckerAndHandler {
                 }
             }
             for (Food f: foodsToRemove) {
+                score += f.getPoints();
                 foods.remove(f);
             }
 
@@ -139,6 +141,7 @@ public class InteractionCheckerAndHandler {
                 }
             }
             for (Food f: foodsToRemove) {
+                score += f.getPoints();
                 foods.remove(f);
             }
             switch (gameMap[firstIndexY][firstIndexX]){
@@ -152,7 +155,9 @@ public class InteractionCheckerAndHandler {
                     break;
             }
         }
-        return retVal;
+
+
+        return score;
     }
 
     public boolean doBumpGhosts(){
@@ -163,6 +168,14 @@ public class InteractionCheckerAndHandler {
     }
 
     private boolean checkPandGhosts(Pacman pm){
+        for (Ghost g:ghosts) {
+            int xDif = Math.abs(g.getXpos()-pm.getXpos());
+            int yDif = Math.abs(g.getYpos()-pm.getYpos());
+//            System.out.println(xDif + ", " + yDif);
+            if (xDif < 25 && yDif < 25){
+                return true;
+            }
+        }
         return false;
     }
 }

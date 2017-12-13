@@ -2,6 +2,7 @@ package GameLogic.UpdateManager;
 
 import GUI.GamePanel;
 import GameLogic.Enums.PacmanType;
+import GameLogic.GameEngine;
 import GameLogic.ScreenItems.Food;
 import GameLogic.ScreenItems.Ghost;
 import GameLogic.ScreenItems.Pacman;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 public class UpdateService {
 
     private boolean isMultiplayer;
+    private GameEngine ge;
     private Pacman[] pacmans;
     private Ghost[] ghosts;
     private GamePanel gamePanel;
@@ -24,7 +26,8 @@ public class UpdateService {
     private int pacMrMoveThreshold = 10;
     private int pacMrsMoveThreshold = 10;
 
-    public UpdateService(int[][] gameMap, ArrayList<Food> foods, Pacman[] pacmans, boolean isMultiplayer, Ghost[] ghosts, GamePanel gamePanel){
+    public UpdateService(GameEngine ge,int[][] gameMap, ArrayList<Food> foods, Pacman[] pacmans, boolean isMultiplayer, Ghost[] ghosts, GamePanel gamePanel){
+        this.ge = ge;
         this.isMultiplayer = isMultiplayer;
         this.pacmans = pacmans;
         this.ghosts = ghosts;
@@ -37,10 +40,13 @@ public class UpdateService {
 
     public void updateObjects(){
 
-        interactionCheckerAndHandler.doEatFood();
+        ge.addScore(interactionCheckerAndHandler.doEatFood());
         updatePacman(pacmans[0]);
         if (isMultiplayer){
             updatePacman(pacmans[1]);
+        }
+        if (interactionCheckerAndHandler.doBumpGhosts()){
+            ge.pacmanDied();
         }
 
         ghostController.move();

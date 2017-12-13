@@ -1,6 +1,7 @@
 package GameLogic.UpdateManager;
 
 import GUI.GamePanel;
+import GameLogic.GameEngine;
 import GameLogic.ScreenItems.Food;
 import GameLogic.ScreenItems.Ghost;
 import GameLogic.ScreenItems.Pacman;
@@ -20,6 +21,7 @@ public class TimeController implements ActionListener {
     private int waitCounter;
 
     private boolean isMultiplayer;
+    private GameEngine ge;
     private Pacman[] pacmans;
     private Ghost[] ghosts;
     private GamePanel gamePanel;
@@ -27,14 +29,15 @@ public class TimeController implements ActionListener {
     private ArrayList<Food> foods;
     private UpdateService updateService;
 
-    public TimeController(int[][] gameMap, ArrayList<Food> foods, Pacman[] pacmans, boolean isMultiplayer, Ghost[] ghosts, GamePanel gamePanel){
+    public TimeController(GameEngine ge, int[][] gameMap, ArrayList<Food> foods, Pacman[] pacmans, boolean isMultiplayer, Ghost[] ghosts, GamePanel gamePanel){
+        this.ge = ge;
         this.gameMap = gameMap;
         this.foods = foods;
         this.isMultiplayer = isMultiplayer;
         this.pacmans = pacmans;
         this.ghosts = ghosts;
         this.gamePanel = gamePanel;
-        this.updateService = new UpdateService(gameMap, foods, pacmans, isMultiplayer, ghosts, gamePanel);
+        this.updateService = new UpdateService(ge, gameMap, foods, pacmans, isMultiplayer, ghosts, gamePanel);
         this.timer = new Timer(15, this);
     }
 
