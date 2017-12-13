@@ -4,6 +4,7 @@ import GUI.UIBase.PacButton;
 import GUI.UIBase.PacLabel;
 import GUI.UIBase.PacPanel;
 import GameLogic.Constants;
+import GameLogic.GameEngine;
 
 import javax.swing.*;
 import java.awt.*;
@@ -63,7 +64,8 @@ public class PausePanel extends PacPanel {
         }else if(event.getSource() == saveGameButton){
 
         }else if (event.getSource() == exitButton){
-
+            GameFrame.uiManager.view(Constants.MAIN_MENU_PANEL);
+            UIManager.gameEngine = null;
         }else {
             GameFrame.uiManager.view(Constants.GAME_PANEL);
         }
