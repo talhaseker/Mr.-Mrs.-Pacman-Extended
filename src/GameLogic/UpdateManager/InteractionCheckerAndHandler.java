@@ -14,12 +14,14 @@ import java.util.ArrayList;
 public class InteractionCheckerAndHandler {
 
     final int initialX = 120, initialY = 96;
+    boolean isMultiplayer;
     int[][] gameMap;
     ArrayList<Food> foods;
     Pacman[] pacmans;
     Ghost[] ghosts;
 
-    public InteractionCheckerAndHandler(int[][] gameMap, ArrayList<Food> foods, Pacman[] pacmans, Ghost[] ghosts){
+    public InteractionCheckerAndHandler(boolean isMultiplayer, int[][] gameMap, ArrayList<Food> foods, Pacman[] pacmans, Ghost[] ghosts){
+        this.isMultiplayer = isMultiplayer;
         this.foods = foods;
         this.gameMap = gameMap;
         this.ghosts = ghosts;
@@ -87,5 +89,80 @@ public class InteractionCheckerAndHandler {
         }
 
         return true;
+    }
+
+    public boolean doEatFood(){
+        if (isMultiplayer){
+            return checkPandFood(pacmans[0]) || checkPandFood(pacmans[1]);
+        }
+        return checkPandFood(pacmans[0]);
+    }
+
+    private boolean checkPandFood(Pacman pm){
+        boolean retVal = false;
+        int firstIndexY = (pm.getYpos() - 96)/28;
+        int firstIndexX = (pm.getXpos() - 120)/28;
+        ArrayList<Food> foodsToRemove;
+
+        if ((pm.getYpos() - 96)%28 == 14){
+            foodsToRemove = new ArrayList<Food>();
+            for (Food f: foods) {
+                if ((f.getYpos() == (pm.getYpos() - 14) || f.getYpos() == (pm.getYpos() + 14)) && f.getXpos() == pm.getXpos()){
+                    foodsToRemove.add(f);
+                    pm.eatFood(f);
+                    retVal = true;
+                }
+            }
+            for (Food f: foodsToRemove) {
+                foods.remove(f);
+            }
+
+            switch (gameMap[firstIndexY][firstIndexX]){
+                case 2:case 3:case 4: case 5:
+                    gameMap[firstIndexY][firstIndexX] = -1;
+                    break;
+            }
+            switch (gameMap[firstIndexY+1][firstIndexX]){
+                case 2:case 3:case 4: case 5:
+                    gameMap[firstIndexY+1][firstIndexX + 1] = -1;
+                    break;
+            }
+        }
+
+        if ( (pm.getXpos() - 120)%28 == 14){
+            foodsToRemove = new ArrayList<Food>();
+            for (Food f: foods) {
+                if ((f.getXpos() == (pm.getXpos() - 14) || f.getXpos() == (pm.getXpos() + 14)) && f.getYpos() == pm.getYpos()){
+                    foodsToRemove.add(f);
+                    pm.eatFood(f);
+                    retVal = true;
+                }
+            }
+            for (Food f: foodsToRemove) {
+                foods.remove(f);
+            }
+            switch (gameMap[firstIndexY][firstIndexX]){
+                case 2:case 3:case 4: case 5:
+                    gameMap[firstIndexY][firstIndexX] = -1;
+                    break;
+            }
+            switch (gameMap[firstIndexY][firstIndexX+1]){
+                case 2:case 3:case 4: case 5:
+                    gameMap[firstIndexY][firstIndexX+1] = -1;
+                    break;
+            }
+        }
+        return retVal;
+    }
+
+    public boolean doBumpGhosts(){
+        if (isMultiplayer){
+            return checkPandGhosts(pacmans[0]) || checkPandGhosts(pacmans[1]);
+        }
+        return checkPandGhosts(pacmans[0]);
+    }
+
+    private boolean checkPandGhosts(Pacman pm){
+        return false;
     }
 }

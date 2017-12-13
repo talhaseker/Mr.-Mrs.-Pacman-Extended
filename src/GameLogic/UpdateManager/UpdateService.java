@@ -31,12 +31,13 @@ public class UpdateService {
         this.gamePanel = gamePanel;
         this.gameMap = gameMap;
         this.foods = foods;
-        this.interactionCheckerAndHandler = new InteractionCheckerAndHandler(gameMap, foods, pacmans, ghosts);
+        this.interactionCheckerAndHandler = new InteractionCheckerAndHandler(isMultiplayer, gameMap, foods, pacmans, ghosts);
         this.ghostController = new GhostController(interactionCheckerAndHandler, gameMap, ghosts, pacmans[0]);
     }
 
     public void updateObjects(){
 
+        interactionCheckerAndHandler.doEatFood();
         updatePacman(pacmans[0]);
         if (isMultiplayer){
             updatePacman(pacmans[1]);
