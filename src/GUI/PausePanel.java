@@ -24,7 +24,6 @@ public class PausePanel extends PacPanel {
         super(true, Constants.GAME_PANEL);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setBackground(Color.PINK);
-
         ImageIcon pauseIcon = new ImageIcon(("img-src/icons/pause2.png"));
 
         //Initialize Labels
@@ -62,7 +61,7 @@ public class PausePanel extends PacPanel {
         if (event.getSource() == resumeButton){
             UIManager.gameEngine.resumeGame();
         }else if(event.getSource() == saveGameButton){
-
+            GameFrame.uiManager.view(Constants.SAVE_GAME_PANEL);
         }else if (event.getSource() == exitButton){
             GameFrame.uiManager.view(Constants.MAIN_MENU_PANEL);
             UIManager.gameEngine = null;

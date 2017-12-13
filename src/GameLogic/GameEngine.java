@@ -13,6 +13,10 @@ import GameLogic.UpdateManager.TimeController;
 
 import javax.swing.*;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+
 import static javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW;
 
 /** GameEngine class : core game logic class, which holds and manipulates game entities and
@@ -99,8 +103,17 @@ public class GameEngine {
      * GameEngine. Calls DataLayer.GameDataBase.GameDataManager.setGameData()
      * function in order to save this GameData object into our database
      */
-    public void saveGame() {
+    public void saveGame(String saveName) {
+        File outputFile;
+        BufferedWriter outWriter;
 
+        try{
+            outputFile = new File(saveName + ".txt");
+            outWriter = new BufferedWriter(new FileWriter(outputFile));
+            outWriter.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
 
