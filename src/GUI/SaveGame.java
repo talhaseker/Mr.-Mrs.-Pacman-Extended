@@ -11,6 +11,7 @@ public class SaveGame extends JPanel implements ActionListener {
     JButton back;
     JButton save;
     JTextField tf;
+    private String savedGame;
     public SaveGame(){
         super(new FlowLayout());
         this.setBackground(Color.white);
@@ -30,7 +31,9 @@ public class SaveGame extends JPanel implements ActionListener {
             GameFrame.uiManager.view(Constants.PAUSE_PANEL);
         }
         else if(event.getSource() == save){
-            UIManager.gameEngine.saveGame(tf.getText());
+            savedGame = tf.getText();
+            UIManager.gameEngine.saveGame(savedGame);
+           // GameFrame.uiManager.savedGamesPanel.createGameNameFile(savedGame);
             GameFrame.uiManager.view(Constants.MAIN_MENU_PANEL);
             UIManager.gameEngine = null;
 

@@ -13,9 +13,7 @@ import GameLogic.UpdateManager.TimeController;
 
 import javax.swing.*;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
+import java.io.*;
 
 import static javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW;
 
@@ -95,7 +93,7 @@ public class GameEngine {
         gamePanel.prepareGUI();
         gamePanel.updateLives(3);
         gamePanel.updateScore(0);
-//        gamePanel.repaintRequest(gameMap);
+//      gamePanel.repaintRequest(gameMap);
         timeController.startTimer();
     }
 
@@ -106,15 +104,27 @@ public class GameEngine {
     public void saveGame(String saveName) {
         File outputFile;
         BufferedWriter outWriter;
-
         try{
             outputFile = new File(saveName + ".txt");
             outWriter = new BufferedWriter(new FileWriter(outputFile));
+            //outWriter.write("data");
             outWriter.close();
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
 
+    public void loadGame(String loadName){
+        File inputFile;
+        BufferedReader inReader;
+        try{
+            inputFile = new File(loadName + ".txt");
+            inReader = new BufferedReader(new FileReader(inputFile));
+            String text = inReader.readLine();
+            inReader.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     /** Calls startCounter(). Countdown has now started. Continues
@@ -146,5 +156,4 @@ public class GameEngine {
     public void gameOver(){
         this.uiManager.viewGameOver();
     }
-
 }
