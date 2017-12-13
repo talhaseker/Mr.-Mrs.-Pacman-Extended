@@ -63,10 +63,10 @@ public class InteractionCheckerAndHandler {
                 }
             case DOWN:
                 if (firstIndexColumns+1 <= lastIndexColumns && (firstIndexColumns+1)*28 == currentX){
-                    if (firstIndexRows+2 <= lastIndexRows && gameMap[firstIndexRows+2][firstIndexColumns+1] == 1 && gameMap[firstIndexRows+2][firstIndexColumns+1] == 0){
+                    if (firstIndexRows+2 <= lastIndexRows && (gameMap[firstIndexRows+2][firstIndexColumns+1] == 1 || gameMap[firstIndexRows+2][firstIndexColumns+1] == 0)){
                         return false;
                     }else{
-                        if (firstIndexRows+3 <= lastIndexRows && gameMap[firstIndexRows+3][firstIndexColumns+1] == 1 && gameMap[firstIndexRows+3][firstIndexColumns+1] == 0)
+                        if (firstIndexRows+3 <= lastIndexRows && (gameMap[firstIndexRows+3][firstIndexColumns+1] == 1 || gameMap[firstIndexRows+3][firstIndexColumns+1] == 0))
                             if ((firstIndexRows+3)*28 > currentY)
                                 return true;
                         return true;
