@@ -7,7 +7,7 @@ import GameLogic.Enums.Movement;
 public class MovingObject extends PacmanObject {
     //Variables
 //    private double velocityX, velocityY;
-    private int speed;
+    protected int speed;
     public Movement curMovement = Movement.RIGHT;
     public Movement lastMovement = Movement.RIGHT;
 

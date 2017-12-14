@@ -4,6 +4,9 @@ import GameLogic.Enums.Movement;
 import GameLogic.Enums.PacmanAnimationType;
 import GameLogic.Enums.PacmanType;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -123,6 +126,12 @@ public class Pacman extends MovingObject implements Serializable{
         stream.writeInt(livesLeft);
         stream.writeDouble(foodEffectSeconds);
         stream.writeInt(foodEffect);
+        stream.writeInt(super.speed);
+        ImageIO.write(imageIcon, "png", stream);
+        stream.writeInt(super.Xpos);
+        stream.writeInt(super.Ypos);
+        stream.writeInt(super.width);
+        stream.writeInt(super.height);
     }
 
     private void readObject(java.io.ObjectInputStream stream) throws IOException, ClassNotFoundException {
@@ -135,5 +144,11 @@ public class Pacman extends MovingObject implements Serializable{
         livesLeft = stream.readInt();
         foodEffectSeconds = stream.readDouble();
         foodEffect = stream.readInt();
+        super.speed = stream.readInt();
+        super.imageIcon = ImageIO.read(stream);
+        super.Xpos = stream.readInt();
+        super.Ypos = stream.readInt();
+        super.width = stream.readInt();
+        super.height = stream.readInt();
     }
 }

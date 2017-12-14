@@ -13,8 +13,8 @@ import java.awt.image.ImageObserver;
  */
 public class PacmanObject {
     //Variables
-    private BufferedImage imageIcon; //This will be different for each chil
-    private int Xpos, Ypos, width, height;
+    protected BufferedImage imageIcon; //This will be different for each chil
+    protected int Xpos, Ypos, width, height;
 
     //Constructor(s)
     /** Default parent constructor called for any type of PacmanObject,
