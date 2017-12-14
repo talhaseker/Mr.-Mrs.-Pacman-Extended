@@ -10,6 +10,7 @@ package GameLogic.ScreenItems;
 import GameLogic.Enums.GhostType;
 
 import java.awt.*;
+import java.io.IOException;
 import java.io.Serializable;
 
 import static GameLogic.Constants.ATTACK;
@@ -34,7 +35,7 @@ public class Ghost extends MovingObject implements Serializable {
     public int countdownTimer = 0;
     public boolean isAttacking = false;
     private boolean scatter;
-    final int initialOutOfCageX = 372;
+//    final int initialOutOfCageX = 372;
     final int initialOutOfCageY = 208;
 
     //Constructor
@@ -141,6 +142,24 @@ public class Ghost extends MovingObject implements Serializable {
             countdownTimer = ATTACK;
         }
         isAttacking = !isAttacking;
+    }
+
+    private void writeObject(java.io.ObjectOutputStream stream) throws IOException {
+        stream.defaultWriteObject();
+        stream.writeObject(type);
+        stream.writeBoolean(isAlive);
+        stream.writeInt(countdownTimer);
+        stream.writeBoolean(isAttacking);
+        stream.writeBoolean(scatter);
+    }
+
+    private void readObject(java.io.ObjectInputStream stream) throws IOException, ClassNotFoundException {
+        stream.defaultReadObject();
+        type = (GhostType) stream.readObject();
+        isAlive = stream.readBoolean();
+        countdownTimer = stream.readInt();
+        isAttacking = stream.readBoolean();
+        scatter = stream.readBoolean();
     }
 
 }

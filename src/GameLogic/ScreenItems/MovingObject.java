@@ -6,15 +6,15 @@ import GameLogic.Enums.Movement;
      */
 public class MovingObject extends PacmanObject {
     //Variables
-    private double velocityX, velocityY;
+//    private double velocityX, velocityY;
     private int speed;
     public Movement curMovement = Movement.RIGHT;
     public Movement lastMovement = Movement.RIGHT;
 
     public MovingObject(){
         super();
-        velocityX = 0.0;
-        velocityY = 0.0;
+//        velocityX = 0.0;
+//        velocityY = 0.0;
         speed = 2;
     }
 
@@ -34,8 +34,8 @@ public class MovingObject extends PacmanObject {
      */
     public void setVelocity(int velocityX, int velocityY) {
         if (velocityX > 0 && velocityY > 0){
-            this.velocityX = velocityX;
-            this.velocityY = velocityY;
+//            this.velocityX = velocityX;
+//            this.velocityY = velocityY;
         }
         //Else display error message
     }
@@ -43,16 +43,16 @@ public class MovingObject extends PacmanObject {
     /**
      * @return x-axis velocity of movable pacman object
      */
-    public double getVelocityX() {
-        return this.velocityX;
-    }
+//    public double getVelocityX() {
+//        return this.velocityX;
+//    }
 
     /**
      * @return y-axis velocity of movable pacman object
      */
-    public double getVelocityY() {
-        return this.velocityY;
-    }
+//    public double getVelocityY() {
+//        return this.velocityY;
+//    }
 
     // move is called each time a arrow key is
     // pressed, pacman cannot move to 2 different

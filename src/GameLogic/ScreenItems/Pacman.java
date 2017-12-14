@@ -4,15 +4,18 @@ import GameLogic.Enums.Movement;
 import GameLogic.Enums.PacmanAnimationType;
 import GameLogic.Enums.PacmanType;
 
+import java.io.IOException;
+import java.io.Serializable;
+
 /** Data representation of Pacman (player)
  * @author Ecem Ilgun
  * @version 1.8
  * @since 1.0
  * @see PacmanObject
  */
-public class Pacman extends MovingObject {
+public class Pacman extends MovingObject implements Serializable{
     //Variables
-    private int foodEffect, score;        //We can (should) switch to enum later here,
+    private int foodEffect;        //We can (should) switch to enum later here,
     PacmanAnimationType currentAnimation; // and here.
     double foodEffectSeconds;
     Shield shield;
@@ -39,7 +42,7 @@ public class Pacman extends MovingObject {
 
         super.setSize(28,28);
         super.setSpeed(2);
-        this.score = 0;
+//        this.score = 0;
         this.foodEffect = 0;
         this.foodEffectSeconds = 0.0;
         this.shield = null;
@@ -66,7 +69,7 @@ public class Pacman extends MovingObject {
      * @param food The food which Pacman collided with
      */
     public void eatFood(Food food) {
-        score += food.getPoints();
+//        score += food.getPoints();
         this.foodEffectSeconds = food.getSideEffectSeconds();
         int sideEffect = food.getSideEffect();
 
@@ -108,5 +111,29 @@ public class Pacman extends MovingObject {
 
     public void setPacmanType(PacmanType pacmanType) {
         this.pacmanType = pacmanType;
+    }
+
+    private void writeObject(java.io.ObjectOutputStream stream) throws IOException {
+        stream.defaultWriteObject();
+        stream.writeObject(pacmanType);
+        stream.writeObject(currentAnimation);
+        stream.writeObject(shield);
+        stream.writeObject(super.curMovement);
+        stream.writeObject(super.lastMovement);
+        stream.writeInt(livesLeft);
+        stream.writeDouble(foodEffectSeconds);
+        stream.writeInt(foodEffect);
+    }
+
+    private void readObject(java.io.ObjectInputStream stream) throws IOException, ClassNotFoundException {
+        stream.defaultReadObject();
+        pacmanType = (PacmanType) stream.readObject();
+        currentAnimation  = (PacmanAnimationType) stream.readObject();
+        shield = (Shield) stream.readObject();
+        super.curMovement = (Movement) stream.readObject();
+        super.lastMovement = (Movement) stream.readObject();
+        livesLeft = stream.readInt();
+        foodEffectSeconds = stream.readDouble();
+        foodEffect = stream.readInt();
     }
 }

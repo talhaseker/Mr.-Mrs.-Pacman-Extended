@@ -1,8 +1,13 @@
 package GUI;
 
+import DataLayer.GameDatabase.GameDataManager;
 import GUI.UIBase.PacButton;
 import GameLogic.AnimationManager.Sprite;
+import GameLogic.Enums.GhostType;
+import GameLogic.Enums.PacmanType;
 import GameLogic.GameMap;
+import GameLogic.ScreenItems.Ghost;
+import GameLogic.ScreenItems.Pacman;
 
 import javax.swing.*;
 import java.awt.*;
@@ -46,8 +51,8 @@ public class CreateMapPanel extends JPanel implements ActionListener {
 
     private ItemToAdd currentItemToAdd = ItemToAdd.WALL;
 
-    private int numbOfGhosts;
-    private int numbOfPacmans;
+    private int numbOfGhosts = 0;
+    private int numbOfPacmans = 1;
     private final String single = "Single Player";
     private final String multi = "Multiplayer";
 
@@ -192,6 +197,21 @@ public class CreateMapPanel extends JPanel implements ActionListener {
 
         if(source == pacmanCombo){
             numbOfGhosts = pacmanCombo.getSelectedIndex() +1;
+        }
+
+        if(source == playButton){
+            Pacman[] pacmans = new Pacman[numbOfPacmans];
+            Ghost[] ghosts = new Ghost[numbOfGhosts];
+            pacmans[0] = new Pacman(PacmanType.MRPACMAN);
+            if (numbOfPacmans == 2)
+                pacmans[1] = new Pacman(PacmanType.MRSPACMAN);
+
+            for (int i = 0; i<numbOfGhosts; i++)
+                ghosts[i] = new Ghost(GhostType.values()[i]);
+
+            GameDataManager gameDataManager = new GameDataManager();
+            gameDataManager.saveGameData("test.txt", 0, 1, numbOfPacmans,3,pacmans, ghosts, gameMap);
+            GameFrame.uiManager.viewGame(0, "test.txt");
         }
     }
 

@@ -41,7 +41,7 @@ public class GamePanel extends JPanel {
     }
 
     public void updateScore(int score){
-        this.scoreLabel.setText("SCORE " + score);
+        this.scoreLabel.setText("SCORE " + score + "    ");
     }
 
     public void updateLives(int lives){
@@ -68,7 +68,7 @@ public class GamePanel extends JPanel {
         bottomPanel = new JPanel();
         bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.X_AXIS));
         bottomPanel.setBackground(Color.BLACK);
-        scoreLabel = new PacLabel("SCORE 0", 24f);
+        scoreLabel = new PacLabel("SCORE 0  ", 24f);
         livesLabel = new PacLabel("LIVES 5", 24f);
         bottomPanel.add(scoreLabel);
         bottomPanel.add(livesLabel);

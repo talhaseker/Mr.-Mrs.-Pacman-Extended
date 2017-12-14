@@ -1,5 +1,7 @@
 package GameLogic;
 
+import DataLayer.GameDatabase.GameData;
+import DataLayer.GameDatabase.GameDataManager;
 import GUI.GameFrame;
 import GUI.GamePanel;
 import GUI.UIManager;
@@ -12,7 +14,6 @@ import GameLogic.ScreenItems.Pacman;
 import GameLogic.UpdateManager.TimeController;
 
 import javax.swing.*;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -40,38 +41,54 @@ public class GameEngine {
     private PauseGameController pauseGameController;
     private TimeController timeController;
     private UIManager uiManager;
+    private GameDataManager gameDataManager;
+    private GameData gameData;
 
     //Constructor(s)
 
     /** Constructs a game engine with default configurations
      */
-    public GameEngine(UIManager uiManager, int numPlayer) {
+    public GameEngine(UIManager uiManager, int numPlayer, String name) {
+        this.gameDataManager = new GameDataManager();
         this.numPlayer = numPlayer;
-        level = 1;
-        score = 0;
-        livesLeft = MAX_LIFE;
-        numGhost = 4;
-        this.uiManager = uiManager;
+        if (numPlayer == 0){
+            this.gameData = gameDataManager.loadGame(name);
+            level = gameData.getLevel();
+            score = gameData.getScore();
+            livesLeft = gameData.getLivesLeft();
+            ghosts = gameData.getMapData().getGhosts();
+            pacmans = gameData.getMapData().getPacmans();
+            this.numPlayer = pacmans.length;
+            this.numGhost = ghosts.length;
+            gameMap = gameData.getMapData().getMapTable();
 
-        pacmans = new Pacman[numPlayer];
-        pacmans[0] = new Pacman(PacmanType.MRPACMAN); //default pacman object for now
-        if (numPlayer == 2){
-            pacmans[1] = new Pacman(PacmanType.MRSPACMAN);
+        }else{
+            level = 1;
+            score = 0;
+            livesLeft = MAX_LIFE;
+            numGhost = 4;
+
+            pacmans = new Pacman[numPlayer];
+            pacmans[0] = new Pacman(PacmanType.MRPACMAN); //default pacman object for now
+            if (numPlayer == 2){
+                pacmans[1] = new Pacman(PacmanType.MRSPACMAN);
+            }
+
+            ghosts = new Ghost[numGhost];
+
+            ghosts[0] = new Ghost(GhostType.BLINKY);
+            ghosts[1] = new Ghost(GhostType.PINKY);
+            ghosts[2] = new Ghost(GhostType.INKY);
+            ghosts[3] = new Ghost(GhostType.CLYDE);
+
+            map = new GameMap();
+            gameMap = map.map1;
         }
 
-        ghosts = new Ghost[numGhost];
-
-        ghosts[0] = new Ghost(GhostType.BLINKY);
-        ghosts[1] = new Ghost(GhostType.PINKY);
-        ghosts[2] = new Ghost(GhostType.INKY);
-        ghosts[3] = new Ghost(GhostType.CLYDE);
-
-        map = new GameMap();
-        gameMap = map.map1;
+        this.uiManager = uiManager;
 
         this.gamePanel = new GamePanel(gameMap, pacmans, ghosts);
         uiManager.add(gamePanel, Constants.GAME_PANEL);
-
         counter = 3.0;
         isPaused = false;
         pacmanMovementKeyBindings = new PacManMovementController(pacmans, (numPlayer == 2), gamePanel.getInputMap(WHEN_IN_FOCUSED_WINDOW), gamePanel.getActionMap());
@@ -88,13 +105,12 @@ public class GameEngine {
 
     }
 
-
     //Methods
 
     public void startGame(){
         gamePanel.prepareGUI();
-        gamePanel.updateLives(3);
-        gamePanel.updateScore(0);
+        gamePanel.updateLives(livesLeft);
+        gamePanel.updateScore(score);
 //        gamePanel.repaintRequest(gameMap);
         timeController.startTimer();
     }
@@ -132,7 +148,7 @@ public class GameEngine {
      */
     public void resumeGame() {
         isPaused = false;
-        GameFrame.uiManager.viewGame(numPlayer);
+        GameFrame.uiManager.viewGame(numPlayer, null);
         timeController.startTimer();
         //TODO
     }

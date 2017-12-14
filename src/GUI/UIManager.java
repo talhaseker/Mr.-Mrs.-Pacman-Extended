@@ -65,10 +65,10 @@ public class UIManager extends JPanel {
         cl.show(this, Constants.HIGHSCORE_PANEL);
     }
 
-    public void viewGame(int playerNum){
+    public void viewGame(int playerNum, String name){
         CardLayout cl = (CardLayout)(this.getLayout());
         if (gameEngine == null){
-            gameEngine = new GameEngine(this, playerNum);
+            gameEngine = new GameEngine(this, playerNum, name);
         }
         cl.show(this, Constants.GAME_PANEL);
     }
