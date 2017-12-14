@@ -171,7 +171,6 @@ public class InteractionCheckerAndHandler {
         for (Ghost g:ghosts) {
             int xDif = Math.abs(g.getXpos()-pm.getXpos());
             int yDif = Math.abs(g.getYpos()-pm.getYpos());
-//            System.out.println(xDif + ", " + yDif);
             if (xDif < 25 && yDif < 25){
                 return true;
             }

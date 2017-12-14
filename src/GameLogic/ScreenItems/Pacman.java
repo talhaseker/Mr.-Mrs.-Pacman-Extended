@@ -29,10 +29,10 @@ public class Pacman extends MovingObject {
         pacmanType = type;
         if (type == PacmanType.MRPACMAN){
             super.setImage("ImageIcons/PacMan1");
-            super.changePosition(370,348); //Pacman has a default starting grid
+            super.changePosition(372,348); //Pacman has a default starting grid
         }else {
             super.setImage("ImageIcons/PacMan2");
-            super.changePosition(330,348); //Pacman has a default starting grid
+            super.changePosition(316,348); //Pacman has a default starting grid
             super.curMovement = Movement.LEFT;
             super.lastMovement = Movement.LEFT;
         }
@@ -77,12 +77,12 @@ public class Pacman extends MovingObject {
 
     public void respawn(){
         if (pacmanType == PacmanType.MRPACMAN){
-            super.setXpos(370);
+            super.setXpos(372);
             super.setYpos(348);
             super.curMovement = Movement.RIGHT;
             super.lastMovement = Movement.RIGHT;
         }else {
-            super.setXpos(330);
+            super.setXpos(316);
             super.setYpos(348);
             super.curMovement = Movement.LEFT;
             super.lastMovement = Movement.LEFT;

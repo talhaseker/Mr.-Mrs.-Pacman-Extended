@@ -52,6 +52,7 @@ public class UIManager extends JPanel {
         this.add(saveGamePanel, Constants.SAVE_GAME_PANEL);
 
         viewMainMenu();
+//        viewCreateMap();
     }
 
     public void viewHelp(){
