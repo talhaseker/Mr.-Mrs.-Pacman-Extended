@@ -60,6 +60,8 @@ public class GameEngine {
             pacmans = gameData.getMapData().getPacmans();
             this.numPlayer = pacmans.length;
             this.numGhost = ghosts.length;
+            System.out.println("numplayers: " + this.numPlayer);
+            System.out.println(pacmans[0]);
             gameMap = gameData.getMapData().getMapTable();
 
         }else{

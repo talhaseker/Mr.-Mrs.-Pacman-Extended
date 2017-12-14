@@ -84,4 +84,15 @@ public class PacmanObject {
         g2.drawImage(imageIcon, Xpos, Ypos, width, height, imageObserver);
 
     }
+
+    @Override
+    public String toString() {
+        return "PacmanObject{" +
+                "imageIcon=" + imageIcon +
+                ", Xpos=" + Xpos +
+                ", Ypos=" + Ypos +
+                ", width=" + width +
+                ", height=" + height +
+                '}';
+    }
 }

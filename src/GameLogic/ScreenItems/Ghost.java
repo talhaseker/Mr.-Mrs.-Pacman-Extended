@@ -11,7 +11,6 @@ import GameLogic.Enums.GhostType;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -154,11 +153,11 @@ public class Ghost extends MovingObject implements Serializable {
         stream.writeBoolean(isAttacking);
         stream.writeBoolean(scatter);
         stream.writeInt(super.speed);
-        ImageIO.write(imageIcon, "png", stream);
         stream.writeInt(super.Xpos);
         stream.writeInt(super.Ypos);
         stream.writeInt(super.width);
         stream.writeInt(super.height);
+        ImageIO.write(imageIcon, "png", stream);
     }
 
     private void readObject(java.io.ObjectInputStream stream) throws IOException, ClassNotFoundException {
@@ -169,11 +168,11 @@ public class Ghost extends MovingObject implements Serializable {
         isAttacking = stream.readBoolean();
         scatter = stream.readBoolean();
         super.speed = stream.readInt();
-        super.imageIcon = ImageIO.read(stream);
         super.Xpos = stream.readInt();
         super.Ypos = stream.readInt();
         super.width = stream.readInt();
         super.height = stream.readInt();
+        super.imageIcon = ImageIO.read(stream);
     }
 
 }

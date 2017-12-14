@@ -74,4 +74,13 @@ public class MovingObject extends PacmanObject {
             this.changePosition(-20, 0);
         }
     }
+
+    @Override
+    public String toString() {
+        return "MovingObject{" +
+                "speed=" + speed +
+                ", curMovement=" + curMovement +
+                ", lastMovement=" + lastMovement +
+                '}';
+    }
 }
