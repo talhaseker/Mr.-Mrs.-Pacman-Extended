@@ -63,6 +63,10 @@ public class GameEngine {
             System.out.println("numplayers: " + this.numPlayer);
             System.out.println(pacmans[0]);
             gameMap = gameData.getMapData().getMapTable();
+            for (int i= 0; i<11; i++)
+                for (int j=0; j<20; j++)
+                    if (gameMap[i][j] == -1)
+                        gameMap[i][j] = 2;
 
         }else{
             level = 1;
