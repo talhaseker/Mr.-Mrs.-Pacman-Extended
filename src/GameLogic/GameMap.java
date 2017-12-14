@@ -52,13 +52,13 @@ public class GameMap {
             points[48 + i] = new Point(19,i);
 
         int con = 58;
-        for (int i=8; i<14; i++)
-            for (int j=5; j<8; j++){
+        for (int i=7; i<13; i++)
+            for (int j=4; j<7; j++){
                 points[con] = new Point(i,j);
                 con++;
             }
-        for (int i=9; i<13; i++){
-            points[con] = new Point(i,4);
+        for (int i=8; i<12; i++){
+            points[con] = new Point(i,3);
             con++;
         }
 

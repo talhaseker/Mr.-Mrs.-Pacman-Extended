@@ -46,6 +46,10 @@ public class CreateMapPanel extends JPanel implements ActionListener {
 
     private ItemToAdd currentItemToAdd = ItemToAdd.WALL;
 
+    private int numbOfGhosts;
+    private int numbOfPacmans;
+    private final String single = "Single Player";
+    private final String multi = "Multiplayer";
 
     public CreateMapPanel(){
         this.setLayout(new BorderLayout());
@@ -96,7 +100,7 @@ public class CreateMapPanel extends JPanel implements ActionListener {
         ghostCombo = new JComboBox(ghostNumb);
         ghostCombo.addActionListener(this);
 
-        String[] pmStat = {"Single Player", "Multiplayer"};
+        String[] pmStat = {single, multi};
         pacmanCombo = new JComboBox(pmStat);
         pacmanCombo.addActionListener(this);
 
@@ -164,8 +168,30 @@ public class CreateMapPanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        if(wallBtn.isSelected()){
-            wallBtn.setBackground(Color.red);
+        Object source = event.getSource();
+        if(source == wallBtn){
+//            if (wallBtn.isSelected())
+                currentItemToAdd = ItemToAdd.WALL;
+        }
+        if(source == yellowFoodBtn){
+//            if (wallBtn.isSelected())
+            currentItemToAdd = ItemToAdd.YELLOW;
+        }
+        if(source == greenFoodBtn){
+//            if (wallBtn.isSelected())
+            currentItemToAdd = ItemToAdd.GREEN;
+        }
+        if(source == bigFoodBtn){
+//            if (wallBtn.isSelected())
+            currentItemToAdd = ItemToAdd.BIG;
+        }
+
+        if(source == ghostCombo){
+            numbOfGhosts = ghostCombo.getSelectedIndex();
+        }
+
+        if(source == pacmanCombo){
+            numbOfGhosts = pacmanCombo.getSelectedIndex() +1;
         }
     }
 
@@ -174,13 +200,19 @@ public class CreateMapPanel extends JPanel implements ActionListener {
         @Override
         public void mouseClicked(MouseEvent e) {
             Point mp = new Point((int)(e.getX())/28, (int)(e.getY())/28);
+            boolean isValidPoint = true;
+            for (Point p: gmForbiddenPoints)
+                if (p.getX() == mp.getX() && p.getY() == mp.getY())
+                    isValidPoint = false;
 
-            for (Point p: gmForbiddenPoints){
-                if (p.getX() == mp.getX() && p.getY() == mp.getY()){
+            if (isValidPoint){
+                if (gameMap[(int)mp.getY()][(int)mp.getX()] == currentItemToAdd.getValue()) {
+                    gameMap[(int)mp.getY()][(int)mp.getX()] = -1;
                 }else{
-
+                    gameMap[(int)mp.getY()][(int)mp.getX()] = currentItemToAdd.getValue();
                 }
             }
+            centerPanel.repaint();
         }
 
         @Override
