@@ -12,7 +12,7 @@ import GameLogic.InputManager.PauseGameController;
 import GameLogic.ScreenItems.Ghost;
 import GameLogic.ScreenItems.Pacman;
 import GameLogic.UpdateManager.TimeController;
-
+import java.util.Arrays;
 import javax.swing.*;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -43,7 +43,7 @@ public class GameEngine {
     private UIManager uiManager;
     private GameDataManager gameDataManager;
     private GameData gameData;
-
+    private int highScores[];
     //Constructor(s)
 
     /** Constructs a game engine with default configurations
@@ -73,7 +73,6 @@ public class GameEngine {
             score = 0;
             livesLeft = MAX_LIFE;
             numGhost = 4;
-
             pacmans = new Pacman[numPlayer];
             pacmans[0] = new Pacman(PacmanType.MRPACMAN); //default pacman object for now
             if (numPlayer == 2){
@@ -81,11 +80,12 @@ public class GameEngine {
             }
 
             ghosts = new Ghost[numGhost];
-
             ghosts[0] = new Ghost(GhostType.BLINKY);
             ghosts[1] = new Ghost(GhostType.PINKY);
             ghosts[2] = new Ghost(GhostType.INKY);
             ghosts[3] = new Ghost(GhostType.CLYDE);
+
+            highScores = new int[10];
 
             map = new GameMap();
             gameMap = map.map1;
@@ -174,13 +174,13 @@ public class GameEngine {
         gamePanel.updateScore(score);
     }
 
-    public void pacmanDied(){
-        livesLeft = livesLeft-1;
-        if (livesLeft == 0){
+    public void pacmanDied() {
+        livesLeft = livesLeft - 1;
+        if (livesLeft == 0) {
             gameOver();
-        }else {
+        } else {
             pacmans[0].setLivesLeft(pacmans[0].getLivesLeft() - 1);
-            if (numPlayer == 2){
+            if (numPlayer == 2) {
                 pacmans[1].setLivesLeft(pacmans[1].getLivesLeft() - 1);
             }
 
@@ -189,4 +189,27 @@ public class GameEngine {
         }
     }
 
+    public void setHighScores(){
+        boolean isChanged = false;
+        if(highScores[9]==0){
+            for(int i=0; i<10; i++){
+                if(highScores[i]==0) {
+                    highScores[i] = score;
+                    isChanged = true;
+                    break;
+                }
+            }
+        }
+        else{
+            for(int i=0;i<10;i++){
+                if (highScores[i]<score){
+                    highScores[i]= score;
+                    isChanged= true;
+                    break;
+                }
+            }
+        }
+        if(isChanged){
+            Arrays.sort(highScores);
+        }
 }

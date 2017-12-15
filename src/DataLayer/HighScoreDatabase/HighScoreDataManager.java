@@ -5,17 +5,14 @@
  */
 package DataLayer.HighScoreDatabase;
 
+import DataLayer.MapDatabase.MapData;
+import GameLogic.GameEngine.*;
+
 /**
  *
- * @author mbpro
+ * @author sevval ekici
  */
 public class HighScoreDataManager {
-    
-    //Properties
-    //Constructor
-    //Methods
-    public HighScoreData[] getHighScore(){
-        return null;
-    }
-    
+
+
 }

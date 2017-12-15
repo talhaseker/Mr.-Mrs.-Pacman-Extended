@@ -5,13 +5,50 @@
  */
 package DataLayer.HighScoreDatabase;
 
+import java.io.IOException;
+import java.io.Serializable;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.PrintWriter;
+
 /**
  *
- * @author mbpro
+ * @author sevval ekici
  */
-public class HighScoreData {
+public class HighScoreData implements Serializable {
     
-    //Properties
-    String nickname;
-    int score;
+    private int highScores[];
+
+    private void writehighScores(){
+        try {
+            fw = new FileWriter("highscores.txt", true);
+            bw = new BufferedWriter(fw);
+            out = new PrintWriter(bw);
+            for (int i= 0; i<10; i++){
+                out.println(""+ highScores[i]);
+            }
+            out.close();
+        } catch (IOException e) {
+            System.out.println("Error");
+        }
+    }
+
+    private void readHighScores(){
+
+
+    }
+
+    public int[] getHighScores() {
+        return highScores;
+    }
+
+    public void setHighScores(int[] highScores) {
+        this.highScores = highScores;
+    }
+
+
+
+    }
+
+
 }
