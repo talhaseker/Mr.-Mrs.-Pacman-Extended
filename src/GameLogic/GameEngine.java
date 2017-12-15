@@ -11,7 +11,6 @@ import GameLogic.InputManager.PauseGameController;
 import GameLogic.ScreenItems.Ghost;
 import GameLogic.ScreenItems.Pacman;
 import GameLogic.UpdateManager.TimeController;
-import java.util.Arrays;
 import javax.swing.*;
 
 import static javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW;
@@ -83,7 +82,7 @@ public class GameEngine {
             ghosts[2] = new Ghost(GhostType.INKY);
             ghosts[3] = new Ghost(GhostType.CLYDE);
 
-            highScores = new int[10];
+
 
             map = new GameMap();
             gameMap = map.map1;
@@ -193,27 +192,4 @@ public class GameEngine {
         }
     }
 
-    public void setHighScores() {
-        boolean isChanged = false;
-        if (highScores[9] == 0) {
-            for (int i = 0; i < 10; i++) {
-                if (highScores[i] == 0) {
-                    highScores[i] = score;
-                    isChanged = true;
-                    break;
-                }
-            }
-        } else {
-            for (int i = 0; i < 10; i++) {
-                if (highScores[i] < score) {
-                    highScores[i] = score;
-                    isChanged = true;
-                    break;
-                }
-            }
-        }
-        if (isChanged) {
-            Arrays.sort(highScores);
-        }
-    }
 }
