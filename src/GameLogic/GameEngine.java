@@ -136,16 +136,6 @@ public class GameEngine {
      * function in order to save this GameData object into our database
      */
     public void saveGame(String saveName) {
-        File outputFile;
-        BufferedWriter outWriter;
-
-        try{
-            outputFile = new File(saveName + ".txt");
-            outWriter = new BufferedWriter(new FileWriter(outputFile));
-            outWriter.close();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
 
     }
 

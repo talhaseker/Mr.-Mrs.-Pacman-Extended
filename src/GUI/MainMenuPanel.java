@@ -1,5 +1,6 @@
 package GUI;
 
+import DataLayer.GameDatabase.GameDataManager;
 import GUI.UIBase.PacButton;
 import GUI.UIBase.PacLabel;
 import GameLogic.Constants;
@@ -13,10 +14,11 @@ import java.awt.event.ActionListener;
  * Created by Aziz Osman on 30.10.2017.
  */
 public class MainMenuPanel extends JPanel{
+    private String loadMapName;
+    private String loadGameName;
     public MainMenuPanel(){
         super(new GridBagLayout());
         this.setBackground(Color.BLACK);
-
         JPanel soundPanel = new JPanel();
         soundPanel.setBackground(Color.BLACK);
         ImageIcon soundOnIcon = new ImageIcon(("img-src/icons/sound-on.png"));
@@ -139,7 +141,9 @@ public class MainMenuPanel extends JPanel{
     public class loadMapListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            GameFrame.uiManager.view(Constants.SAVED_MAPS_LIST_PANEL);
+            //GameFrame.uiManager.view(Constants.SAVED_MAPS_LIST_PANEL);
+            loadMapName = JOptionPane.showInputDialog("Enter Map Name");
+            GameFrame.uiManager.viewGame(0, loadMapName);
         }
     }
     public class loadGameListener implements ActionListener {

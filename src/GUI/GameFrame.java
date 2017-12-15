@@ -23,7 +23,8 @@ public class GameFrame extends JFrame {
         this.setResizable(false);
         this.getContentPane().add(uiManager);
         this.pack();
+        this.setLocationRelativeTo(null);
         this.addWindowListener(new WindowCloser());
-        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
 }

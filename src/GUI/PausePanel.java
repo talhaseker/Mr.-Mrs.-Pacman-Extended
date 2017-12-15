@@ -18,7 +18,7 @@ public class PausePanel extends PacPanel {
     PacButton resumeButton;
     PacButton saveGameButton;
     PacButton exitButton;
-
+    private String saveGameName;
     public PausePanel() {
 
         super(true, Constants.GAME_PANEL);
@@ -61,7 +61,9 @@ public class PausePanel extends PacPanel {
         if (event.getSource() == resumeButton){
             UIManager.gameEngine.resumeGame();
         }else if(event.getSource() == saveGameButton){
-            GameFrame.uiManager.view(Constants.SAVE_GAME_PANEL);
+            //GameFrame.uiManager.view(Constants.SAVE_GAME_PANEL);
+            saveGameName = JOptionPane.showInputDialog("Enter Name");
+            UIManager.gameEngine.saveGame(saveGameName);
         }else if (event.getSource() == exitButton){
             GameFrame.uiManager.view(Constants.MAIN_MENU_PANEL);
             UIManager.gameEngine = null;

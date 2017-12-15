@@ -108,10 +108,10 @@ public class UIManager extends JPanel {
         cl.show(this, Constants.GAME_OVER_PANEL);
     }
 
-    public void viewSaveGame(){
+    /*public void viewSaveGame(){
         CardLayout c1 = (CardLayout)(this.getLayout());
         c1.show(this, Constants.SAVE_GAME_PANEL);
-    }
+    }*/
     public void view(String panelName){
         CardLayout cl = (CardLayout)(this.getLayout());
         cl.show(this, panelName);

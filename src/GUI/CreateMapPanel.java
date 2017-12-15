@@ -3,6 +3,7 @@ package GUI;
 import DataLayer.GameDatabase.GameDataManager;
 import GUI.UIBase.PacButton;
 import GameLogic.AnimationManager.Sprite;
+import GameLogic.Constants;
 import GameLogic.Enums.GhostType;
 import GameLogic.Enums.PacmanType;
 import GameLogic.GameMap;
@@ -53,6 +54,7 @@ public class CreateMapPanel extends JPanel implements ActionListener {
 
     private int numbOfGhosts = 0;
     private int numbOfPacmans = 1;
+    private String saveMapName;
     private final String single = "Single Player";
     private final String multi = "Multiplayer";
 
@@ -212,6 +214,26 @@ public class CreateMapPanel extends JPanel implements ActionListener {
             GameDataManager gameDataManager = new GameDataManager();
             gameDataManager.saveGameData("test.txt", 0, 1, numbOfPacmans,3,pacmans, ghosts, gameMap);
             GameFrame.uiManager.viewGame(0, "test.txt");
+        }
+        if(source == saveButton){
+            Pacman[] pacmans = new Pacman[numbOfPacmans];
+            Ghost[] ghosts = new Ghost[numbOfGhosts];
+            pacmans[0] = new Pacman(PacmanType.MRPACMAN);
+            if (numbOfPacmans == 2)
+                pacmans[1] = new Pacman(PacmanType.MRSPACMAN);
+
+            for (int i = 0; i<numbOfGhosts; i++)
+                ghosts[i] = new Ghost(GhostType.values()[i]);
+
+            GameDataManager gameDataManager = new GameDataManager();
+            saveMapName = JOptionPane.showInputDialog("Enter Map Name to Save");
+            while (saveMapName.length() == 0) {
+                saveMapName = JOptionPane.showInputDialog("Please First Enter A Map Name to Save");
+            }
+            if(saveMapName.length() > 0){
+                GameFrame.uiManager.view(Constants.MAIN_MENU_PANEL);
+                gameDataManager.saveGameData(saveMapName + ".txt", 0, 1, numbOfPacmans,3,pacmans, ghosts, gameMap);
+            }
         }
     }
 
