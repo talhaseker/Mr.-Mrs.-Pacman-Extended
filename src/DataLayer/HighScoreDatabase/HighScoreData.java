@@ -16,16 +16,16 @@ import java.io.PrintWriter;
  * @author sevval ekici
  */
 public class HighScoreData implements Serializable {
-    
+
     private int highScores[];
 
-    private void writehighScores(){
+    private void writehighScores() {
         try {
-            fw = new FileWriter("highscores.txt", true);
-            bw = new BufferedWriter(fw);
-            out = new PrintWriter(bw);
-            for (int i= 0; i<10; i++){
-                out.println(""+ highScores[i]);
+            FileWriter fw = new FileWriter("highscores.txt", true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter out = new PrintWriter(bw);
+            for (int i = 0; i < 10; i++) {
+                out.println("" + highScores[i]);
             }
             out.close();
         } catch (IOException e) {
@@ -33,7 +33,7 @@ public class HighScoreData implements Serializable {
         }
     }
 
-    private void readHighScores(){
+    private void readHighScores() {
 
 
     }
@@ -45,10 +45,5 @@ public class HighScoreData implements Serializable {
     public void setHighScores(int[] highScores) {
         this.highScores = highScores;
     }
-
-
-
-    }
-
 
 }
