@@ -5,8 +5,9 @@
  */
 package DataLayer.HighScoreDatabase;
 
-import DataLayer.MapDatabase.MapData;
-import GameLogic.GameEngine.*;
+
+import DataLayer.HighScoreDatabase.HighScoreData;
+
 
 /**
  *
@@ -14,5 +15,12 @@ import GameLogic.GameEngine.*;
  */
 public class HighScoreDataManager {
 
+    int score;
 
-}
+    public HighScoreData setHighScoreData(int score){
+        HighScoreData hsd = new HighScoreData();
+        hsd.setScore(score);
+        return hsd;
+    }
+
+    }
