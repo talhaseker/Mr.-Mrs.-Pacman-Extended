@@ -109,7 +109,8 @@ public class UpdateService {
             switch (pm.lastMovement) {
                 case LEFT:
                     pm.setXpos(pm.getXpos() - pm.getSpeed());
-                    pm.
+                    //TODO: Animation
+//                    pm.
                     break;
                 case RIGHT:
                     pm.setXpos(pm.getXpos() + pm.getSpeed());
