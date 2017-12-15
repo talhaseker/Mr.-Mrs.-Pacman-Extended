@@ -23,8 +23,8 @@ public class UpdateService {
     private int[][] gameMap;
     private ArrayList<Food> foods;
     private InteractionCheckerAndHandler interactionCheckerAndHandler;
-    private int pacMrMoveThreshold = 10;
-    private int pacMrsMoveThreshold = 10;
+    private int pacMrMoveThreshold = 20;
+    private int pacMrsMoveThreshold = 20;
 
     public UpdateService(GameEngine ge,int[][] gameMap, ArrayList<Food> foods, Pacman[] pacmans, boolean isMultiplayer, Ghost[] ghosts, GamePanel gamePanel){
         this.ge = ge;
@@ -39,6 +39,14 @@ public class UpdateService {
     }
 
     public void updateObjects(){
+//        System.out.println("map here!");
+//        for (int i=0; i<11; i++){
+//            System.out.println((i + 1) + "th row");
+//            for (int j=0; j<20; j++){
+//                System.out.print(", " +gameMap[i][j]);
+//            }
+//        }
+
 
         ge.addScore(interactionCheckerAndHandler.doEatFood());
         updatePacman(pacmans[0]);
@@ -78,7 +86,7 @@ public class UpdateService {
                 pm.changeMovement();
             }else if (pacMrMoveThreshold == 0){
                 pm.curMovement = pm.lastMovement;
-                pacMrMoveThreshold = 10;
+                pacMrMoveThreshold = 20;
             }else {
                 pacMrMoveThreshold--;
             }
@@ -88,7 +96,7 @@ public class UpdateService {
                 pm.changeMovement();
             }else if (pacMrsMoveThreshold == 0){
                 pm.curMovement = pm.lastMovement;
-                pacMrsMoveThreshold = 10;
+                pacMrsMoveThreshold = 20;
             }else {
                 pacMrsMoveThreshold--;
             }

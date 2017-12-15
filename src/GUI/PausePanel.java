@@ -4,7 +4,6 @@ import GUI.UIBase.PacButton;
 import GUI.UIBase.PacLabel;
 import GUI.UIBase.PacPanel;
 import GameLogic.Constants;
-import GameLogic.GameEngine;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,10 +17,12 @@ public class PausePanel extends PacPanel {
     PacButton resumeButton;
     PacButton saveGameButton;
     PacButton exitButton;
+    JOptionPane pausePanelDialog;
     private String saveGameName;
     public PausePanel() {
 
         super(true, Constants.GAME_PANEL);
+//        this.pausePanelDialog = pausePanelDialog;
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setBackground(Color.PINK);
         ImageIcon pauseIcon = new ImageIcon(("img-src/icons/pause2.png"));
@@ -61,12 +62,17 @@ public class PausePanel extends PacPanel {
         if (event.getSource() == resumeButton){
             UIManager.gameEngine.resumeGame();
         }else if(event.getSource() == saveGameButton){
-            //GameFrame.uiManager.view(Constants.SAVE_GAME_PANEL);
             saveGameName = JOptionPane.showInputDialog("Enter Name");
             UIManager.gameEngine.saveGame(saveGameName);
         }else if (event.getSource() == exitButton){
             GameFrame.uiManager.view(Constants.MAIN_MENU_PANEL);
             UIManager.gameEngine = null;
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+
+                }
+            });
+
         }else {
             GameFrame.uiManager.view(Constants.GAME_PANEL);
         }

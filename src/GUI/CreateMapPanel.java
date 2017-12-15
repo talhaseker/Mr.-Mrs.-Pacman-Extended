@@ -198,7 +198,7 @@ public class CreateMapPanel extends JPanel implements ActionListener {
         }
 
         if(source == pacmanCombo){
-            numbOfGhosts = pacmanCombo.getSelectedIndex() +1;
+            numbOfPacmans = pacmanCombo.getSelectedIndex() +1;
         }
 
         if(source == playButton){
@@ -212,8 +212,8 @@ public class CreateMapPanel extends JPanel implements ActionListener {
                 ghosts[i] = new Ghost(GhostType.values()[i]);
 
             GameDataManager gameDataManager = new GameDataManager();
-            gameDataManager.saveGameData("test.txt", 0, 1, numbOfPacmans,3,pacmans, ghosts, gameMap);
-            GameFrame.uiManager.viewGame(0, "test.txt");
+            gameDataManager.saveGameData("temp.map", 0, 1, numbOfPacmans,3,pacmans, ghosts, gameMap);
+            GameFrame.uiManager.viewGame(0, "temp.map");
         }
         if(source == saveButton){
             Pacman[] pacmans = new Pacman[numbOfPacmans];
@@ -232,7 +232,7 @@ public class CreateMapPanel extends JPanel implements ActionListener {
             }
             if(saveMapName.length() > 0){
                 GameFrame.uiManager.view(Constants.MAIN_MENU_PANEL);
-                gameDataManager.saveGameData(saveMapName + ".txt", 0, 1, numbOfPacmans,3,pacmans, ghosts, gameMap);
+                gameDataManager.saveGameData(saveMapName + ".map", 0, 1, numbOfPacmans,3,pacmans, ghosts, gameMap);
             }
         }
     }

@@ -29,20 +29,12 @@ public class GameDataManager {
     }
 
     public void saveGameData(String name, int score, int level, int numbPlayer, int livesLeft, Pacman[] pacmans, Ghost[] ghosts, int[][] mapTable){
-        setGameData(0, 1, numbPlayer,3,pacmans, ghosts, mapTable);
+        setGameData(score, level, numbPlayer,livesLeft,pacmans, ghosts, mapTable);
         File gameFile = new File(name);
         try {
             FileOutputStream fileOutput = new FileOutputStream(gameFile);
             ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutput);
             objectOutput.writeObject(gd);
-
-//            gd = null;
-//            FileInputStream fileInput = new FileInputStream(gameFile);
-//            ObjectInputStream objectInputStream = new ObjectInputStream(fileInput);
-//            gd = (GameData) objectInputStream.readObject();
-
-//        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -54,10 +46,6 @@ public class GameDataManager {
         GameData gameData = new GameData();
         File gameFile = new File(name);
         try {
-//            FileOutputStream fileOutput = new FileOutputStream(gameFile);
-//            ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutput);
-//            objectOutput.writeObject(gd);
-
             FileInputStream fileInput = new FileInputStream(gameFile);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInput);
             gameData = (GameData) objectInputStream.readObject();

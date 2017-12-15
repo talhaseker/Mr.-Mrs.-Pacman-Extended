@@ -2,7 +2,6 @@ package GameLogic;
 
 import DataLayer.GameDatabase.GameData;
 import DataLayer.GameDatabase.GameDataManager;
-import GUI.GameFrame;
 import GUI.GamePanel;
 import GUI.UIManager;
 import GameLogic.Enums.GhostType;
@@ -14,9 +13,6 @@ import GameLogic.ScreenItems.Pacman;
 import GameLogic.UpdateManager.TimeController;
 
 import javax.swing.*;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 
 import static javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW;
 
@@ -60,13 +56,14 @@ public class GameEngine {
             pacmans = gameData.getMapData().getPacmans();
             this.numPlayer = pacmans.length;
             this.numGhost = ghosts.length;
-            System.out.println("numplayers: " + this.numPlayer);
-            System.out.println(pacmans[0]);
             gameMap = gameData.getMapData().getMapTable();
-            for (int i= 0; i<11; i++)
-                for (int j=0; j<20; j++)
-                    if (gameMap[i][j] == -1)
-                        gameMap[i][j] = 2;
+            boolean isMap = name.substring((name.length()-3)).equals("map");
+
+            if (isMap)
+                for (int i= 0; i<11; i++)
+                    for (int j=0; j<20; j++)
+                        if (gameMap[i][j] == -1)
+                            gameMap[i][j] = 2;
 
         }else{
             level = 1;
@@ -97,13 +94,13 @@ public class GameEngine {
         uiManager.add(gamePanel, Constants.GAME_PANEL);
         counter = 3.0;
         isPaused = false;
-        pacmanMovementKeyBindings = new PacManMovementController(pacmans, (numPlayer == 2), gamePanel.getInputMap(WHEN_IN_FOCUSED_WINDOW), gamePanel.getActionMap());
+        pacmanMovementKeyBindings = new PacManMovementController(pacmans, (this.numPlayer == 2), gamePanel.getInputMap(WHEN_IN_FOCUSED_WINDOW), gamePanel.getActionMap());
         pacmanMovementKeyBindings.initMovementKeyBindings();
 
         pauseGameController = new PauseGameController(gamePanel.getInputMap(WHEN_IN_FOCUSED_WINDOW), gamePanel.getActionMap(), this);
         pauseGameController.initPauseKeyBindings();
 
-        timeController = new TimeController(this, gameMap, gamePanel.foods, pacmans, (numPlayer == 2), ghosts, gamePanel);
+        timeController = new TimeController(this, gameMap, gamePanel.foods, pacmans, (this.numPlayer == 2), ghosts, gamePanel);
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 startGame();
@@ -117,7 +114,6 @@ public class GameEngine {
         gamePanel.prepareGUI();
         gamePanel.updateLives(livesLeft);
         gamePanel.updateScore(score);
-//        gamePanel.repaintRequest(gameMap);
         timeController.startTimer();
     }
 
@@ -137,6 +133,8 @@ public class GameEngine {
      */
     public void saveGame(String saveName) {
 
+        GameDataManager gameDataManager = new GameDataManager();
+        gameDataManager.saveGameData(saveName + ".game", score, level, numPlayer,livesLeft,pacmans, ghosts, gameMap);
     }
 
     /** Calls startCounter(). Countdown has now started. Continues
@@ -144,16 +142,16 @@ public class GameEngine {
      */
     public void resumeGame() {
         isPaused = false;
-        GameFrame.uiManager.viewGame(numPlayer, null);
         timeController.startTimer();
+        gamePanel.hidePausePanel();
+        gamePanel.repaintRequest(gameMap);
         //TODO
     }
 
     public void pauseGame() {
         timeController.stopTimer();
         isPaused = true;
-        GameFrame.uiManager.viewPause();
-
+        gamePanel.showPausePanel();
         //TODO
     }
 

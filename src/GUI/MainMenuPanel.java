@@ -1,6 +1,5 @@
 package GUI;
 
-import DataLayer.GameDatabase.GameDataManager;
 import GUI.UIBase.PacButton;
 import GUI.UIBase.PacLabel;
 import GameLogic.Constants;
@@ -142,14 +141,16 @@ public class MainMenuPanel extends JPanel{
         @Override
         public void actionPerformed(ActionEvent e) {
             //GameFrame.uiManager.view(Constants.SAVED_MAPS_LIST_PANEL);
-            loadMapName = JOptionPane.showInputDialog("Enter Map Name");
+            loadMapName = JOptionPane.showInputDialog("Enter Map Name") + ".map";
             GameFrame.uiManager.viewGame(0, loadMapName);
         }
     }
     public class loadGameListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            GameFrame.uiManager.view(Constants.SAVED_GAME_PANEL);
+//            GameFrame.uiManager.view(Constants.SAVED_GAME_PANEL);
+            loadGameName = JOptionPane.showInputDialog("Enter Game Name") + ".game";
+            GameFrame.uiManager.viewGame(0, loadGameName);
         }
     }
 }
