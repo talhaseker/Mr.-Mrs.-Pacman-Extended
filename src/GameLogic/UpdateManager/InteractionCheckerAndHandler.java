@@ -126,7 +126,7 @@ public class InteractionCheckerAndHandler {
             }
             switch (gameMap[firstIndexY+1][firstIndexX]){
                 case 2:case 3:case 4: case 5:
-                    gameMap[firstIndexY+1][firstIndexX + 1] = -1;
+                    gameMap[firstIndexY+1][firstIndexX] = -1;
                     break;
             }
         }
