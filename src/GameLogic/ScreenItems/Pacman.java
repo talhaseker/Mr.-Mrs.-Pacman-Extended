@@ -3,6 +3,7 @@ package GameLogic.ScreenItems;
 import GameLogic.Enums.Movement;
 import GameLogic.Enums.PacmanAnimationType;
 import GameLogic.Enums.PacmanType;
+import GameLogic.Enums.ShieldType;
 
 import javax.imageio.ImageIO;
 import java.io.IOException;
@@ -18,9 +19,10 @@ public class Pacman extends MovingObject implements Serializable{
     //Variables
     private int foodEffect;        //We can (should) switch to enum later here,
     PacmanAnimationType currentAnimation; // and here.
-    double foodEffectSeconds;
+    int foodEffectSeconds;
     Shield shield;
     private int livesLeft = 3;
+    private boolean canEatGhost = false, canPassWall = false, canPassGhost = false;
     private PacmanType pacmanType;
 
     //Constructor(s)
@@ -45,7 +47,7 @@ public class Pacman extends MovingObject implements Serializable{
         super.setSpeed(2);
 //        this.score = 0;
         this.foodEffect = 0;
-        this.foodEffectSeconds = 0.0;
+        this.foodEffectSeconds = 0;
         this.shield = null;
         this.currentAnimation = PacmanAnimationType.STOP; //Regular eating animation enum
     }
@@ -74,8 +76,18 @@ public class Pacman extends MovingObject implements Serializable{
         this.foodEffectSeconds = food.getSideEffectSeconds();
         int sideEffect = food.getSideEffect();
 
-        if (sideEffect == 0) {
-            //TODO: Change animation accordingly
+        if (sideEffect == 1) {
+            canEatGhost = true;
+            canPassWall = false;
+            canPassGhost = false;
+        }else if (sideEffect == 2){
+            canEatGhost = false;
+            canPassWall = true;
+            canPassGhost = false;
+        }else if(sideEffect == 3){
+            canEatGhost = false;
+            canPassWall = false;
+            canPassGhost = true;
         }
     }
 
@@ -114,6 +126,30 @@ public class Pacman extends MovingObject implements Serializable{
         this.pacmanType = pacmanType;
     }
 
+    public boolean isCanEatGhost() {
+        return canEatGhost;
+    }
+
+    public void setCanEatGhost(boolean canEatGhost) {
+        this.canEatGhost = canEatGhost;
+    }
+
+    public boolean isCanPassWall() {
+        return canPassWall;
+    }
+
+    public void setCanPassWall(boolean canPassWall) {
+        this.canPassWall = canPassWall;
+    }
+
+    public boolean isCanPassGhost() {
+        return canPassGhost;
+    }
+
+    public void setCanPassGhost(boolean canPassGhost) {
+        this.canPassGhost = canPassGhost;
+    }
+
     private void writeObject(java.io.ObjectOutputStream stream) throws IOException {
         stream.defaultWriteObject();
         stream.writeObject(pacmanType);
@@ -122,13 +158,16 @@ public class Pacman extends MovingObject implements Serializable{
         stream.writeObject(super.curMovement);
         stream.writeObject(super.lastMovement);
         stream.writeInt(livesLeft);
-        stream.writeDouble(foodEffectSeconds);
+        stream.writeInt(foodEffectSeconds);
         stream.writeInt(foodEffect);
         stream.writeInt(super.speed);
         stream.writeInt(super.Xpos);
         stream.writeInt(super.Ypos);
         stream.writeInt(super.width);
         stream.writeInt(super.height);
+        stream.writeBoolean(canEatGhost);
+        stream.writeBoolean(canPassGhost);
+        stream.writeBoolean(canPassWall);
         ImageIO.write(imageIcon, "png", stream);
     }
 
@@ -140,14 +179,35 @@ public class Pacman extends MovingObject implements Serializable{
         super.curMovement = (Movement) stream.readObject();
         super.lastMovement = (Movement) stream.readObject();
         livesLeft = stream.readInt();
-        foodEffectSeconds = stream.readDouble();
+        foodEffectSeconds = stream.readInt();
         foodEffect = stream.readInt();
         super.speed = stream.readInt();
         super.Xpos = stream.readInt();
         super.Ypos = stream.readInt();
         super.width = stream.readInt();
         super.height = stream.readInt();
+        canEatGhost = stream.readBoolean();
+        canPassGhost = stream.readBoolean();
+        canPassWall = stream.readBoolean();
         super.imageIcon = ImageIO.read(stream);
+    }
+
+    public Shield getShield() {
+        return shield;
+    }
+
+    public void setShield(Shield shield) {
+        if (shield == null){setSpeed(2);}
+        else if (shield.getType() == ShieldType.GOLD) {setSpeed(4);}
+        this.shield = shield;
+    }
+
+    public int getFoodEffectSeconds() {
+        return foodEffectSeconds;
+    }
+
+    public void setFoodEffectSeconds(int foodEffectSeconds) {
+        this.foodEffectSeconds = foodEffectSeconds;
     }
 
     @Override

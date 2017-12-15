@@ -48,7 +48,7 @@ public class CreateMapPanel extends JPanel implements ActionListener {
         private final int id;
         ItemToAdd(int id) { this.id = id; }
         public int getValue() { return id; }
-    };
+    }
 
     private ItemToAdd currentItemToAdd = ItemToAdd.WALL;
 
@@ -241,7 +241,7 @@ public class CreateMapPanel extends JPanel implements ActionListener {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            Point mp = new Point((int)(e.getX())/28, (int)(e.getY())/28);
+            Point mp = new Point(e.getX() /28, e.getY() /28);
             boolean isValidPoint = true;
             for (Point p: gmForbiddenPoints)
                 if (p.getX() == mp.getX() && p.getY() == mp.getY())
