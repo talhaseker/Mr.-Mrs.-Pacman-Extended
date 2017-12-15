@@ -12,7 +12,9 @@ public class Animation {
     private int frameCount;                 // Counts ticks for change
     private int frameDelay;                 // frame delay 1-12
     public int currentFrame;                // animation's current frame
-    private int animationDirection;         // animation direction (i.e counting forward or backward)
+    //private int animationDirection;         // animation direction (i.e counting forward or backward
+    //Animation is now not looping forward and backward, now the images loop exactly like a gif
+
     private int totalFrames;                // total amount of frames for the animation
 
     private boolean stopped;                // has animation stopped
@@ -31,38 +33,31 @@ public class Animation {
             this.frames[i] = frames[i];
         }
 
-//        this.frameCount = 0;
+        this.frameCount = 0;
 
         this.currentFrame = 0;
-        this.animationDirection = ;
+        //this.animationDirection = 1;
+    }
 
+    public void changeAnimation(PacmanAnimationType type){
 
     }
 
     public void start() {
-        if (!stopped) {
-            return;
-        }
-
-        if (frames.size() == 0) {
-            return;
-        }
+        if (!stopped) { return; }
+        if (frames.size() == 0) { return; }
 
         stopped = false;
     }
 
     public void stop() {
-        if (frames.size() == 0) {
-            return;
-        }
+        if (frames.size() == 0) { return; }
 
         stopped = true;
     }
 
     public void restart() {
-        if (frames.size() == 0) {
-            return;
-        }
+        if (frames.size() == 0) { return; }
 
         stopped = false;
         currentFrame = 0;
@@ -74,6 +69,7 @@ public class Animation {
         this.currentFrame = 0;
     }
 
+    /*
     private void addFrame(BufferedImage frame, int duration) {
         if (duration < 0) {
             System.err.println("Invalid duration: " + duration);
@@ -82,28 +78,31 @@ public class Animation {
 
         frames.add(new SpriteFrame(frame, duration));
     }
+    */
 
+    /*
     public BufferedImage getSprite() {
         return frames.get(currentFrame).getSpriteFrame();
     }
+    */
 
     public void update() {
         if (!stopped) {
             frameCount++;
 
-            if (frameCount > frameDelay) {
+            if (frameCount >= frameDelay) {
                 frameCount = 0;
-                currentFrame += animationDirection;
+                //currentFrame += animationDirection;
+                currentFrame++;
 
                 if (currentFrame > totalFrames - 1) {
                     currentFrame = 0;
                 }
-                else if (currentFrame < 0) {
-                    currentFrame = totalFrames - 1;
-                }
+                //else if (currentFrame < 0) {
+                //    currentFrame = totalFrames - 1;
+                //}
             }
         }
-
     }
 
 }

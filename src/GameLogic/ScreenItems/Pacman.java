@@ -18,13 +18,14 @@ import java.io.Serializable;
 public class Pacman extends MovingObject implements Serializable{
     //Variables
     private int foodEffect;        //We can (should) switch to enum later here,
-    PacmanAnimationType currentAnimation; // and here.
+    private PacmanAnimationType currentAnimation; //change it to currentAnimationType after project finishes
+    private Animation animation;
     int foodEffectSeconds;
     Shield shield;
     private int livesLeft = 3;
     private boolean canEatGhost = false, canPassWall = false, canPassGhost = false;
     private PacmanType pacmanType;
-    protected Animation
+
 
     //Constructor(s)
 
@@ -106,9 +107,11 @@ public class Pacman extends MovingObject implements Serializable{
         }
     }
 
-    public void changeMovement(){
-        lastMovement = curMovement;
-        //TODO: change the movement animation here
+    public PacmanAnimationType getCurrentAnimation(){return this.currentAnimation;}
+
+    public void setCurrentAnimation(PacmanAnimationType animation){
+        this.currentAnimation = animation;
+        this.animation.
     }
 
     public int getLivesLeft() {

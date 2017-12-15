@@ -39,8 +39,8 @@ public class GameEngine {
     private GameDataManager gameDataManager;
     private GameData gameData;
     private int highScores[];
-    //Constructor(s)
 
+    //Constructor(s)
     /**
      * Constructs a game engine with default configurations
      */
