@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.io.Serializable;
 
 /** Data representation of Pacman (player)
- * @author Ecem Ilgun
+ * @author Ecem Ilgun, Talha Seker
  * @version 1.8
  * @since 1.0
  * @see PacmanObject
@@ -24,6 +24,7 @@ public class Pacman extends MovingObject implements Serializable{
     private int livesLeft = 3;
     private boolean canEatGhost = false, canPassWall = false, canPassGhost = false;
     private PacmanType pacmanType;
+    protected Animation
 
     //Constructor(s)
 

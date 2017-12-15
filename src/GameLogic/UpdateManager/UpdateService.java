@@ -125,4 +125,10 @@ public class UpdateService {
             }
         }
     }
+
+    /**
+     * Updates MovingObjects' images according to give the effect of animation
+     */
+    public void updateObjectAnimations(){}
+
 }

@@ -7,31 +7,35 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Animation {
 
     private int frameCount;                 // Counts ticks for change
     private int frameDelay;                 // frame delay 1-12
-    public int currentFrame;               // animations current frame
+    public int currentFrame;                // animation's current frame
     private int animationDirection;         // animation direction (i.e counting forward or backward)
     private int totalFrames;                // total amount of frames for the animation
 
-    private boolean stopped;                // has animations stopped
+    private boolean stopped;                // has animation stopped
 
-    private List<SpriteFrame> frames = new ArrayList<SpriteFrame>();    // Arraylist of frames
+    //private List<SpriteFrame> frames = new ArrayList<SpriteFrame>();    // Arraylist of frames
+    private BufferedImage[] frames;
 
-    public Animation(BufferedImage[] frames, int frameDelay) {
-        this.frameDelay = frameDelay;
+    public Animation(BufferedImage[] frames) {
+        this.frameDelay = 4;
         this.stopped = true;
 
+        this.totalFrames = this.frames.size();
+
+        this.frames = new BufferedImage[frames.length];
         for (int i = 0; i < frames.length; i++) {
-            addFrame(frames[i], frameDelay);
+            this.frames[i] = frames[i];
         }
 
-        this.frameCount = 0;
+//        this.frameCount = 0;
+
         this.currentFrame = 0;
-        this.animationDirection = 1;
-        this.totalFrames = this.frames.size();
+        this.animationDirection = ;
+
 
     }
 

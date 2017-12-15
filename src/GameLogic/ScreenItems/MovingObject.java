@@ -2,10 +2,11 @@ package GameLogic.ScreenItems;
 
 import GameLogic.Enums.Movement;
 /**
-     * @return x-axis velocity of movable pacman object
-     */
+ *
+ */
 public class MovingObject extends PacmanObject {
     //Variables
+
 //    private double velocityX, velocityY;
     protected int speed;
     public Movement curMovement = Movement.RIGHT;
@@ -25,9 +26,6 @@ public class MovingObject extends PacmanObject {
     public void setSpeed(int speed) {
         this.speed = speed;
     }
-    /**
-     * @return x-axis velocity of movable pacman object
-     */
     /** Sets the velocity to the amount given by parameters.
      * @param velocityX velocity of x-axis
      * @param velocityY velocity of y-axis
@@ -74,6 +72,11 @@ public class MovingObject extends PacmanObject {
             this.changePosition(-20, 0);
         }
     }
+
+    /*
+     * Changes image of MovingObject(pacman and ghosts)
+     */
+    public void setImage(){;}
 
     @Override
     public String toString() {
