@@ -168,12 +168,12 @@ public class InteractionCheckerAndHandler {
     }
 
     private boolean checkPandGhosts(Pacman pm, boolean canEat){
-        for (Ghost g:ghosts) {
-            int xDif = Math.abs(g.getXpos()-pm.getXpos());
-            int yDif = Math.abs(g.getYpos()-pm.getYpos());
+        for (int i = 0; i<ghosts.length; i++) {
+            int xDif = Math.abs(ghosts[i].getXpos()-pm.getXpos());
+            int yDif = Math.abs(ghosts[i].getYpos()-pm.getYpos());
             if (xDif < 25 && yDif < 25){
                 if (canEat)
-                    g = new Ghost(g.getGhostType());
+                    ghosts[i] = new Ghost(ghosts[i].getGhostType());
                 return true;
             }
         }

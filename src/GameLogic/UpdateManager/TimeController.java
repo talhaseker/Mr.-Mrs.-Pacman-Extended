@@ -76,12 +76,10 @@ public class TimeController implements ActionListener {
     }
 
     private void checkSideEffectsAndShields(Pacman p){
-        System.out.println("method called");
         if (p.getFoodEffectSeconds() > 0){
-            System.out.println(p.getFoodEffectSeconds());
             p.setFoodEffectSeconds(p.getFoodEffectSeconds()-1);
         }else if (p.getFoodEffectSeconds() == 0){
-//            p.setCanEatGhost(false);
+            p.setCanEatGhost(false);
             p.setCanPassGhost(false);
             p.setCanPassWall(false);
             p.setFoodEffectSeconds(-1);

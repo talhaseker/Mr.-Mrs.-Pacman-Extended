@@ -54,7 +54,6 @@ public class UpdateService {
             updatePacman(pacmans[1]);
             canEat = canEat || pacmans[1].isCanEatGhost();
         }
-        System.out.println(canEat);
         if (interactionCheckerAndHandler.doBumpGhosts(canEat)){
             if (canEat)
                 ge.addScore(100);
