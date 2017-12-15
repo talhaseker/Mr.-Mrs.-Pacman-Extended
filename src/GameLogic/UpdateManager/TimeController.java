@@ -1,6 +1,7 @@
 package GameLogic.UpdateManager;
 
 import GUI.GamePanel;
+import GameLogic.Enums.ShieldType;
 import GameLogic.GameEngine;
 import GameLogic.ScreenItems.Food;
 import GameLogic.ScreenItems.Ghost;
@@ -68,7 +69,30 @@ public class TimeController implements ActionListener {
         }
 
         updateService.updateObjects();
-
+        for (Pacman p:pacmans) {
+            checkSideEffectsAndShields(p);
+        }
         count++;
+    }
+
+    private void checkSideEffectsAndShields(Pacman p){
+        System.out.println("method called");
+        if (p.getFoodEffectSeconds() > 0){
+            System.out.println(p.getFoodEffectSeconds());
+            p.setFoodEffectSeconds(p.getFoodEffectSeconds()-1);
+        }else if (p.getFoodEffectSeconds() == 0){
+//            p.setCanEatGhost(false);
+            p.setCanPassGhost(false);
+            p.setCanPassWall(false);
+            p.setFoodEffectSeconds(-1);
+        }
+
+        if (p.getShield() != null && p.getShield().getEffectTime() > 0){
+            p.getShield().setEffectTime(p.getShield().getEffectTime()-1);
+        }else if (p.getShield() != null && p.getShield().getEffectTime() == 0){
+            if (p.getShield().getType() != ShieldType.GOLD)
+                p.setShield(null);
+            p.getShield().setEffectTime(-1);
+        }
     }
 }

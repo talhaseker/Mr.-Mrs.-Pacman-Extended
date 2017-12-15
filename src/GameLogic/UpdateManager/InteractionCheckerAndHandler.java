@@ -32,18 +32,16 @@ public class InteractionCheckerAndHandler {
         int currentX = movingObject.getXpos() - initialX;
         int currentY = movingObject.getYpos() - initialY;
 
-        int firstIndexRows = (int)(currentY/28) -1 > 0 ? (int)(currentY/28) -1 : 0;
-        int lastIndexRows = (int)(currentY/28) +2 < 10 ? (int)(currentY/28) +2 : 10;
-        int firstIndexColumns = (int)(currentX/28) -1 > 0 ? (int)(currentX/28) -1 : 0;
-        int lastIndexColumns = (int)(currentX/28) +2 < 19 ? (int)(currentX/28) +2 : 19;
+        int firstIndexRows = currentY/28 -1 > 0 ? currentY/28 -1 : 0;
+        int lastIndexRows = currentY/28 +2 < 10 ? currentY/28 +2 : 10;
+        int firstIndexColumns = currentX/28 -1 > 0 ? currentX/28 -1 : 0;
+        int lastIndexColumns = currentX/28 +2 < 19 ? currentX/28 +2 : 19;
 
         switch (curMovement){
             case UP:
                 if (firstIndexColumns+1 <= lastIndexColumns && (firstIndexColumns+1)*28 == currentX){
                     if (gameMap[firstIndexRows][firstIndexColumns+1] == 1){
-                        if (firstIndexRows+1 <= lastIndexRows && (firstIndexRows+1)*28 < currentY)
-                            return true;
-                        return false;
+                        return firstIndexRows + 1 <= lastIndexRows && (firstIndexRows + 1) * 28 < currentY;
                     }else{return true;}
                 }else{
                     return false;
@@ -79,9 +77,7 @@ public class InteractionCheckerAndHandler {
             case LEFT:
                 if (firstIndexRows+1 <= lastIndexRows && (firstIndexRows+1)*28 == currentY){
                     if (gameMap[firstIndexRows+1][firstIndexColumns] == 1){
-                        if (firstIndexColumns+1 <= lastIndexColumns && (firstIndexColumns+1)*28 < currentX)
-                            return true;
-                        return false;
+                        return firstIndexColumns + 1 <= lastIndexColumns && (firstIndexColumns + 1) * 28 < currentX;
                     }else{return true;}
                 }else{
                     return false;
@@ -136,6 +132,10 @@ public class InteractionCheckerAndHandler {
             for (Food f: foods) {
                 if ((f.getXpos() == (pm.getXpos() - 14) || f.getXpos() == (pm.getXpos() + 14)) && f.getYpos() == pm.getYpos()){
                     foodsToRemove.add(f);
+                    if (f.getSideEffect() == 1)
+                        for (Ghost g: ghosts) {
+                            g.scatter();
+                        }
                     pm.eatFood(f);
                     retVal = true;
                 }
@@ -160,18 +160,20 @@ public class InteractionCheckerAndHandler {
         return score;
     }
 
-    public boolean doBumpGhosts(){
+    public boolean doBumpGhosts(boolean canEat){
         if (isMultiplayer){
-            return checkPandGhosts(pacmans[0]) || checkPandGhosts(pacmans[1]);
+            return checkPandGhosts(pacmans[0], canEat) || checkPandGhosts(pacmans[1], canEat);
         }
-        return checkPandGhosts(pacmans[0]);
+        return checkPandGhosts(pacmans[0], canEat);
     }
 
-    private boolean checkPandGhosts(Pacman pm){
+    private boolean checkPandGhosts(Pacman pm, boolean canEat){
         for (Ghost g:ghosts) {
             int xDif = Math.abs(g.getXpos()-pm.getXpos());
             int yDif = Math.abs(g.getYpos()-pm.getYpos());
             if (xDif < 25 && yDif < 25){
+                if (canEat)
+                    g = new Ghost(g.getGhostType());
                 return true;
             }
         }

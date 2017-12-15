@@ -34,6 +34,7 @@ public class HighScoreData implements Serializable {
         }
     }
 
+
     public void readHighScores() throws IOException {
         try{
         BufferedReader in = new BufferedReader(new FileReader("/Users/mbpro/Documents/GitHub/Mr.-Mrs.-Pacman-Extended/out/production/Mr.-Mrs.-Pacman-Extended/DataLayer/HighScoreDatabase/highscores.txt"));
@@ -81,7 +82,9 @@ public class HighScoreData implements Serializable {
     public void setScore(int score) {
         this.score = score;
     }
+
     public int getScore() {
         return score;
     }
+
 }

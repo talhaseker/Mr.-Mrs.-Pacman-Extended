@@ -47,14 +47,19 @@ public class UpdateService {
 //            }
 //        }
 
-
+        boolean canEat = pacmans[0].isCanEatGhost();
         ge.addScore(interactionCheckerAndHandler.doEatFood());
         updatePacman(pacmans[0]);
         if (isMultiplayer){
             updatePacman(pacmans[1]);
+            canEat = canEat || pacmans[1].isCanEatGhost();
         }
-        if (interactionCheckerAndHandler.doBumpGhosts()){
-            ge.pacmanDied();
+        System.out.println(canEat);
+        if (interactionCheckerAndHandler.doBumpGhosts(canEat)){
+            if (canEat)
+                ge.addScore(100);
+            else
+                ge.pacmanDied();
         }
 
         ghostController.move();
