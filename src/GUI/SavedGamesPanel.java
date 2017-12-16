@@ -12,19 +12,21 @@ import java.awt.*;
  * Created by Aziz Osman on 30.10.2017.
  */
 public class SavedGamesPanel extends PacPanel {
-
+    JTextArea savedGameList;
+    JScrollPane scroll;
+    PacButton loadGame;
+    PacButton mainMenu;
+    PacLabel savedGames;
+    String savedGameName;
+    public void setSavedGameName(String savedGame){
+        savedGameName = savedGame;
+    }
     public SavedGamesPanel() {
 
         super(true, Constants.MAIN_MENU_PANEL);
         this.setLayout(new FlowLayout());
         this.setBackground(Color.MAGENTA);
-        JTextArea savedGameList;
-        JScrollPane scroll;
-        PacButton loadGame;
-        PacButton mainMenu;
-        PacLabel savedGames;
-        savedGameList = new JTextArea("saved game 1\n" +
-                "saved game 2", 10, 30);
+        savedGameList = new JTextArea(savedGameName + "\n" , 10, 30);
         savedGameList.setEditable(false);
         savedGameList.setLineWrap(true);
         scroll = new JScrollPane(savedGameList, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);

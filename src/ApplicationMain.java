@@ -10,5 +10,4 @@ public class ApplicationMain {
 //        splashScreen.dispose();
         GameFrame mainGameFrame = new GameFrame();
     }
-
 }

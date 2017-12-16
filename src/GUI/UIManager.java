@@ -20,21 +20,23 @@ public class UIManager extends JPanel {
     PausePanel pausePanel;
     SavedGamesPanel savedGamesPanel;
     SavedMapsListPanel savedMapsListPanel;
-    ShieldPanel shieldPanel;
+//    ShieldPanel shieldPanel;
+    SaveGame saveGamePanel;
     static GameEngine gameEngine;
 
     public UIManager(){
         super(new CardLayout());
 
         createMapPanel = new CreateMapPanel();
-        gameOverPanel = new GameOverPanel();
+        gameOverPanel = new GameOverPanel(0);
         helpPanel = new HelpPanel();
         highScorePanel = new HighScorePanel();
         mainMenuPanel = new MainMenuPanel();
-        pausePanel = new PausePanel();
+//        pausePanel = new PausePanel();
         savedGamesPanel = new SavedGamesPanel();
         savedMapsListPanel = new SavedMapsListPanel();
-        shieldPanel = new ShieldPanel();
+//        shieldPanel = new ShieldPanel();
+        saveGamePanel = new SaveGame();
 
         this.add(mainMenuPanel, Constants.MAIN_MENU_PANEL);
         this.add(createMapPanel, Constants.CREATE_MAP_PANEL);
@@ -43,21 +45,14 @@ public class UIManager extends JPanel {
         this.add(helpPanel, Constants.HELP_PANEL);
         this.add(highScorePanel, Constants.HIGHSCORE_PANEL);
         this.add(mainMenuPanel, Constants.MAIN_MENU_PANEL);
-        this.add(pausePanel, Constants.PAUSE_PANEL);
+//        this.add(pausePanel, Constants.PAUSE_PANEL);
         this.add(savedGamesPanel, Constants.SAVED_GAME_PANEL);
         this.add(savedMapsListPanel, Constants.SAVED_MAPS_LIST_PANEL);
-        this.add(shieldPanel, Constants.SHIELD_PANEL);
+//        this.add(shieldPanel, Constants.SHIELD_PANEL);
+        this.add(saveGamePanel, Constants.SAVE_GAME_PANEL);
 
         viewMainMenu();
-        //viewGameOver();
-        //viewShield();
-        //viewPause();
-//        viewHelp();
-        //viewSavedGames();
-        //viewHelp();
-       // viewSavedMaps();
-        //viewHighScores();
-        //viewPause();
+//        viewCreateMap();
     }
 
     public void viewHelp(){
@@ -66,13 +61,17 @@ public class UIManager extends JPanel {
     }
 
     public void viewHighScores(){
+        highScorePanel = new HighScorePanel();
+        this.add(highScorePanel, Constants.HIGHSCORE_PANEL);
         CardLayout cl = (CardLayout)(this.getLayout());
         cl.show(this, Constants.HIGHSCORE_PANEL);
     }
 
-    public void viewGame(int playerNum){
+    public void viewGame(int playerNum, String name){
         CardLayout cl = (CardLayout)(this.getLayout());
-        gameEngine = new GameEngine(this, playerNum);
+        if (gameEngine == null){
+            gameEngine = new GameEngine(this, playerNum, name);
+        }
         cl.show(this, Constants.GAME_PANEL);
     }
 
@@ -96,21 +95,27 @@ public class UIManager extends JPanel {
         cl.show(this, Constants.PAUSE_PANEL);
     }
 
-    public void viewShield(){
-        CardLayout cl = (CardLayout)(this.getLayout());
-        cl.show(this, Constants.SHIELD_PANEL);
-    }
+//    public void viewShield(){
+//        CardLayout cl = (CardLayout)(this.getLayout());
+//        cl.show(this, Constants.SHIELD_PANEL);
+//    }
 
     public void viewCreateMap(){
         CardLayout cl = (CardLayout)(this.getLayout());
         cl.show(this, Constants.CREATE_MAP_PANEL);
     }
 
-    public void viewGameOver(){
+    public void viewGameOver(int score){
+        gameOverPanel = new GameOverPanel(score);
+        this.add(gameOverPanel, Constants.GAME_OVER_PANEL);
         CardLayout cl = (CardLayout)(this.getLayout());
         cl.show(this, Constants.GAME_OVER_PANEL);
     }
 
+    /*public void viewSaveGame(){
+        CardLayout c1 = (CardLayout)(this.getLayout());
+        c1.show(this, Constants.SAVE_GAME_PANEL);
+    }*/
     public void view(String panelName){
         CardLayout cl = (CardLayout)(this.getLayout());
         cl.show(this, panelName);

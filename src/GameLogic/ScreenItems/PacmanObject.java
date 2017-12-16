@@ -7,14 +7,14 @@ import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 
 /** Parent class of each drawable game object
- * @author Ecem Ilgun
- * @version 1.8
+ * @author Ecem Ilgun, Talha
+ * @version 1.9
  * @since 1.0
  */
 public class PacmanObject {
     //Variables
-    private BufferedImage imageIcon; //This will be different for each chil
-    private int Xpos, Ypos, width, height;
+    protected BufferedImage imageIcon; //This will be different for each child
+    protected int Xpos, Ypos, width, height;
 
     //Constructor(s)
     /** Default parent constructor called for any type of PacmanObject,
@@ -69,7 +69,11 @@ public class PacmanObject {
      * @param imgSrc A string parameter of the relative path of image source
      */
     public void setImage(String imgSrc){
-        this.imageIcon = Sprite.getSprite(imgSrc);
+        this.imageIcon = Sprite.loadSprite(imgSrc);
+    }
+
+    public void setImage(BufferedImage img){
+        this.imageIcon = img;
     }
 
     /** Returns the imageIcon of the object
@@ -77,12 +81,21 @@ public class PacmanObject {
      */
     public BufferedImage getImage(){ return this.imageIcon; }
 
-    public void draw(Graphics g, ImageObserver imageObserver){
+    public void draw(Graphics g, ImageObserver imageObserver) {
         Graphics2D g2 = (Graphics2D) g;
-        System.out.println(imageIcon.getHeight() + "  " + imageIcon.getWidth());
-        System.out.println(Xpos + " " + Ypos + " " +  width + " " + height);
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
         g2.drawImage(imageIcon, Xpos, Ypos, width, height, imageObserver);
+    }
+
+    @Override
+    public String toString() {
+        return "PacmanObject{" +
+                "imageIcon=" + imageIcon +
+                ", Xpos=" + Xpos +
+                ", Ypos=" + Ypos +
+                ", width=" + width +
+                ", height=" + height +
+                '}';
     }
 }

@@ -29,6 +29,7 @@ public class PacPanel extends JPanel implements ActionListener{
         }
     }
 
+    @Override
     public void actionPerformed(ActionEvent event) {
         GameFrame.uiManager.view(backPanelName);
     }

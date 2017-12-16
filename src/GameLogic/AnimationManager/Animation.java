@@ -1,4 +1,5 @@
 package GameLogic.AnimationManager;
+
 /**
  * Created by talhaseker on 6.10.2017.
  */
@@ -6,7 +7,6 @@ package GameLogic.AnimationManager;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class Animation {
 
@@ -18,7 +18,7 @@ public class Animation {
 
     private boolean stopped;                // has animations stopped
 
-    private List<SpriteFrame> frames = new ArrayList<SpriteFrame>();    // Arraylist of frames
+    private List<SpriteFrame> frames = new ArrayList<>();    // Arraylist of frames
 
     public Animation(BufferedImage[] frames, int frameDelay) {
         this.frameDelay = frameDelay;

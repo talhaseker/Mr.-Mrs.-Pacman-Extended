@@ -1,30 +1,39 @@
 package GameLogic.ScreenItems;
 
 import GameLogic.Enums.Movement;
-import GameLogic.ScreenItems.PacmanObject;
 /**
-     * @return x-axis velocity of movable pacman object
-     */
+ *
+ */
 public class MovingObject extends PacmanObject {
     //Variables
-    private double velocityX, velocityY;
+
+//    private double velocityX, velocityY;
+    protected int speed;
+    public Movement curMovement = Movement.RIGHT;
+    public Movement lastMovement = Movement.RIGHT;
 
     public MovingObject(){
         super();
-        velocityX = 0.0;
-        velocityY = 0.0;
+//        velocityX = 0.0;
+//        velocityY = 0.0;
+        speed = 2;
     }
-/**
-     * @return x-axis velocity of movable pacman object
-     */
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
     /** Sets the velocity to the amount given by parameters.
      * @param velocityX velocity of x-axis
      * @param velocityY velocity of y-axis
      */
     public void setVelocity(int velocityX, int velocityY) {
         if (velocityX > 0 && velocityY > 0){
-            this.velocityX = velocityX;
-            this.velocityY = velocityY;
+//            this.velocityX = velocityX;
+//            this.velocityY = velocityY;
         }
         //Else display error message
     }
@@ -32,16 +41,16 @@ public class MovingObject extends PacmanObject {
     /**
      * @return x-axis velocity of movable pacman object
      */
-    public double getVelocityX() {
-        return this.velocityX;
-    }
+//    public double getVelocityX() {
+//        return this.velocityX;
+//    }
 
     /**
      * @return y-axis velocity of movable pacman object
      */
-    public double getVelocityY() {
-        return this.velocityY;
-    }
+//    public double getVelocityY() {
+//        return this.velocityY;
+//    }
 
     // move is called each time a arrow key is
     // pressed, pacman cannot move to 2 different
@@ -62,5 +71,18 @@ public class MovingObject extends PacmanObject {
         else if (movement == Movement.RIGHT) {
             this.changePosition(-20, 0);
         }
+
+        this.lastMovement = this.curMovement;
+        this.curMovement = movement;
+
+    }
+
+    @Override
+    public String toString() {
+        return "MovingObject{" +
+                "speed=" + speed +
+                ", curMovement=" + curMovement +
+                ", lastMovement=" + lastMovement +
+                '}';
     }
 }

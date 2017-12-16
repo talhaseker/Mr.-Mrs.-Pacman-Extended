@@ -9,14 +9,14 @@ import java.io.Serializable;
 
 /** Represents food items Pacman will eat
  * @author Ecem Ilgun
- * @version 1.8
+ * @version 1.9
  * @since 1.0
  * @see PacmanObject
  */
 public class Food extends PacmanObject implements Serializable{
     //Variables
     private int points, sideEffect;
-    private double sideEffectSeconds;
+    private int sideEffectSeconds;
 
     //Constructors
     /** Creates a Food object depending on its position and food type
@@ -30,26 +30,25 @@ public class Food extends PacmanObject implements Serializable{
         super.setSize(28,28);
 
         this.points = 50;
-
         if (type == FoodType.BASIC){
-            super.setImage("ImageIcons/GhostScared1"); //TODO: Sorry for putting a scared ghost, I don't have food img yet
-            this.sideEffectSeconds = 0.0;
+            super.setImage("ImageIcons/basic");
+            this.sideEffectSeconds = 0;
             this.sideEffect = 0;
         }
         else if(type == FoodType.BIG) {
-            super.setImage("ImageIcons/GhostScared1"); //TODO: Sorry for putting a scared ghost, I don't have food img yet
+            super.setImage("ImageIcons/big");
             this.points = 100;
-            this.sideEffectSeconds = 5.0;
+            this.sideEffectSeconds = 333;
             this.sideEffect = 1;
         }
         else if(type == FoodType.YELLOW) {
-            super.setImage("ImageIcons/GhostScared1"); //TODO: Sorry for putting a scared ghost, I don't have food img yet
-            this.sideEffectSeconds = 5.0;
+            super.setImage("ImageIcons/yellow");
+            this.sideEffectSeconds = 333;
             this.sideEffect = 2;
         }
         else if(type == FoodType.GREEN) {
-            super.setImage("ImageIcons/GhostScared1"); //TODO: Sorry for putting a scared ghost, I don't have food img yet
-            this.sideEffectSeconds = 5.0;
+            super.setImage("ImageIcons/green");
+            this.sideEffectSeconds = 333;
             this.sideEffect = 3;
         }
 
@@ -75,7 +74,7 @@ public class Food extends PacmanObject implements Serializable{
     /** Returns the total seconds Pacman will be affected by the side effect if the food is eaten
      * @return A double which contains the total duration of side effect, in seconds
      */
-    public double getSideEffectSeconds() {
+    public int getSideEffectSeconds() {
         return this.sideEffectSeconds;
     }
 }

@@ -13,10 +13,11 @@ import java.awt.event.ActionListener;
  * Created by Aziz Osman on 30.10.2017.
  */
 public class MainMenuPanel extends JPanel{
+    private String loadMapName;
+    private String loadGameName;
     public MainMenuPanel(){
         super(new GridBagLayout());
         this.setBackground(Color.BLACK);
-
         JPanel soundPanel = new JPanel();
         soundPanel.setBackground(Color.BLACK);
         ImageIcon soundOnIcon = new ImageIcon(("img-src/icons/sound-on.png"));
@@ -115,19 +116,19 @@ public class MainMenuPanel extends JPanel{
     public class highScoreListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            GameFrame.uiManager.view(Constants.HIGHSCORE_PANEL);
+            GameFrame.uiManager.viewHighScores();
         }
     }
     public class onePlayerListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            GameFrame.uiManager.viewGame(1);
+            GameFrame.uiManager.viewGame(1, null);
         }
     }
     public class twoPlayersListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            GameFrame.uiManager.viewGame(2);
+            GameFrame.uiManager.viewGame(2, null);
         }
     }
     public class createMapListener implements ActionListener {
@@ -139,13 +140,17 @@ public class MainMenuPanel extends JPanel{
     public class loadMapListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            GameFrame.uiManager.view(Constants.SAVED_MAPS_LIST_PANEL);
+            //GameFrame.uiManager.view(Constants.SAVED_MAPS_LIST_PANEL);
+            loadMapName = JOptionPane.showInputDialog("Enter Map Name") + ".map";
+            GameFrame.uiManager.viewGame(0, loadMapName);
         }
     }
     public class loadGameListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            GameFrame.uiManager.view(Constants.SAVED_GAME_PANEL);
+//            GameFrame.uiManager.view(Constants.SAVED_GAME_PANEL);
+            loadGameName = JOptionPane.showInputDialog("Enter Game Name") + ".game";
+            GameFrame.uiManager.viewGame(0, loadGameName);
         }
     }
 }

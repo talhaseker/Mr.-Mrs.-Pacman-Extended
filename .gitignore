@@ -1,2 +1,9 @@
 out/
 .idea/
+
+test.txt
+
+*.game
+
+*.map
+src/DataLayer/HighScoreDatabase/HighScoreData.java

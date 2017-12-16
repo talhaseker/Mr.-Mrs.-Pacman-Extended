@@ -7,10 +7,13 @@ package GameLogic.ScreenItems;
 
 // import java.awt.Point;
 
+import GameLogic.AnimationManager.Sprite;
+import GameLogic.Enums.GhostAnimationType;
 import GameLogic.Enums.GhostType;
-import GameLogic.Enums.Movement;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.io.IOException;
 import java.io.Serializable;
 
 import static GameLogic.Constants.ATTACK;
@@ -25,6 +28,7 @@ import static GameLogic.Constants.SCATTER;
 public class Ghost extends MovingObject implements Serializable {
     //Properties
     private GhostType type;
+    private GhostAnimationType currentAnimationType;
     private int points;
     private boolean isAlive = false; //I THINK WE SHOULD CONTROL THIS THAT WAY - Şevval
                                      // I also think we do not have to use GhostAnimationType as enum
@@ -35,33 +39,78 @@ public class Ghost extends MovingObject implements Serializable {
     public int countdownTimer = 0;
     public boolean isAttacking = false;
     private boolean scatter;
-    public Movement lastMovement = Movement.LEFT;
-    public Movement curMovement;
+//    final int initialOutOfCageX = 372;
+    final int initialOutOfCageY = 208;
 
     //Constructor
 	public Ghost (GhostType type) {
         super();
-        super.setSize(30,40); //Just Random Values, will be changed.
+        super.setSize(28,28);
+
+        switch (type){
+            case INKY:
+                super.setSpeed(2);
+                super.setImage("icons/inky1");
+                break;
+            case PINKY:
+                super.setSpeed(2);
+                super.setImage("icons/pinky1");
+                break;
+            case CLYDE:
+                super.setSpeed(2);
+                super.setImage("icons/clyde1");
+                break;
+            case BLINKY:
+                super.setSpeed(2);
+                super.setImage("icons/blinky1");
+                break;
+            default:
+                break;
+        }
 
 	    this.type = type;
+        startPosition();
         isAlive = true;
 	}
         
     //Methods
 
     /** This method determines the place of the ghost according to their type
-     *
      */
-    public void startPosition()
-	{
-        if (this.type == GhostType.BLINKY)
-            super.changePosition(10,10);
-        if(this.type == GhostType.INKY)
-            super.changePosition(50,50);
-        if(this.type == GhostType.PINKY)
-            super.changePosition(100,100);
-        if(this.type == GhostType.CLYDE)
-            super.changePosition(90,80);
+    public void startPosition() {
+        if (this.type == GhostType.BLINKY){
+            super.setXpos(344);
+            super.setYpos(236);
+        }
+        if(this.type == GhostType.INKY){
+            super.setXpos(372);
+            super.setYpos(236);
+        }
+        if(this.type == GhostType.PINKY){
+            super.setXpos(400);
+            super.setYpos(236);
+        }
+        if(this.type == GhostType.CLYDE){
+            super.setXpos(428);
+            super.setYpos(236);
+        }
+	}
+
+	/**
+	 * Resets ghost for next level
+	 */
+	public void setForNextLevel(){
+        String ghostName = type.name().toLowerCase();
+
+        //Fix for Turkish keyboard
+        for (int i = 0; i < ghostName.length(); i++)
+            if (ghostName.charAt(i) == 'ı')
+                ghostName = ghostName.substring(0,i) + 'i' + ghostName.substring(i+1);
+
+        super.setImage("icons/" + ghostName +"1");
+
+        startPosition();
+        isAlive = true;
 	}
 
     /**
@@ -90,21 +139,22 @@ public class Ghost extends MovingObject implements Serializable {
 
     public void scatter(){
         scatter = true;
-        //TODO: supposed to change animation
+        super.setImage(Sprite.loadSprite("icons/blue1"));
     }
 
-    public void unScatter() {
+    public void unScatter() { //normal hali
         scatter = false;
-        //TODO: supposed to change animation
+        String ghostType = this.type.name();
+        super.setImage(Sprite.loadSprite("icons/" + ghostType + "1"));
     }
 
     public void respawnInCage() {
-        this.changePosition(100,100);
+        this.startPosition();
         this.unScatter();
     }
 
     public Point getInitialOutOfCagePos() {
-            return new Point(this.getXpos(),205);
+            return new Point(this.getXpos(),initialOutOfCageY);
     }
 
     public void flipAttack(){
@@ -116,4 +166,49 @@ public class Ghost extends MovingObject implements Serializable {
         isAttacking = !isAttacking;
     }
 
+    private void writeObject(java.io.ObjectOutputStream stream) throws IOException {
+        stream.defaultWriteObject();
+        stream.writeObject(type);
+        stream.writeObject(currentAnimationType);
+        stream.writeBoolean(isAlive);
+        stream.writeInt(countdownTimer);
+        stream.writeBoolean(isAttacking);
+        stream.writeBoolean(scatter);
+        stream.writeInt(super.speed);
+        stream.writeInt(super.Xpos);
+        stream.writeInt(super.Ypos);
+        stream.writeInt(super.width);
+        stream.writeInt(super.height);
+        ImageIO.write(imageIcon, "png", stream);
+    }
+
+    private void readObject(java.io.ObjectInputStream stream) throws IOException, ClassNotFoundException {
+        stream.defaultReadObject();
+        type = (GhostType) stream.readObject();
+        currentAnimationType = (GhostAnimationType) stream.readObject();
+        isAlive = stream.readBoolean();
+        countdownTimer = stream.readInt();
+        isAttacking = stream.readBoolean();
+        scatter = stream.readBoolean();
+        super.speed = stream.readInt();
+        super.Xpos = stream.readInt();
+        super.Ypos = stream.readInt();
+        super.width = stream.readInt();
+        super.height = stream.readInt();
+        super.imageIcon = ImageIO.read(stream);
+    }
+
+    @Override
+    public String toString() {
+        return "Ghost{" +
+                "type=" + type +
+                ", currentAnimationType=" + currentAnimationType +
+                ", points=" + points +
+                ", isAlive=" + isAlive +
+                ", countdownTimer=" + countdownTimer +
+                ", isAttacking=" + isAttacking +
+                ", scatter=" + scatter +
+                ", initialOutOfCageY=" + initialOutOfCageY +
+                '}';
+    }
 }

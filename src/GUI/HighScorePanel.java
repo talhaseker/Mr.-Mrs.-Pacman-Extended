@@ -1,5 +1,7 @@
 package GUI;
 
+import DataLayer.HighScoreDatabase.HighScoreData;
+import DataLayer.HighScoreDatabase.HighScoreDataManager;
 import GUI.UIBase.PacButton;
 import GUI.UIBase.PacLabel;
 import GUI.UIBase.PacPanel;
@@ -35,8 +37,20 @@ public class HighScorePanel extends PacPanel {
         highScores = new PacLabel("HIGHSCORES" ,20f);
         highScores.setAlignmentX(Component.CENTER_ALIGNMENT);
         mainMenu = new PacButton("MAIN MENU", 12f);
-        this.add(highScores);
-        this.add(scroll);
+
+        HighScoreDataManager manager = new HighScoreDataManager();
+        HighScoreData[] scoreData = manager.getHighScores();
+        Object[][] tableData = new Object[10][2];
+        Object[] columns = {"Name", "Score"};
+        for (int i=0;i<10;i++){
+            tableData[i][0] = scoreData[i].getName();
+            tableData[i][1] = scoreData[i].getScore();
+        }
+
+        JTable table = new JTable(tableData, columns);
+//        this.add(highScores);
+//        this.add(scroll);
+        this.add(table);
         this.add(mainMenu);
         mainMenu.addActionListener(this);
     }

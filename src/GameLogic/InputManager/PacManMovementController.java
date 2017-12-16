@@ -105,7 +105,7 @@ public class PacManMovementController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            pacman.move(movement);
+                pacman.curMovement = movement;
         }
     }
 }

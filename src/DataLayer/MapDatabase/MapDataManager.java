@@ -5,10 +5,20 @@
  */
 package DataLayer.MapDatabase;
 
+import GameLogic.ScreenItems.Ghost;
+import GameLogic.ScreenItems.Pacman;
+
 /**
  *
  * @author mbpro
  */
 public class MapDataManager {
-    
+
+    public MapData setMapData(Pacman[] pacmans, Ghost[] ghosts, int[][] mapTable){
+        MapData md = new MapData();
+        md.setGhosts(ghosts);
+        md.setMapTable(mapTable);
+        md.setPacmans(pacmans);
+        return md;
+    }
 }

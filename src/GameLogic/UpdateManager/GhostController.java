@@ -4,7 +4,6 @@ import GameLogic.Enums.Movement;
 import GameLogic.ScreenItems.Ghost;
 import GameLogic.ScreenItems.Pacman;
 
-import java.util.List;
 import java.util.Random;
 
 import static GameLogic.Constants.COUNTDOWN;
@@ -15,10 +14,33 @@ import static GameLogic.Constants.SCATTER;
  */
 public class GhostController {
 
-    private List<Ghost> ghosts;
+    private Ghost[] ghosts;
     private Pacman pm;
+    private int[][] gameMap;
+    int pacLives = 3;
 
-    public GhostController(List<Ghost> ghosts, Pacman pm){
+    final int cageBeginX = 344;
+    final int cageEndX = 456;
+    final int cageBeginY = 236;
+    final int cageEndY = 264;
+    final int gameEndX = 680;
+    final int gameEndY = 404;
+
+    int cageTimerInky, cageTimerPinky, cageTimerBlinky, cageTimerClyde = 0;
+    boolean MovementUPInky, MovementUPPinky, MovementUPBlinky, MovementUPClyde = false;
+    int mod = 7;
+    int deathTimer = 40;
+
+    int minDistance = 100;
+    Random numGen = new Random();
+    boolean moveOpposite = false;
+    int oppCounter = 0;
+
+    InteractionCheckerAndHandler interactionCheckerAndHandler;
+
+    public GhostController(InteractionCheckerAndHandler interactionCheckerAndHandler, int[][] gameMap, Ghost[] ghosts, Pacman pm){
+        this.interactionCheckerAndHandler = interactionCheckerAndHandler;
+        this.gameMap = gameMap;
         this.ghosts = ghosts;
         this.pm = pm;
     }
@@ -26,6 +48,9 @@ public class GhostController {
     public void move(){
         for (Ghost ghost:ghosts) {
             specificMove(ghost);
+        }
+        if(pm.getLivesLeft() != pacLives){
+            pacLives = pm.getLivesLeft();
         }
     }
 
@@ -50,52 +75,45 @@ public class GhostController {
     }
 
     private void inkyMove(Ghost ghost){
-        int cageTimer = 0;
-        boolean MovementUP = false;
-        int mod = 7;
-        int deathTimer = 40;
-        int pacLives = 5;
 
         int curX = ghost.getXpos();
         int curY = ghost.getYpos();
 
         if(pm.getLivesLeft() != pacLives){
-            pacLives = pm.getLivesLeft();
-            cageTimer = COUNTDOWN;
+            cageTimerInky = COUNTDOWN;
             ghost.isAttacking = false;
             ghost.countdownTimer = SCATTER;
         }
 
-        if(cageTimer > 0){
-            if(cageTimer%mod==0){
-                if(MovementUP){
-                    ghost.curMovement = Movement.UP;
+        if(cageTimerInky > 0){
+            if(cageTimerInky%mod==0){
+                if(MovementUPInky){
+                    ghost.curMovement = Movement.LEFT;
                 }
                 else{
-                    ghost.curMovement = Movement.DOWN;
+                    ghost.curMovement = Movement.RIGHT;
                 }
-                MovementUP = !MovementUP;
+                MovementUPInky = !MovementUPInky;
             }
-            cageTimer --;
-            if(cageTimer <= 0){
+            cageTimerInky --;
+            if(cageTimerInky <= 0){
                 ghost.lastMovement = Movement.LEFT;
                 ghost.setXpos(ghost.getInitialOutOfCagePos().x);
                 ghost.setYpos(ghost.getInitialOutOfCagePos().y);
             }
         } else {
-            if ((curY > 250 && curY <= 308) && (curX >= 231 && curX <= 368)) {
-                cageTimer = deathTimer;
+            if ((curY >= cageBeginY && curY <= cageEndY) && (curX >= cageBeginX && curX <= cageEndX)) {
+                cageTimerInky = deathTimer;
             }
-            int targetX = 250, targetY = 350;
+            int targetX = cageBeginX+28, targetY = cageBeginY;
             if(ghost.isScattered()){
-                targetX = 558 - pm.getXpos();
-                targetY = 551 - pm.getYpos();
+                targetX = gameEndX - pm.getXpos();
+                targetY = gameEndY - pm.getYpos();
             } else if(!ghost.isAttacking){
-                targetX = 558 - pm.getXpos();
-                targetY = 551 - pm.getYpos();
+                targetX = gameEndX - pm.getXpos();
+                targetY = gameEndY - pm.getYpos();
                 ghost.countdownTimer --;
             } else {
-
                 targetX = pm.getXpos();
                 targetY = pm.getYpos();
                 ghost.countdownTimer --;
@@ -111,52 +129,46 @@ public class GhostController {
     }
 
     private void pinkyMove(Ghost ghost){
-        int cageTimer = 0;
-        boolean MovementUP = false;
-        int mod = 7;
         int minDistance = 100;
-        int deathTimer = 40;
-        int pacLives = 5;
 
         int curX = ghost.getXpos();
         int curY = ghost.getYpos();
 
         if(pm.getLivesLeft() != pacLives){
-            pacLives = pm.getLivesLeft();
-            cageTimer = COUNTDOWN;
+            cageTimerPinky = COUNTDOWN;
             ghost.isAttacking = false;
             ghost.countdownTimer = SCATTER;
         }
 
-        if(cageTimer > 0){
-            if(cageTimer%mod==0){
-                if(MovementUP){
-                    ghost.curMovement = Movement.UP;
+        if(cageTimerPinky > 0){
+            if(cageTimerPinky%mod==0){
+                if(MovementUPPinky){
+                    ghost.curMovement = Movement.LEFT;
                 }
                 else{
-                    ghost.curMovement = Movement.DOWN;
+                    ghost.curMovement = Movement.RIGHT;
                 }
-                MovementUP = !MovementUP;
+                MovementUPPinky = !MovementUPPinky;
             }
-            cageTimer --;
-            if(cageTimer <= 0){
+            cageTimerPinky --;
+            if(cageTimerPinky <= 0){
                 ghost.lastMovement = Movement.LEFT;
                 ghost.setXpos(ghost.getInitialOutOfCagePos().x);
                 ghost.setYpos(ghost.getInitialOutOfCagePos().y);
             }
         } else {
             // check to see if in center (just spawned)
-            if ((curY > 250 && curY <= 308) && (curX >= 231 && curX <= 368)) {
-                cageTimer = deathTimer;
+            if ((curY >= cageBeginY && curY <= cageEndY) && (curX >= cageBeginX && curX <= cageEndX)) {
+                cageTimerPinky = deathTimer;
             }
 
-            int targetX = 250, targetY = 350;
+            int targetX = cageBeginX+28, targetY = cageBeginY;
             if(ghost.isScattered()){
-                targetX = 558 - pm.getXpos();
-                targetY = 551 - pm.getYpos();
+                targetX = gameEndX - pm.getXpos();
+                targetY = gameEndY - pm.getYpos();
             }  else if(!ghost.isAttacking){
-                targetX = 558 - pm.getXpos();
-                targetY = 551 - pm.getYpos();
+                targetX = gameEndX - pm.getXpos();
+                targetY = gameEndY - pm.getYpos();
                 ghost.countdownTimer --;
             }else {
                 targetX = pm.getXpos();
@@ -178,7 +190,7 @@ public class GhostController {
                 }
                 // and if it can't go that Movement, it'll just move according to the standard
                 // ai and try to eat pacman
-                if(!moveIsAllowed(ghost.curMovement)){
+                if(!moveIsAllowed(ghost, ghost.curMovement)){
                     tryToMove(ghost, curX, curY, targetX, targetY);
                 }
             }
@@ -191,53 +203,45 @@ public class GhostController {
     }
 
     private void blinkyMove(Ghost ghost){
-        int cageTimer = 0;
-        boolean MovementUP = false;
-        int mod = 7;
-        int deathTimer = 40;
-        int pacLives = 5;
 
         int curX = ghost.getXpos();
         int curY = ghost.getYpos();
 
         if(pm.getLivesLeft() != pacLives){
-            pacLives = pm.getLivesLeft();
-            cageTimer = COUNTDOWN;
+            cageTimerBlinky = COUNTDOWN;
             ghost.isAttacking = false;
             ghost.countdownTimer = SCATTER;
         }
 
-        if(cageTimer > 0){
-            if(cageTimer%mod==0){
-                if(MovementUP){
-                    ghost.curMovement = Movement.UP;
+        if(cageTimerBlinky > 0){
+            if(cageTimerBlinky%mod==0){
+                if(MovementUPBlinky){
+                    ghost.curMovement = Movement.LEFT;
                 }
                 else{
-                    ghost.curMovement = Movement.DOWN;
+                    ghost.curMovement = Movement.RIGHT;
                 }
-                MovementUP = !MovementUP;
+                MovementUPBlinky = !MovementUPBlinky;
             }
-            cageTimer --;
-            if(cageTimer <= 0){
+            cageTimerBlinky --;
+            if(cageTimerBlinky <= 0){
                 ghost.lastMovement = Movement.LEFT;
                 ghost.setXpos(ghost.getInitialOutOfCagePos().x);
                 ghost.setYpos(ghost.getInitialOutOfCagePos().y);
             }
         } else {
-            if ((curY > 249 && curY <= 310) && (curX >= 230 && curX <= 370)) {
-                cageTimer = deathTimer;
+            if ((curY >= cageBeginY && curY <= cageEndY) && (curX >= cageBeginX && curX <= cageEndX)) {
+                cageTimerBlinky = deathTimer;
             }
-            int targetX = 250, targetY = 350;
+            int targetX = numGen.nextInt(560) + 120, targetY = numGen.nextInt(308) + 96;
             if(ghost.isScattered()){
-                targetX = 558 - pm.getXpos();
-                targetY = 551 - pm.getYpos();
+                targetX = gameEndX - pm.getXpos();
+                targetY = gameEndY - pm.getYpos();
             } else if(!ghost.isAttacking){
-                targetX = 558 - pm.getXpos();
-                targetY = 551 - pm.getYpos();
+                targetX = gameEndX - pm.getXpos();
+                targetY = gameEndY - pm.getYpos();
                 ghost.countdownTimer --;
             }else {
-                targetX = pm.getXpos();
-                targetY = pm.getYpos();
                 ghost.countdownTimer --;
             }
 
@@ -253,54 +257,42 @@ public class GhostController {
 
     private void clydeMove(Ghost ghost){
 
-        int cageTimer = 0;
-        boolean MovementUP = false;
-        int mod = 7;
-        int deathTimer = 40;
-        int minDistance = 100;
-        int pacLives = 5;
-        Random numGen = new Random();
-        boolean moveOpposite = false;
-        int oppCounter = 0;
-
-
         int curX = ghost.getXpos();
         int curY = ghost.getYpos();
 
         if(pm.getLivesLeft() != pacLives){
-            pacLives = pm.getLivesLeft();
-            cageTimer = COUNTDOWN;
+            cageTimerClyde = COUNTDOWN;
             ghost.isAttacking = false;
             ghost.countdownTimer = SCATTER;
         }
 
-        if(cageTimer > 0){
-            if(cageTimer%mod==0){
-                if(MovementUP){
-                    ghost.curMovement = Movement.UP;
+        if(cageTimerClyde > 0){
+            if(cageTimerClyde%mod==0){
+                if(MovementUPClyde){
+                    ghost.curMovement = Movement.LEFT;
                 }
                 else{
-                    ghost.curMovement = Movement.DOWN;
+                    ghost.curMovement = Movement.RIGHT;
                 }
-                MovementUP = !MovementUP;
+                MovementUPClyde = !MovementUPClyde;
             }
-            cageTimer --;
-            if(cageTimer <= 0){
+            cageTimerClyde --;
+            if(cageTimerClyde <= 0){
                 ghost.lastMovement = Movement.LEFT;
                 ghost.setXpos(ghost.getInitialOutOfCagePos().x);
                 ghost.setYpos(ghost.getInitialOutOfCagePos().y);
             }
         } else {
-            if ((curY > 249 && curY <= 310) && (curX >= 230 && curX <= 370)) {
-                cageTimer = deathTimer;
+            if ((curY >= cageBeginY && curY <= cageEndY) && (curX >= cageBeginX && curX <= cageEndX)) {
+                cageTimerClyde = deathTimer;
             }
-            int targetX = 250, targetY = 350;
+            int targetX = cageBeginX+28, targetY = cageBeginY;
             if(ghost.isScattered()){
-                targetX = 558 - pm.getXpos();
-                targetY = 551 - pm.getYpos();
+                targetX = gameEndX - pm.getXpos();
+                targetY = gameEndY - pm.getYpos();
             }  else if(!ghost.isAttacking){
-                targetX = 558 - pm.getXpos();
-                targetY = 551 - pm.getYpos();
+                targetX = gameEndX - pm.getXpos();
+                targetY = gameEndY - pm.getYpos();
                 ghost.countdownTimer --;
             }else {
                 targetX = pm.getXpos();
@@ -317,8 +309,8 @@ public class GhostController {
                             moveOpposite = false;
                             oppCounter = 0;
                         }
-                        targetX = 558 - targetX;
-                        targetY = 551 - targetY;
+                        targetX = gameEndX - targetX;
+                        targetY = gameEndY - targetY;
                     } else {
                         if (numGen.nextInt(40) == 1) { // 1 in 40 chance
                             moveOpposite = true;
@@ -364,30 +356,30 @@ public class GhostController {
             ghost.curMovement = preferredVertical;
         else
             ghost.curMovement = preferredHorizontal;
-        if (!moveIsAllowed(ghost.curMovement)) {
+        if (!moveIsAllowed(ghost, ghost.curMovement)) {
             if (verticalMoreImportant) {
                 if (ghost.lastMovement == Movement.LEFT || ghost.lastMovement == Movement.RIGHT) {
                     ghost.curMovement = ghost.lastMovement;
-                    if (!moveIsAllowed(ghost.curMovement))
+                    if (!moveIsAllowed(ghost, ghost.curMovement))
                         ghost.curMovement = ghost.curMovement == Movement.LEFT ? Movement.RIGHT : Movement.LEFT;
                 } else {
                     ghost.curMovement = preferredHorizontal;
-                    if (!moveIsAllowed(ghost.curMovement)) {
+                    if (!moveIsAllowed(ghost, ghost.curMovement)) {
                         ghost.curMovement = preferredHorizontal == Movement.LEFT ? Movement.RIGHT : Movement.LEFT;
-                        if (!moveIsAllowed(ghost.curMovement))
+                        if (!moveIsAllowed(ghost, ghost.curMovement))
                             ghost.curMovement = preferredVertical == Movement.UP ? Movement.DOWN : Movement.UP;
                     }
                 }
             } else {
                 if (ghost.lastMovement == Movement.UP || ghost.lastMovement == Movement.DOWN) {
                     ghost.curMovement = ghost.lastMovement;
-                    if (!moveIsAllowed(ghost.curMovement))
+                    if (!moveIsAllowed(ghost, ghost.curMovement))
                         ghost.curMovement = ghost.curMovement == Movement.UP ? Movement.DOWN : Movement.UP;
                 } else {
                     ghost.curMovement = preferredVertical;
-                    if (!moveIsAllowed(ghost.curMovement)) {
+                    if (!moveIsAllowed(ghost, ghost.curMovement)) {
                         ghost.curMovement = preferredVertical == Movement.UP ? Movement.DOWN : Movement.UP;
-                        if (!moveIsAllowed(ghost.curMovement))
+                        if (!moveIsAllowed(ghost, ghost.curMovement))
                             ghost.curMovement = preferredHorizontal == Movement.LEFT ? Movement.RIGHT : Movement.LEFT;
                     }
                 }
@@ -395,7 +387,7 @@ public class GhostController {
         }
     }
 
-    private boolean moveIsAllowed(Movement curMovement){
-        return true;
+    private boolean moveIsAllowed(Ghost ghost, Movement curMovement){
+        return interactionCheckerAndHandler.isMoveAllowed(ghost, curMovement, false);
     }
 }

@@ -14,8 +14,8 @@ public class Constants {
      public static final String PAUSE_PANEL = "Pause Panel";
      public static final String SAVED_MAPS_LIST_PANEL = "Saved Maps List Panel";
      public static final String MAIN_MENU_PANEL = "Main Menu Panel";
+     public static final String SAVE_GAME_PANEL = "Save Game Panel";
     public static final int SCATTER = 100;
     public static final int ATTACK = 280;
     public static final int COUNTDOWN = 150;
-
 }

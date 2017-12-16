@@ -1,6 +1,7 @@
 package GUI;
 
 import GUI.UIBase.WindowCloser;
+import GameLogic.Constants;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,11 +18,13 @@ public class GameFrame extends JFrame {
         this.setVisible(true);
         this.setPreferredSize(new Dimension(800,600));
 //        this.setPreferredSize(new Dimension(400,300));
+
         //this.setPreferredSize(new Dimension(200,250));
         this.setResizable(false);
         this.getContentPane().add(uiManager);
         this.pack();
+        this.setLocationRelativeTo(null);
         this.addWindowListener(new WindowCloser());
-        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
 }
