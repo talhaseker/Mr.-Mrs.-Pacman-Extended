@@ -24,8 +24,10 @@ public class Pacman extends MovingObject implements Serializable{
     int foodEffectSeconds;
     Shield shield;
     private int livesLeft = 3;
+    private boolean dieByEatenGhost = false, newBigFoodEaten = false;
     private boolean canEatGhost = false, canPassWall = false, canPassGhost = false;
     private boolean shieldChanged = false;
+    private boolean[] ghostEaten = {false, false, false, false};
     private PacmanType pacmanType;
 
     //Constructor(s)
@@ -77,22 +79,27 @@ public class Pacman extends MovingObject implements Serializable{
      */
     public void eatFood(Food food) {
 //        score += food.getPoints();
-        int sideEffect = 0;
+
         if (food.getSideEffect() != 0){
             this.foodEffectSeconds = food.getSideEffectSeconds();
-             sideEffect = food.getSideEffect();
+             foodEffect = food.getSideEffect();
 
-            if (sideEffect == 1) {
+            if (foodEffect == 1) {
+                newBigFoodEaten = true;
                 canEatGhost = true;
-                canPassWall = false;
-                canPassGhost = false;
-            }else if (sideEffect == 2){
-                canEatGhost = false;
+                //canPassWall = false;
+                //canPassGhost = false;
+
+                for (int i = 0; i < ghostEaten.length; i++)
+                    ghostEaten[i] = false;
+
+            }else if (foodEffect == 2){ //green
+                //canEatGhost = false;
                 canPassWall = true;
-                canPassGhost = false;
-            }else if(sideEffect == 3){
-                canEatGhost = false;
-                canPassWall = false;
+                //canPassGhost = false;
+            }else if(foodEffect == 3){ //yellow
+                //canEatGhost = false;
+                //canPassWall = false;
                 canPassGhost = true;
             }
         }
@@ -140,6 +147,19 @@ public class Pacman extends MovingObject implements Serializable{
         animation.update();
         super.setImage(animation.getImage());
     }
+
+    public void setFoodEffect(int val) {foodEffect = val;}
+    public int getFoodEffect() {return foodEffect;}
+
+    public void setDieByEatenGhost(boolean die) {dieByEatenGhost = die;}
+    public boolean doDieByEatenGhost(){return dieByEatenGhost;}
+
+    public void setNewBigFoodEatenFalse(){newBigFoodEaten = false;}
+    public boolean isNewBigFoodEaten(){return newBigFoodEaten;}
+
+    public boolean isGhostEaten(int i){return ghostEaten[i];}
+
+    public void setGhostEaten(int i, boolean val){ghostEaten[i] = val;}
 
     public boolean isShieldChanged() {
         return shieldChanged;

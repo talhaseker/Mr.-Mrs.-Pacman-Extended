@@ -57,16 +57,18 @@ public class UpdateService {
             updatePacman(pacmans[1]);
             canEat = canEat || pacmans[1].isCanEatGhost();
             if (interactionCheckerAndHandler.doBumpGhosts(1 ,canEat)){
-                if (canEat)
-                    ge.addScore(100);
-                else if(!pacmans[1].isCanPassGhost())
+                if (canEat) {
+                    if(pacmans[1].doDieByEatenGhost()) ge.pacmanDied();
+                    else    ge.addScore(100);
+                } else if(!pacmans[1].isCanPassGhost())
                     ge.pacmanDied();
             }
         }
         if (interactionCheckerAndHandler.doBumpGhosts(0 ,canEat)){
-            if (canEat)
-                ge.addScore(100);
-            else if(!pacmans[0].isCanPassGhost())
+            if (canEat) {
+                if(pacmans[0].doDieByEatenGhost()) ge.pacmanDied();
+                else    ge.addScore(100);
+            } else if(!pacmans[0].isCanPassGhost())
                 ge.pacmanDied();
         }
 
@@ -89,6 +91,15 @@ public class UpdateService {
                 default:
                     break;
             }}
+        }
+
+        for(Pacman p : pacmans) {
+            if (p.isNewBigFoodEaten()) {
+                p.setNewBigFoodEatenFalse();
+                for (Ghost g : ghosts)
+                    g.scatter();
+            }
+
         }
 
         if(isLevelPassed()){

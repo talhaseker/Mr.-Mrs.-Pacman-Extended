@@ -191,8 +191,18 @@ public class InteractionCheckerAndHandler {
             int xDif = Math.abs(ghosts[i].getXpos()-pm.getXpos());
             int yDif = Math.abs(ghosts[i].getYpos()-pm.getYpos());
             if (xDif < 25 && yDif < 25){
-                if (canEat)
-                    ghosts[i] = new Ghost(ghosts[i].getGhostType());
+                if (canEat) {
+                    if (pm.isGhostEaten(i)) {
+                        if (!ghosts[i].isAttacking) ghosts[i].flipAttack();
+                        pm.setDieByEatenGhost(true);
+
+                    }
+
+                    else{
+                        ghosts[i] = new Ghost(ghosts[i].getGhostType());
+                        pm.setGhostEaten(i,true);
+                    }
+                }
                 return true;
             }
         }
