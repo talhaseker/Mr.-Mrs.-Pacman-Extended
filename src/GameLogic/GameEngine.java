@@ -245,9 +245,12 @@ public class GameEngine {
         if (livesLeft == 0) {
             gameOver();
         } else {
+            //Revive Pacman(s)
+            pacmans[0].setDieByEatenGhost(false);
             pacmans[0].setLivesLeft(pacmans[0].getLivesLeft() - 1);
             pacmans[0].setShield(null);
             if (numPlayer == 2){
+                pacmans[1].setDieByEatenGhost(false);
                 pacmans[1].setLivesLeft(pacmans[1].getLivesLeft() - 1);
                 pacmans[1].setShield(null);
             }

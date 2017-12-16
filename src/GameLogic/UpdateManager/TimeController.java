@@ -50,9 +50,6 @@ public class TimeController implements ActionListener {
         gamePanel.showGetReady();
     }
 
-
-
-
     public void stopTimer() {
         timer.stop();
     }
@@ -87,6 +84,11 @@ public class TimeController implements ActionListener {
             p.setCanPassGhost(false);
             p.setCanPassWall(false);
             p.setFoodEffectSeconds(-1);
+            p.setFoodEffect(0);
+
+            for(Ghost g : ghosts) {
+                g.unScatter();
+            }
         }
 
         if (p.getShield() != null && p.getShield().getEffectTime() > 0){

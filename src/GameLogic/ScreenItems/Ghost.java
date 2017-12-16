@@ -7,6 +7,7 @@ package GameLogic.ScreenItems;
 
 // import java.awt.Point;
 
+import GameLogic.AnimationManager.Sprite;
 import GameLogic.Enums.GhostAnimationType;
 import GameLogic.Enums.GhostType;
 
@@ -112,8 +113,6 @@ public class Ghost extends MovingObject implements Serializable {
         isAlive = true;
 	}
 
-
-
     /**
      * @return the points that user gains when pacman eats the ghost
      */
@@ -140,12 +139,13 @@ public class Ghost extends MovingObject implements Serializable {
 
     public void scatter(){
         scatter = true;
-        //TODO: supposed to change animation
+        super.setImage(Sprite.loadSprite("icons/blue1"));
     }
 
-    public void unScatter() {
+    public void unScatter() { //normal hali
         scatter = false;
-        //TODO: supposed to change animation
+        String ghostType = this.type.name();
+        super.setImage(Sprite.loadSprite("icons/" + ghostType + "1"));
     }
 
     public void respawnInCage() {
