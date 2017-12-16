@@ -2,6 +2,7 @@ package GameLogic.AnimationManager;
 
 import GameLogic.Enums.PacmanAnimationType;
 import GameLogic.Enums.PacmanType;
+import GameLogic.Enums.ShieldType;
 
 import java.awt.image.BufferedImage;
 
@@ -45,26 +46,29 @@ public class PacmanAnimation{
         this.totalFrames = frames.length;
     }
 
-    public void changeAnimation(PacmanAnimationType type){
 
-        //TODO: Animation to die. Currently only implements directions: left,right,up,down
-        if (type != PacmanAnimationType.DOWN && type != PacmanAnimationType.UP &&
-                type != PacmanAnimationType.LEFT && type != PacmanAnimationType.RIGHT )
+    public void changeAnimation(PacmanAnimationType animationtype, ShieldType shieldType){
+        String subFolder = "";
+        if (shieldType != null)
+            subFolder = shieldType.name();
+
+        if (animationtype != PacmanAnimationType.DOWN && animationtype != PacmanAnimationType.UP &&
+                animationtype != PacmanAnimationType.LEFT && animationtype != PacmanAnimationType.RIGHT)
             return;
 
-        String direction = type.name().toLowerCase();
+        String direction = animationtype.name().toLowerCase();
 
         //Fix for Turkish keyboard
         for (int i = 0; i < direction.length(); i++)
             if (direction.charAt(i) == 'ı')
-                direction = direction.substring(0,i) + 'i' + direction.substring(i+1);
+                direction = direction.substring(0, i) + 'i' + direction.substring(i + 1);
 
         String pacType = pacmanType.name().toLowerCase();
 
         this.frames = new BufferedImage[4];
         for (int i = 0; i < 3; i++) //Images form a gif-loop
-            this.frames[i] = Sprite.loadSprite("ImageIcons/PacMan/" + pacType + (i+2) + direction);
-        this.frames[3] = Sprite.loadSprite("ImageIcons/PacMan/" + pacType + "3" + direction);
+            this.frames[i] = Sprite.loadSprite("ImageIcons/PacMan/" + subFolder + pacType + (i + 2) + direction);
+        this.frames[3] = Sprite.loadSprite("ImageIcons/PacMan/" + subFolder + pacType + "3" + direction);
 
         this.totalFrames = frames.length;
     }
@@ -74,7 +78,7 @@ public class PacmanAnimation{
         this.currentFrame = 0;
    }
 
-    public void update() { //TODO: Doesn't work
+    public void update() {
         frameCount++;
 
         if (frameCount >= frameDelay) {

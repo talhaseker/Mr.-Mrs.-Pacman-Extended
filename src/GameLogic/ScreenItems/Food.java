@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /** Represents food items Pacman will eat
  * @author Ecem Ilgun
- * @version 1.8
+ * @version 1.9
  * @since 1.0
  * @see PacmanObject
  */
@@ -31,23 +31,23 @@ public class Food extends PacmanObject implements Serializable{
 
         this.points = 50;
         if (type == FoodType.BASIC){
-            super.setImage("ImageIcons/basic"); //TODO: Sorry for putting a scared ghost, I don't have food img yet
+            super.setImage("ImageIcons/basic");
             this.sideEffectSeconds = 0;
             this.sideEffect = 0;
         }
         else if(type == FoodType.BIG) {
-            super.setImage("ImageIcons/big"); //TODO: Sorry for putting a scared ghost, I don't have food img yet
+            super.setImage("ImageIcons/big");
             this.points = 100;
             this.sideEffectSeconds = 333;
             this.sideEffect = 1;
         }
         else if(type == FoodType.YELLOW) {
-            super.setImage("ImageIcons/yellow"); //TODO: Sorry for putting a scared ghost, I don't have food img yet
+            super.setImage("ImageIcons/yellow");
             this.sideEffectSeconds = 333;
             this.sideEffect = 2;
         }
         else if(type == FoodType.GREEN) {
-            super.setImage("ImageIcons/green"); //TODO: Sorry for putting a scared ghost, I don't have food img yet
+            super.setImage("ImageIcons/green");
             this.sideEffectSeconds = 333;
             this.sideEffect = 3;
         }

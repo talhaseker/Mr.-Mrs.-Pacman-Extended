@@ -7,11 +7,10 @@ import java.io.Serializable;
 
 /** Shield (upgrade) object for Pacman
  * @author Ecem Ilgun
- * @version 1.8
+ * @version 1.9
  * @since 1.0
  */
 public class Shield implements Serializable{
-    //TODO: Needed to be implemented before Design Report: Iteration II
     private ShieldType type;
     private int effectTime;
 
