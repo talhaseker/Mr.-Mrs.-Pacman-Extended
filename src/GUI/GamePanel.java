@@ -186,4 +186,5 @@ public class GamePanel extends JPanel {
     public void hidePausePanel(){
         pausePanel.setVisible(false);
     }
+    public void resetFood(){ foodChanged = true;}
 }

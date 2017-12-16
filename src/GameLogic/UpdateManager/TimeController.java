@@ -20,15 +20,15 @@ public class TimeController implements ActionListener {
     private Timer timer;
     private int count;
     private int waitCounter;
-
-    private boolean isMultiplayer;
-    private GameEngine ge;
-    private Pacman[] pacmans;
-    private Ghost[] ghosts;
-    private GamePanel gamePanel;
-    private int[][] gameMap;
-    private ArrayList<Food> foods;
     private UpdateService updateService;
+
+    protected boolean isMultiplayer;
+    protected GameEngine ge;
+    protected Pacman[] pacmans;
+    protected Ghost[] ghosts;
+    protected GamePanel gamePanel;
+    protected int[][] gameMap;
+    protected ArrayList<Food> foods;
 
     public TimeController(GameEngine ge, int[][] gameMap, ArrayList<Food> foods, Pacman[] pacmans, boolean isMultiplayer, Ghost[] ghosts, GamePanel gamePanel){
         this.ge = ge;
@@ -42,12 +42,16 @@ public class TimeController implements ActionListener {
         this.timer = new Timer(15, this);
     }
 
+
     // start timer
     public void startTimer() {
         timer.start();
         waitCounter = 100;
         gamePanel.showGetReady();
     }
+
+
+
 
     public void stopTimer() {
         timer.stop();

@@ -77,8 +77,6 @@ public class MovingObject extends PacmanObject {
 
     }
 
-
-
     @Override
     public String toString() {
         return "MovingObject{" +

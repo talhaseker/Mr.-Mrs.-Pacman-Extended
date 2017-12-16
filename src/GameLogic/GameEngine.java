@@ -17,7 +17,7 @@ import static javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW;
 
 /** GameEngine class : core game logic class, which holds and manipulates game entities and
  *  controls interaction with UI package
- * @author Ecem Ilgun
+ * @author Ecem Ilgun, Talha Seker
  * @version 1.8
  * @since 1.0
  */
@@ -25,11 +25,11 @@ public class GameEngine {
     //Variables
     static final int MAX_LIFE = 3;
     private int numPlayer, numGhost, level, score, livesLeft;
-    public int[][] gameMap;
-    private double counter;
-    private Pacman[] pacmans;
-    private Ghost[] ghosts;
+    public int[][] gameMap, gameMapRestore;
+    private Pacman[] pacmans, pacmansRestore;
+    private Ghost[] ghosts, ghostsRestore;
     private GameMap map;
+    private double counter;
     public boolean isPaused;
     private GamePanel gamePanel;
     private PacManMovementController pacmanMovementKeyBindings;
@@ -47,7 +47,10 @@ public class GameEngine {
     public GameEngine(UIManager uiManager, int numPlayer, String name) {
         this.gameDataManager = new GameDataManager();
         this.numPlayer = numPlayer;
-        if (numPlayer == 0) {
+
+        boolean isNewGame = (numPlayer != 0);
+
+        if (!isNewGame) {
             this.gameData = gameDataManager.loadGame(name);
             level = gameData.getLevel();
             score = gameData.getScore();
@@ -83,9 +86,31 @@ public class GameEngine {
             ghosts[3] = new Ghost(GhostType.CLYDE);
 
 
-
             map = new GameMap();
             gameMap = map.map1;
+        }
+
+        //Create copies of gameMap, ghosts & pacmans in order to restore at the beginning of next level
+
+        /* This restore for next level covers only scenarios of
+         * new games and previously played games
+         * It will give a problem on previously not played saved maps.
+         *
+         * TODO: add another flag for savedMap
+         *
+         * if(!isNewGame) {.. load from saved game...}
+         * else if (savedmap) {..load from saved map... it is a new game, but a special map}
+         * else {.. so this is a new game without a specified map, load default game}
+         * if (isNewGame) {create initial map to restore from}
+         */
+
+        if(isNewGame) { //Create an initial map to restore each level
+            gameMapRestore = new int[gameMap.length][gameMap[0].length];
+
+            for (int i = 0; i < gameMap.length; i++)
+                for (int j = 0; j < gameMap[0].length; j++)
+                    gameMapRestore[i][j] = gameMap[i][j];
+
         }
 
         this.uiManager = uiManager;
@@ -134,7 +159,6 @@ public class GameEngine {
      * function in order to save this GameData object into our database
      */
     public void saveGame(String saveName) {
-
         GameDataManager gameDataManager = new GameDataManager();
         gameDataManager.saveGameData(saveName + ".game", score, level, numPlayer, livesLeft, pacmans, ghosts, gameMap);
     }
@@ -161,8 +185,27 @@ public class GameEngine {
     public void passLevel() {
         if (level < 3) {
             level++;
+            System.out.println("level passed");
+
+            //Reset map
+            for (int i = 0; i < gameMap.length; i++)
+                for (int j = 0; j < gameMap[0].length; j++)
+                    gameMap[i][j] = gameMapRestore[i][j];
+
+            gamePanel.resetFood();
+
+            //Reset Pacmans & ghosts
+            for (Pacman p : pacmans)
+                p.setForNextLevel();
+
+            //TODO: If bought shield, call setForNextLevel(shield)
+
+            for (Ghost g : ghosts)
+                g.setForNextLevel();
+
         } else {
             gameOver();
+            //TODO: Highscore - ask for user name
         }
     }
 
@@ -191,5 +234,4 @@ public class GameEngine {
             reStartGame();
         }
     }
-
 }

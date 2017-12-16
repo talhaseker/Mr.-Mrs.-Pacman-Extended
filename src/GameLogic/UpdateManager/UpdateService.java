@@ -14,7 +14,6 @@ import java.util.ArrayList;
  * Created by talhaseker on 5.11.2017.
  */
 public class UpdateService {
-
     private boolean isMultiplayer;
     private GameEngine ge;
     private Pacman[] pacmans;
@@ -51,6 +50,7 @@ public class UpdateService {
         boolean canEat = pacmans[0].isCanEatGhost();
         ge.addScore(interactionCheckerAndHandler.doEatFood());
         updatePacman(pacmans[0]);
+
         if (isMultiplayer){
             updatePacman(pacmans[1]);
             canEat = canEat || pacmans[1].isCanEatGhost();
@@ -82,8 +82,21 @@ public class UpdateService {
                     break;
             }}
         }
+
+        if(isLevelPassed()){
+            ge.passLevel();
+        }
+
         gamePanel.repaintRequest(gameMap);
     }
+
+
+    public boolean isLevelPassed(){
+        return foods.isEmpty();
+    }
+
+
+
 
     private void updatePacman(Pacman pm){
         pm.updateAnimation();  //First update animation, then change animation in the next iteration according to the movement update below
@@ -131,5 +144,4 @@ public class UpdateService {
             }
         }
     }
-
 }

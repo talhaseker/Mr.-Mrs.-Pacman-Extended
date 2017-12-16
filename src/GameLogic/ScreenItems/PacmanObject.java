@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 
 /** Parent class of each drawable game object
- * @author Ecem Ilgun, Talha Seker
+ * @author Ecem Ilgun, Talha
  * @version 1.9
  * @since 1.0
  */

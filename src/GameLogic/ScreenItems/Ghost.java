@@ -7,6 +7,7 @@ package GameLogic.ScreenItems;
 
 // import java.awt.Point;
 
+import GameLogic.Enums.GhostAnimationType;
 import GameLogic.Enums.GhostType;
 
 import javax.imageio.ImageIO;
@@ -16,6 +17,7 @@ import java.io.Serializable;
 
 import static GameLogic.Constants.ATTACK;
 import static GameLogic.Constants.SCATTER;
+import static GameLogic.Enums.GhostType.INKY;
 
 /** Represent ghost's data
  * @author SEVVAL EKICI
@@ -26,6 +28,7 @@ import static GameLogic.Constants.SCATTER;
 public class Ghost extends MovingObject implements Serializable {
     //Properties
     private GhostType type;
+    private GhostAnimationType currentAnimationType;
     private int points;
     private boolean isAlive = false; //I THINK WE SHOULD CONTROL THIS THAT WAY - Şevval
                                      // I also think we do not have to use GhostAnimationType as enum
@@ -42,7 +45,8 @@ public class Ghost extends MovingObject implements Serializable {
     //Constructor
 	public Ghost (GhostType type) {
         super();
-        super.setSize(28,28); //Just Random Values, will be changed.
+        super.setSize(28,28);
+
         switch (type){
             case INKY:
                 super.setSpeed(2);
@@ -63,6 +67,7 @@ public class Ghost extends MovingObject implements Serializable {
             default:
                 break;
         }
+
 	    this.type = type;
         startPosition();
         isAlive = true;
@@ -71,10 +76,8 @@ public class Ghost extends MovingObject implements Serializable {
     //Methods
 
     /** This method determines the place of the ghost according to their type
-     *
      */
-    public void startPosition()
-	{
+    public void startPosition() {
         if (this.type == GhostType.BLINKY){
             super.setXpos(344);
             super.setYpos(236);
@@ -92,6 +95,25 @@ public class Ghost extends MovingObject implements Serializable {
             super.setYpos(236);
         }
 	}
+
+	/**
+	 * Resets ghost for next level
+	 */
+	public void setForNextLevel(){
+        String ghostName = type.name().toLowerCase();
+
+        //Fix for Turkish keyboard
+        for (int i = 0; i < ghostName.length(); i++)
+            if (ghostName.charAt(i) == 'ı')
+                ghostName = ghostName.substring(0,i) + 'i' + ghostName.substring(i+1);
+
+        super.setImage("icons/" + ghostName +"1");
+
+        startPosition();
+        isAlive = true;
+	}
+
+
 
     /**
      * @return the points that user gains when pacman eats the ghost

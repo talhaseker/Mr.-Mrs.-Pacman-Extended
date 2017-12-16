@@ -40,7 +40,7 @@ public class PacmanAnimation{
 
         frames = new BufferedImage[1];
 
-        frames[0] = Sprite.loadSprite("ImageIcons/" + type.name().toLowerCase() + "1");
+        frames[0] = Sprite.loadSprite("ImageIcons/PacMan/" + type.name().toLowerCase() + "1");
 
         this.totalFrames = frames.length;
     }
@@ -53,17 +53,18 @@ public class PacmanAnimation{
             return;
 
         String direction = type.name().toLowerCase();
-        //fix for Turkish keyboard
-        if (type.name() == "RIGHT") direction = "right";
+
+        //Fix for Turkish keyboard
+        for (int i = 0; i < direction.length(); i++)
+            if (direction.charAt(i) == 'ı')
+                direction = direction.substring(0,i) + 'i' + direction.substring(i+1);
 
         String pacType = pacmanType.name().toLowerCase();
 
-        System.out.println(pacType + "2" + direction);
-
         this.frames = new BufferedImage[4];
         for (int i = 0; i < 3; i++) //Images form a gif-loop
-            this.frames[i] = Sprite.loadSprite("ImageIcons/" + pacType + "2" + direction);
-        this.frames[3] = Sprite.loadSprite("ImageIcons/" + pacType + "3" + direction);
+            this.frames[i] = Sprite.loadSprite("ImageIcons/PacMan/" + pacType + (i+2) + direction);
+        this.frames[3] = Sprite.loadSprite("ImageIcons/PacMan/" + pacType + "3" + direction);
 
         this.totalFrames = frames.length;
     }

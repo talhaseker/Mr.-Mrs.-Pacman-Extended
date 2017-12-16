@@ -76,6 +76,7 @@ public class InteractionCheckerAndHandler {
                 }
             case LEFT:
                 if (firstIndexRows+1 <= lastIndexRows && (firstIndexRows+1)*28 == currentY){
+                    //TODO: "indexOutOfBoundsException : 25" occured on if statement below, find why
                     if (gameMap[firstIndexRows+1][firstIndexColumns] == 1){
                         return firstIndexColumns + 1 <= lastIndexColumns && (firstIndexColumns + 1) * 28 < currentX;
                     }else{return true;}
@@ -156,7 +157,6 @@ public class InteractionCheckerAndHandler {
             }
         }
 
-
         return score;
     }
 
@@ -168,7 +168,7 @@ public class InteractionCheckerAndHandler {
     }
 
     private boolean checkPandGhosts(Pacman pm, boolean canEat){
-        for (int i = 0; i<ghosts.length; i++) {
+        for (int i = 0; i < ghosts.length; i++) {
             int xDif = Math.abs(ghosts[i].getXpos()-pm.getXpos());
             int yDif = Math.abs(ghosts[i].getYpos()-pm.getYpos());
             if (xDif < 25 && yDif < 25){
@@ -179,4 +179,5 @@ public class InteractionCheckerAndHandler {
         }
         return false;
     }
+
 }

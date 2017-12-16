@@ -39,6 +39,14 @@ public class GameMap {
             {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
     };
 
+    //Constructor(s)
+    /**
+     * Default Constructor
+     * Creates the default pacman map
+     */
+    public GameMap() {}
+
+    //Methods
     public Point[] getForbiddenPoints(){
         Point[] points = new Point[82];
 
@@ -67,16 +75,5 @@ public class GameMap {
 
         return points;
     }
-    //Constructor(s)
-    /**
-     * Creates the default pacman map
-     */
-    public GameMap() {
-        
-    }
-
-
-    //Methods
-
 
 }

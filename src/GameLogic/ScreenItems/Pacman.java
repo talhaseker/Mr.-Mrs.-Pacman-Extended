@@ -53,7 +53,7 @@ public class Pacman extends MovingObject implements Serializable{
         this.foodEffect = 0;
         this.foodEffectSeconds = 0;
         this.shield = null;
-        this.currentAnimationType = PacmanAnimationType.STOP; //Regular eating animation enum
+        this.currentAnimationType = PacmanAnimationType.STOP; //Starting mouth closed enum
     }
 
     /** Initializes a Pacman object with its parameters
@@ -71,7 +71,6 @@ public class Pacman extends MovingObject implements Serializable{
     }
 
     //Methods
-
     /** Manages Pacman object's state if it collides with a food object.
      * @param food The food which Pacman collided with
      */
@@ -107,6 +106,25 @@ public class Pacman extends MovingObject implements Serializable{
             super.curMovement = Movement.LEFT;
             super.lastMovement = Movement.LEFT;
         }
+    }
+
+    public void setForNextLevel(){
+        this.respawn();
+
+        //Reset animation
+        animation = new PacmanAnimation(pacmanType);
+        super.setImage(animation.getImage());
+
+        //Reset food effects & shield from previous level, if any
+        this.foodEffect = 0;
+        this.foodEffectSeconds = 0;
+        this.shield = null;
+        this.currentAnimationType = PacmanAnimationType.STOP; //Starting mouth closed enum
+    }
+
+    public void setForNextLevel(Shield shield) {
+        this.setForNextLevel();
+        this.shield = shield;
     }
 
     public PacmanAnimationType getCurrentAnimationType(){return this.currentAnimationType;}
