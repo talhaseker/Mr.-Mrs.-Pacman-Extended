@@ -21,7 +21,7 @@ public class GamePanel extends JPanel {
     JPanel foodPanel;
     JPanel movementPanel;
     JPanel pausePanel;
-    JPanel shieldPanel;
+    ShieldPanel shieldPanel;
     PacLabel scoreLabel;
     PacLabel livesLabel;
     PacLabel getReadyLabel;
@@ -197,6 +197,7 @@ public class GamePanel extends JPanel {
     }
 
     public void showShieldPanel(){
+        shieldPanel.enableShieldsByScore(UIManager.gameEngine.getScore());
         shieldPanel.setVisible(true);
     }
     public void hideShieldPanel(){

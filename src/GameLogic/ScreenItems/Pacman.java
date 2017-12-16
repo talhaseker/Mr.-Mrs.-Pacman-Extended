@@ -229,7 +229,6 @@ public class Pacman extends MovingObject implements Serializable{
     }
 
     public void setShield(Shield shield) {
-
         if (shield == null) { setSpeed(2); }
         else if (shield.getType() == ShieldType.GOLD) { setSpeed(4); }
 

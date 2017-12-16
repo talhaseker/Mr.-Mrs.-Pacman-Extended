@@ -200,6 +200,11 @@ public class GameEngine {
     }
 
     public void setNextLevel(){
+        //Deduct the payment of shield from score, if any
+        if (pacmans[0].getShield() != null) {
+                this.score -= pacmans[0].getShield().getCost();
+        }
+
         //Reset map
         for (int i = 0; i < gameMap.length; i++)
             for (int j = 0; j < gameMap[0].length; j++)
@@ -230,6 +235,8 @@ public class GameEngine {
         score += scr;
         gamePanel.updateScore(score);
     }
+
+    public int getScore() {return this.score;}
 
     public void pacmanDied() {
         livesLeft = livesLeft - 1;

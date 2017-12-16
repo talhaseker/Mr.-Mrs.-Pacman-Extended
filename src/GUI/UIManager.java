@@ -20,7 +20,7 @@ public class UIManager extends JPanel {
     PausePanel pausePanel;
     SavedGamesPanel savedGamesPanel;
     SavedMapsListPanel savedMapsListPanel;
-    ShieldPanel shieldPanel;
+//    ShieldPanel shieldPanel;
     SaveGame saveGamePanel;
     static GameEngine gameEngine;
 
@@ -35,7 +35,7 @@ public class UIManager extends JPanel {
 //        pausePanel = new PausePanel();
         savedGamesPanel = new SavedGamesPanel();
         savedMapsListPanel = new SavedMapsListPanel();
-        shieldPanel = new ShieldPanel();
+//        shieldPanel = new ShieldPanel();
         saveGamePanel = new SaveGame();
 
         this.add(mainMenuPanel, Constants.MAIN_MENU_PANEL);
@@ -48,7 +48,7 @@ public class UIManager extends JPanel {
 //        this.add(pausePanel, Constants.PAUSE_PANEL);
         this.add(savedGamesPanel, Constants.SAVED_GAME_PANEL);
         this.add(savedMapsListPanel, Constants.SAVED_MAPS_LIST_PANEL);
-        this.add(shieldPanel, Constants.SHIELD_PANEL);
+//        this.add(shieldPanel, Constants.SHIELD_PANEL);
         this.add(saveGamePanel, Constants.SAVE_GAME_PANEL);
 
         viewMainMenu();
@@ -93,10 +93,10 @@ public class UIManager extends JPanel {
         cl.show(this, Constants.PAUSE_PANEL);
     }
 
-    public void viewShield(){
-        CardLayout cl = (CardLayout)(this.getLayout());
-        cl.show(this, Constants.SHIELD_PANEL);
-    }
+//    public void viewShield(){
+//        CardLayout cl = (CardLayout)(this.getLayout());
+//        cl.show(this, Constants.SHIELD_PANEL);
+//    }
 
     public void viewCreateMap(){
         CardLayout cl = (CardLayout)(this.getLayout());

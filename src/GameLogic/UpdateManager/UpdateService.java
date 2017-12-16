@@ -48,9 +48,6 @@ public class UpdateService {
 //                System.out.print(", " +gameMap[i][j]);
 //            }
 //        }
-        if (pacmans[0].getShield() != null) {
-            System.out.println(pacmans[0].getShield().getType().name());
-        }
 
         boolean canEat = pacmans[0].isCanEatGhost();
         ge.addScore(interactionCheckerAndHandler.doEatFood());

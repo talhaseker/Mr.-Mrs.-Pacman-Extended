@@ -22,10 +22,10 @@ public class ShieldPanel extends JPanel implements ActionListener {
 
     JButton okButton;
 
-    public ShieldPanel(){
+    public ShieldPanel() {
         super(new FlowLayout());
         this.setBackground(Color.MAGENTA);
-        JPanel gridPanel= new JPanel(new GridLayout(0,2, 0, 0));
+        JPanel gridPanel = new JPanel(new GridLayout(0, 2, 0, 0));
 
         nothingButton = new JRadioButton("Don't buy anything");
         copperButton = new JRadioButton("Copper Shield");
@@ -40,8 +40,8 @@ public class ShieldPanel extends JPanel implements ActionListener {
 
         JLabel label = new JLabel("                                                  ", nothingIcon, JLabel.CENTER);
         JLabel label2 = new JLabel("                                 3000 pts", copperIcon, JLabel.CENTER);
-        JLabel label3 = new JLabel("                                 6000 pts", silverIcon, JLabel.CENTER);
-        JLabel label4 = new JLabel("                                 9000 pts", goldenIcon, JLabel.CENTER);
+        JLabel label3 = new JLabel("                                 5000 pts", silverIcon, JLabel.CENTER);
+        JLabel label4 = new JLabel("                                 7000 pts", goldenIcon, JLabel.CENTER);
 
         JPanel iconPanel = new JPanel(new GridLayout(0, 1));
 
@@ -76,7 +76,7 @@ public class ShieldPanel extends JPanel implements ActionListener {
         okButton.setBackground(Color.magenta);
         okButton.setForeground(Color.YELLOW);
         //okButton.setOpaque(true);
-        okButton.addActionListener( new ActionListener() {
+        okButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 UIManager.gameEngine.setNextLevel();
@@ -94,6 +94,18 @@ public class ShieldPanel extends JPanel implements ActionListener {
         this.add(gridPanel);
         this.add(buttonPanel, BorderLayout.PAGE_END);
 
+    }
+
+    //Methods
+    public void enableShieldsByScore(int score) {
+        int currentScore = UIManager.gameEngine.getScore();
+        if (currentScore < 7000) {
+            goldenButton.setEnabled(false);
+            if (currentScore < 5000) {
+                silverButton.setEnabled(false);
+                if (currentScore < 3000) copperButton.setEnabled(false);
+            }
+        }
     }
 
     @Override
