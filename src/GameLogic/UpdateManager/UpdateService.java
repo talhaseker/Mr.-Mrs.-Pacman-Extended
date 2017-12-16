@@ -10,6 +10,8 @@ import GameLogic.ScreenItems.Pacman;
 
 import java.util.ArrayList;
 
+import static GameLogic.Enums.Movement.LEFT;
+
 /**
  * Created by talhaseker on 5.11.2017.
  */
@@ -46,6 +48,9 @@ public class UpdateService {
 //                System.out.print(", " +gameMap[i][j]);
 //            }
 //        }
+        if (pacmans[0].getShield() != null) {
+            System.out.println(pacmans[0].getShield().getType().name());
+        }
 
         boolean canEat = pacmans[0].isCanEatGhost();
         ge.addScore(interactionCheckerAndHandler.doEatFood());
@@ -99,6 +104,28 @@ public class UpdateService {
 
 
     private void updatePacman(Pacman pm){
+        if(pm.isShieldChanged()){ //If shield is changed, change animation accordingly
+            PacmanAnimationType type;
+            switch(pm.curMovement) {
+                case LEFT:
+                    type = PacmanAnimationType.LEFT;
+                    break;
+                case RIGHT:
+                    type = PacmanAnimationType.RIGHT;
+                    break;
+                case DOWN:
+                    type = PacmanAnimationType.DOWN;
+                    break;
+                case UP:
+                    type = PacmanAnimationType.UP;
+                    break;
+                default:
+                    type = PacmanAnimationType.LEFT;
+                    break;
+            }
+
+            pm.setCurrentAnimationType(type);
+        }
         pm.updateAnimation();  //First update animation, then change animation in the next iteration according to the movement update below
 
         if (pm.getPacmanType() == PacmanType.MRPACMAN)

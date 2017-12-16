@@ -10,6 +10,7 @@ import GameLogic.InputManager.PacManMovementController;
 import GameLogic.InputManager.PauseGameController;
 import GameLogic.ScreenItems.Ghost;
 import GameLogic.ScreenItems.Pacman;
+import GameLogic.ScreenItems.Shield;
 import GameLogic.UpdateManager.TimeController;
 import javax.swing.*;
 
@@ -187,27 +188,39 @@ public class GameEngine {
             level++;
             System.out.println("level passed");
 
-            //Reset map
-            for (int i = 0; i < gameMap.length; i++)
-                for (int j = 0; j < gameMap[0].length; j++)
-                    gameMap[i][j] = gameMapRestore[i][j];
-
-            gamePanel.resetFood();
-
-            //Reset Pacmans & ghosts
-            for (Pacman p : pacmans)
-                p.setForNextLevel();
-
-            //TODO: If bought shield, call setForNextLevel(shield)
-
-            for (Ghost g : ghosts)
-                g.setForNextLevel();
+            //Show shield panel
+            timeController.stopTimer();
+            isPaused = true;
+            gamePanel.showShieldPanel();
 
         } else {
             gameOver();
             //TODO: Highscore - ask for user name
         }
     }
+
+    public void setNextLevel(){
+        //Reset map
+        for (int i = 0; i < gameMap.length; i++)
+            for (int j = 0; j < gameMap[0].length; j++)
+                gameMap[i][j] = gameMapRestore[i][j];
+
+        gamePanel.resetFood();
+
+        //Reset Pacmans & ghosts
+        for (Pacman p : pacmans)
+            p.setForNextLevel();
+
+        for (Ghost g : ghosts)
+            g.setForNextLevel();
+
+        isPaused = false;
+        timeController.startTimer();
+        gamePanel.hideShieldPanel();
+        gamePanel.repaintRequest(gameMap);
+
+    }
+
 
     public void gameOver() {
         this.uiManager.viewGameOver();
@@ -232,6 +245,12 @@ public class GameEngine {
 
             gamePanel.updateLives(livesLeft);
             reStartGame();
+        }
+    }
+
+    public void setShield(Shield shield) {
+        for(Pacman p : pacmans) {
+            p.setShield(shield);
         }
     }
 }

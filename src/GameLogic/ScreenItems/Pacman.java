@@ -25,6 +25,7 @@ public class Pacman extends MovingObject implements Serializable{
     Shield shield;
     private int livesLeft = 3;
     private boolean canEatGhost = false, canPassWall = false, canPassGhost = false;
+    private boolean shieldChanged = false;
     private PacmanType pacmanType;
 
     //Constructor(s)
@@ -118,29 +119,27 @@ public class Pacman extends MovingObject implements Serializable{
         //Reset food effects & shield from previous level, if any
         this.foodEffect = 0;
         this.foodEffectSeconds = 0;
-        this.shield = null;
         this.currentAnimationType = PacmanAnimationType.STOP; //Starting mouth closed enum
-    }
-
-    public void setForNextLevel(Shield shield) {
-        this.setForNextLevel();
-        this.shield = shield;
     }
 
     public PacmanAnimationType getCurrentAnimationType(){return this.currentAnimationType;}
 
     public void setCurrentAnimationType(PacmanAnimationType animation){
-        if (this.currentAnimationType == animation)
+        if (this.currentAnimationType == animation && !shieldChanged)
             return;
 
         this.currentAnimationType = animation;
-
-        this.animation.changeAnimation(currentAnimationType, shield );
+        this.animation.changeAnimation(currentAnimationType, shield);
+        shieldChanged = false;
     }
 
     public void updateAnimation() {
         animation.update();
         super.setImage(animation.getImage());
+    }
+
+    public boolean isShieldChanged() {
+        return shieldChanged;
     }
 
     public int getLivesLeft() {
@@ -230,10 +229,14 @@ public class Pacman extends MovingObject implements Serializable{
     }
 
     public void setShield(Shield shield) {
-        if (shield == null){setSpeed(2);}
-        else if (shield.getType() == ShieldType.GOLD) {setSpeed(4);}
+
+        if (shield == null) { setSpeed(2); }
+        else if (shield.getType() == ShieldType.GOLD) { setSpeed(4); }
+
         this.shield = shield;
+        this.shieldChanged = true;
     }
+
 
     public int getFoodEffectSeconds() {
         return foodEffectSeconds;
