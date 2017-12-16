@@ -1,6 +1,7 @@
 package GameLogic.UpdateManager;
 
 import GUI.GamePanel;
+import GameLogic.Enums.PacmanAnimationType;
 import GameLogic.Enums.PacmanType;
 import GameLogic.GameEngine;
 import GameLogic.ScreenItems.Food;
@@ -85,9 +86,11 @@ public class UpdateService {
     }
 
     private void updatePacman(Pacman pm){
+        pm.updateAnimation();  //First update animation, then change animation in the next iteration according to the movement update below
+
         if (pm.getPacmanType() == PacmanType.MRPACMAN)
             if (pm.curMovement != pm.lastMovement && interactionCheckerAndHandler.isMoveAllowed(pm, pm.curMovement)){
-                pm.changeMovement();
+                pm.lastMovement = pm.curMovement;
             }else if (pacMrMoveThreshold == 0){
                 pm.curMovement = pm.lastMovement;
                 pacMrMoveThreshold = 20;
@@ -97,7 +100,7 @@ public class UpdateService {
 
         if (pm.getPacmanType() == PacmanType.MRSPACMAN)
             if (pm.curMovement != pm.lastMovement && interactionCheckerAndHandler.isMoveAllowed(pm, pm.curMovement)){
-                pm.changeMovement();
+                pm.lastMovement = pm.curMovement;
             }else if (pacMrsMoveThreshold == 0){
                 pm.curMovement = pm.lastMovement;
                 pacMrsMoveThreshold = 20;
@@ -109,27 +112,24 @@ public class UpdateService {
             switch (pm.lastMovement) {
                 case LEFT:
                     pm.setXpos(pm.getXpos() - pm.getSpeed());
-                    //TODO: Animation
-//                    pm.
+                    pm.setCurrentAnimationType(PacmanAnimationType.LEFT);
                     break;
                 case RIGHT:
                     pm.setXpos(pm.getXpos() + pm.getSpeed());
+                    pm.setCurrentAnimationType(PacmanAnimationType.RIGHT);
                     break;
                 case UP:
                     pm.setYpos(pm.getYpos() - pm.getSpeed());
+                    pm.setCurrentAnimationType(PacmanAnimationType.UP);
                     break;
                 case DOWN:
                     pm.setYpos(pm.getYpos() + pm.getSpeed());
+                    pm.setCurrentAnimationType(PacmanAnimationType.DOWN);
                     break;
                 default:
                     break;
             }
         }
     }
-
-    /**
-     * Updates MovingObjects' images according to give the effect of animation
-     */
-    public void updateObjectAnimations(){}
 
 }

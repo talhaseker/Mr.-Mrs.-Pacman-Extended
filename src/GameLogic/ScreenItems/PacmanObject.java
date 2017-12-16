@@ -7,8 +7,8 @@ import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 
 /** Parent class of each drawable game object
- * @author Ecem Ilgun
- * @version 1.8
+ * @author Ecem Ilgun, Talha Seker
+ * @version 1.9
  * @since 1.0
  */
 public class PacmanObject {
@@ -72,6 +72,10 @@ public class PacmanObject {
         this.imageIcon = Sprite.loadSprite(imgSrc);
     }
 
+    public void setImage(BufferedImage img){
+        this.imageIcon = img;
+    }
+
     /** Returns the imageIcon of the object
      * @return imageIcon of the object
      */
@@ -82,7 +86,6 @@ public class PacmanObject {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
         g2.drawImage(imageIcon, Xpos, Ypos, width, height, imageObserver);
-
     }
 
     @Override

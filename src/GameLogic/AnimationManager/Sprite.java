@@ -1,4 +1,6 @@
-package GameLogic.AnimationManager; /**
+package GameLogic.AnimationManager;
+
+/**
  * Created by talhaseker on 6.10.2017.
  */
 
@@ -11,7 +13,6 @@ public class Sprite {
 
     private static BufferedImage spriteSheet;
 
-
     public static BufferedImage loadSprite(String file) {
 
         BufferedImage sprite = null;
@@ -19,6 +20,7 @@ public class Sprite {
         try {
             sprite = ImageIO.read(new File("img-src/" + file + ".png"));
         } catch (IOException e) {
+            System.out.println("Could'nt find image in path: " + "img-src/" + file + ".png" );
             e.printStackTrace();
         }
 

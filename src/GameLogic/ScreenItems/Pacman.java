@@ -1,5 +1,6 @@
 package GameLogic.ScreenItems;
 
+import GameLogic.AnimationManager.PacmanAnimation;
 import GameLogic.Enums.Movement;
 import GameLogic.Enums.PacmanAnimationType;
 import GameLogic.Enums.PacmanType;
@@ -17,29 +18,30 @@ import java.io.Serializable;
  */
 public class Pacman extends MovingObject implements Serializable{
     //Variables
-    private int foodEffect;        //We can (should) switch to enum later here,
-    private PacmanAnimationType currentAnimation; //change it to currentAnimationType after project finishes
-    private Animation animation;
+    private int foodEffect;        //We can (should) switch to enum later here
+    private PacmanAnimationType currentAnimationType;
+    private PacmanAnimation animation;
     int foodEffectSeconds;
     Shield shield;
     private int livesLeft = 3;
     private boolean canEatGhost = false, canPassWall = false, canPassGhost = false;
     private PacmanType pacmanType;
 
-
     //Constructor(s)
-
     /** Default constructor of Pacman class.
      *  Initializes a not moving Mr. Pacman object.
      */
     public Pacman (PacmanType type) {
         super();
         pacmanType = type;
+        animation = new PacmanAnimation(type);
+        super.setImage(animation.getImage());
+
         if (type == PacmanType.MRPACMAN){
-            super.setImage("ImageIcons/PacMan1");
+            //super.setImage("ImageIcons/PacMan1");
             super.changePosition(372,348); //Pacman has a default starting grid
         }else {
-            super.setImage("ImageIcons/PacMan2");
+            //super.setImage("ImageIcons/MrsPacMan1");
             super.changePosition(316,348); //Pacman has a default starting grid
             super.curMovement = Movement.LEFT;
             super.lastMovement = Movement.LEFT;
@@ -51,7 +53,7 @@ public class Pacman extends MovingObject implements Serializable{
         this.foodEffect = 0;
         this.foodEffectSeconds = 0;
         this.shield = null;
-        this.currentAnimation = PacmanAnimationType.STOP; //Regular eating animation enum
+        this.currentAnimationType = PacmanAnimationType.STOP; //Regular eating animation enum
     }
 
     /** Initializes a Pacman object with its parameters
@@ -107,11 +109,19 @@ public class Pacman extends MovingObject implements Serializable{
         }
     }
 
-    public PacmanAnimationType getCurrentAnimation(){return this.currentAnimation;}
+    public PacmanAnimationType getCurrentAnimationType(){return this.currentAnimationType;}
 
-    public void setCurrentAnimation(PacmanAnimationType animation){
-        this.currentAnimation = animation;
-        this.animation.
+    public void setCurrentAnimationType(PacmanAnimationType animation){
+        if (this.currentAnimationType == animation)
+            return;
+
+        this.currentAnimationType = animation;
+        this.animation.changeAnimation(currentAnimationType);
+    }
+
+    public void updateAnimation() {
+        animation.update();
+        super.setImage(animation.getImage());
     }
 
     public int getLivesLeft() {
@@ -157,7 +167,7 @@ public class Pacman extends MovingObject implements Serializable{
     private void writeObject(java.io.ObjectOutputStream stream) throws IOException {
         stream.defaultWriteObject();
         stream.writeObject(pacmanType);
-        stream.writeObject(currentAnimation);
+        stream.writeObject(currentAnimationType);
         stream.writeObject(shield);
         stream.writeObject(super.curMovement);
         stream.writeObject(super.lastMovement);
@@ -178,7 +188,7 @@ public class Pacman extends MovingObject implements Serializable{
     private void readObject(java.io.ObjectInputStream stream) throws IOException, ClassNotFoundException {
         stream.defaultReadObject();
         pacmanType = (PacmanType) stream.readObject();
-        currentAnimation  = (PacmanAnimationType) stream.readObject();
+        currentAnimationType  = (PacmanAnimationType) stream.readObject();
         shield = (Shield) stream.readObject();
         super.curMovement = (Movement) stream.readObject();
         super.lastMovement = (Movement) stream.readObject();
@@ -218,7 +228,7 @@ public class Pacman extends MovingObject implements Serializable{
     public String toString() {
         return "Pacman{" +
                 "foodEffect=" + foodEffect +
-                ", currentAnimation=" + currentAnimation +
+                ", currentAnimationType=" + currentAnimationType +
                 ", foodEffectSeconds=" + foodEffectSeconds +
                 ", shield=" + shield +
                 ", livesLeft=" + livesLeft +

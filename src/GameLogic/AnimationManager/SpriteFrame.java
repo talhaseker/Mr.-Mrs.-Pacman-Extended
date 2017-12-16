@@ -1,4 +1,6 @@
-package GameLogic.AnimationManager; /**
+package GameLogic.AnimationManager;
+
+/**
  * Created by talhaseker on 6.10.2017.
  */
 

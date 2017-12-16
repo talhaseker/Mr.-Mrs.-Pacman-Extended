@@ -71,12 +71,13 @@ public class MovingObject extends PacmanObject {
         else if (movement == Movement.RIGHT) {
             this.changePosition(-20, 0);
         }
+
+        this.lastMovement = this.curMovement;
+        this.curMovement = movement;
+
     }
 
-    /*
-     * Changes image of MovingObject(pacman and ghosts)
-     */
-    public void setImage(){;}
+
 
     @Override
     public String toString() {
