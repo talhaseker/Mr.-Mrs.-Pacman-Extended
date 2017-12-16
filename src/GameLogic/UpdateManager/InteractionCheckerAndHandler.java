@@ -115,7 +115,6 @@ public class InteractionCheckerAndHandler {
     }
 
     private int checkPandFood(Pacman pm){
-        boolean retVal = false;
         int score = 0;
         int firstIndexY = (pm.getYpos() - 96)/28;
         int firstIndexX = (pm.getXpos() - 120)/28;
@@ -124,10 +123,16 @@ public class InteractionCheckerAndHandler {
         if ((pm.getYpos() - 96)%28 == 14){
             foodsToRemove = new ArrayList<Food>();
             for (Food f: foods) {
-                if ((f.getYpos() == (pm.getYpos() - 14) || f.getYpos() == (pm.getYpos() + 14)) && f.getXpos() == pm.getXpos()){
-                    foodsToRemove.add(f);
-                    pm.eatFood(f);
-                    retVal = true;
+                int intervalError = 15;
+                boolean isfoodeaten = false;
+                for (int yInterval = 14 - intervalError; yInterval < 14 + intervalError + 1 && !isfoodeaten; yInterval++) {
+                    for (int xInterval = - intervalError ; xInterval < intervalError + 1 && !isfoodeaten; xInterval++) {
+                        if ((f.getYpos() == (pm.getYpos() - yInterval) || f.getYpos() == (pm.getYpos() + yInterval)) && f.getXpos() == pm.getXpos() + xInterval) {
+                            foodsToRemove.add(f);
+                            pm.eatFood(f);
+                            isfoodeaten = true;
+                        }
+                    }
                 }
             }
             for (Food f: foodsToRemove) {
@@ -157,7 +162,6 @@ public class InteractionCheckerAndHandler {
                             g.scatter();
                         }
                     pm.eatFood(f);
-                    retVal = true;
                 }
             }
             for (Food f: foodsToRemove) {
