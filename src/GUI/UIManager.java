@@ -28,7 +28,7 @@ public class UIManager extends JPanel {
         super(new CardLayout());
 
         createMapPanel = new CreateMapPanel();
-        gameOverPanel = new GameOverPanel();
+        gameOverPanel = new GameOverPanel(0);
         helpPanel = new HelpPanel();
         highScorePanel = new HighScorePanel();
         mainMenuPanel = new MainMenuPanel();
@@ -61,6 +61,8 @@ public class UIManager extends JPanel {
     }
 
     public void viewHighScores(){
+        highScorePanel = new HighScorePanel();
+        this.add(highScorePanel, Constants.HIGHSCORE_PANEL);
         CardLayout cl = (CardLayout)(this.getLayout());
         cl.show(this, Constants.HIGHSCORE_PANEL);
     }
@@ -103,7 +105,9 @@ public class UIManager extends JPanel {
         cl.show(this, Constants.CREATE_MAP_PANEL);
     }
 
-    public void viewGameOver(){
+    public void viewGameOver(int score){
+        gameOverPanel = new GameOverPanel(score);
+        this.add(gameOverPanel, Constants.GAME_OVER_PANEL);
         CardLayout cl = (CardLayout)(this.getLayout());
         cl.show(this, Constants.GAME_OVER_PANEL);
     }

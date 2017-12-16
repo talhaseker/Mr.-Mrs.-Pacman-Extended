@@ -3,7 +3,6 @@ package GUI;
 import DataLayer.HighScoreDatabase.HighScoreDataManager;
 import GUI.UIBase.PacButton;
 import GUI.UIBase.PacLabel;
-import GUI.UIBase.PacPanel;
 import GameLogic.Constants;
 
 import javax.swing.*;
@@ -18,10 +17,11 @@ public class NewScorePanel extends JPanel implements ActionListener {
     private String scoreName;
     private int score;
 
-    public NewScorePanel() {
+    public NewScorePanel(int score) {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setBackground(Color.PINK);
         ImageIcon pauseIcon = new ImageIcon(("img-src/icons/pause2.png"));
+        this.score = score;
 
         //Initialize Labels
         PacLabel gameOverLabel = new PacLabel("GAME IS OVER", 24f);
@@ -51,19 +51,27 @@ public class NewScorePanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent event) {
         if (event.getSource() == saveScoreButton){
+            HighScoreDataManager hsdm = new HighScoreDataManager();
             scoreName = JOptionPane.showInputDialog("Enter a nickname");
-            HighScoreDataManager.setHighScoreData(scoreName, score);
+            hsdm.writeHighScore(scoreName, score);
         }else if (event.getSource() == exitButton){
             GameFrame.uiManager.view(Constants.MAIN_MENU_PANEL);
             UIManager.gameEngine = null;
             SwingUtilities.invokeLater(new Runnable() {
                 public void run() {
-
                 }
             });
 
         }else {
             GameFrame.uiManager.view(Constants.MAIN_MENU_PANEL);
         }
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getScore() {
+        return score;
     }
 }

@@ -12,6 +12,7 @@ import GameLogic.ScreenItems.Ghost;
 import GameLogic.ScreenItems.Pacman;
 import GameLogic.ScreenItems.Shield;
 import GameLogic.UpdateManager.TimeController;
+
 import javax.swing.*;
 
 import static javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW;
@@ -229,9 +230,7 @@ public class GameEngine {
 
 
     public void gameOver() {
-        this.gamePanel.showNewScorePanel();
-
-        this.uiManager.viewGameOver();
+        this.uiManager.viewGameOver(this.score);
     }
 
     public void addScore(int scr) {

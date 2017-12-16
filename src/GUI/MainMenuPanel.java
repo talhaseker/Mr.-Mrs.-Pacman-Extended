@@ -116,7 +116,7 @@ public class MainMenuPanel extends JPanel{
     public class highScoreListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            GameFrame.uiManager.view(Constants.HIGHSCORE_PANEL);
+            GameFrame.uiManager.viewHighScores();
         }
     }
     public class onePlayerListener implements ActionListener {

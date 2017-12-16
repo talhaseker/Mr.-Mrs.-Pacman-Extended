@@ -1,5 +1,7 @@
 package GUI;
 
+import DataLayer.HighScoreDatabase.HighScoreData;
+import DataLayer.HighScoreDatabase.HighScoreDataManager;
 import GUI.UIBase.PacButton;
 import GUI.UIBase.PacLabel;
 import GameLogic.AnimationManager.Sprite;
@@ -15,9 +17,13 @@ import java.awt.event.ActionListener;
  */
 public class GameOverPanel extends JPanel implements ActionListener {
     PacButton playAgainButton;
-    public GameOverPanel(){
+    JPanel newScorePanel;
+    private int score;
+
+    public GameOverPanel(int score){
         super(null);
         this.setBackground(Color.BLACK);
+        this.score = score;
         PacLabel gameOverLabel = new PacLabel("GAME OVER...", 72f);
         playAgainButton = new PacButton("PLAY AGAIN", 36f);
         playAgainButton.setBackground(Color.BLACK);
@@ -29,6 +35,20 @@ public class GameOverPanel extends JPanel implements ActionListener {
         Dimension playDim = playAgainButton.getPreferredSize();
         playAgainButton.setBounds(220, 350, playDim.width, playDim.height);
         playAgainButton.addActionListener(this);
+
+        HighScoreDataManager hsdm = new HighScoreDataManager();
+        HighScoreData[] hsd = hsdm.getHighScores();
+        boolean isHighEnough = false;
+        for (HighScoreData h: hsd) {
+            if (h != null ){
+                if (h.getScore()<=this.score)
+                    isHighEnough = true;
+            }else{
+                isHighEnough =true;
+            }
+        }
+        if (isHighEnough)
+            this.showNewScorePanel(this.score);
     }
 
     @Override
@@ -43,5 +63,15 @@ public class GameOverPanel extends JPanel implements ActionListener {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(Sprite.loadSprite("gameover/gameover"), 0, 0, null);
+    }
+
+    public void showNewScorePanel(int score){
+        this.newScorePanel = new NewScorePanel(score);
+        this.add(newScorePanel);
+        this.newScorePanel.setLocation(300, 175);
+        this.newScorePanel.setSize(new Dimension(200, 250));
+        this.newScorePanel.setVisible(true);
+    }
+    public void hideNewScorePanel(){ newScorePanel.setVisible(false);
     }
 }

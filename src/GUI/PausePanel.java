@@ -77,5 +77,13 @@ public class PausePanel extends PacPanel {
             GameFrame.uiManager.view(Constants.GAME_PANEL);
         }
     }
+
+    public String getSaveGameName() {
+        return saveGameName;
+    }
+
+    public void setSaveGameName(String saveGameName) {
+        this.saveGameName = saveGameName;
+    }
 }
 

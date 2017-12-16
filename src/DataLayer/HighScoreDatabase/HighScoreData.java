@@ -5,86 +5,56 @@
  */
 package DataLayer.HighScoreDatabase;
 
-import java.io.*;
-import java.util.Arrays;
-
-import DataLayer.GameDatabase.GameDataManager;
+import java.io.IOException;
+import java.io.Serializable;
 /**
  *
  * @author sevval ekici
  */
 public class HighScoreData implements Serializable {
     
-    private int highScores[]= new int[10];
+//    private int highScores[]= new int[10];
+    private String name;
     private int score;
 
-    public void writeHighScores(){
-        try {
-            FileWriter fw = new FileWriter("highscores.txt",true);
-            BufferedWriter bw = new BufferedWriter(fw);
-            PrintWriter out = new PrintWriter(bw);
-            for (int i= 0; i<10; i++){
-                out.println(""+ highScores[i]);
-            }
-            out.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public HighScoreData(){
+        this.name = "---";
+        this.score=0;
     }
 
-
-    public void readHighScores() throws IOException {
-        try{
-        BufferedReader in = new BufferedReader(new FileReader("/Users/mbpro/Documents/GitHub/Mr.-Mrs.-Pacman-Extended/out/production/Mr.-Mrs.-Pacman-Extended/DataLayer/HighScoreDatabase/highscores.txt"));
-        String str="";
-        int i=0;
-        while((str = in.readLine()) != null){
-            highScores[i++]= Integer.parseInt(str);
-            }
-        }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+    public String getName() {
+        return name;
     }
 
-    public void setHighScores(){
-        boolean isChanged = false;
-        if(highScores[9]==0){
-            for(int i=0; i<10; i++){
-                if(highScores[i]==0) {
-                    highScores[i] = score;
-                    isChanged = true;
-                    break;
-                }
-            }
-        }
-        else{
-            for(int i=0;i<10;i++){
-                if (highScores[i]<score){
-                    highScores[i]= score;
-                    isChanged= true;
-                    break;
-                }
-            }
-        }
-        if(isChanged){
-            Arrays.sort(highScores);
-
-        }
-
-    }
-    public int[] getHighScores() {
-        return highScores;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getScore() {
         return score;
     }
 
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    private void writeObject(java.io.ObjectOutputStream stream) throws IOException {
+        stream.defaultWriteObject();
+        stream.writeObject(name);
+        stream.writeInt(score);
+    }
+
+    private void readObject(java.io.ObjectInputStream stream) throws IOException, ClassNotFoundException {
+        stream.defaultReadObject();
+        name = (String) stream.readObject();
+        score = stream.readInt();
+    }
+
+    @Override
+    public String toString() {
+        return "HighScoreData{" +
+                "name='" + name + '\'' +
+                ", score=" + score +
+                '}';
+    }
 }
