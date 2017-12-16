@@ -134,7 +134,8 @@ public class Pacman extends MovingObject implements Serializable{
             return;
 
         this.currentAnimationType = animation;
-        this.animation.changeAnimation(currentAnimationType);
+
+        this.animation.changeAnimation(currentAnimationType, shield );
     }
 
     public void updateAnimation() {

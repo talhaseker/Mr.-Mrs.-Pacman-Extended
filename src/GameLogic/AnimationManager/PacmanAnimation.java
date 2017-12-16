@@ -3,6 +3,7 @@ package GameLogic.AnimationManager;
 import GameLogic.Enums.PacmanAnimationType;
 import GameLogic.Enums.PacmanType;
 import GameLogic.Enums.ShieldType;
+import GameLogic.ScreenItems.Shield;
 
 import java.awt.image.BufferedImage;
 
@@ -47,11 +48,12 @@ public class PacmanAnimation{
     }
 
 
-    public void changeAnimation(PacmanAnimationType animationtype, ShieldType shieldType){
+    public void changeAnimation(PacmanAnimationType animationtype, Shield shield) {
         String subFolder = "";
-        if (shieldType != null)
-            subFolder = shieldType.name();
 
+        if (shield != null) {
+            subFolder = shield.getType().name();
+        }
         if (animationtype != PacmanAnimationType.DOWN && animationtype != PacmanAnimationType.UP &&
                 animationtype != PacmanAnimationType.LEFT && animationtype != PacmanAnimationType.RIGHT)
             return;

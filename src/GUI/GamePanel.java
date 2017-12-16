@@ -21,6 +21,7 @@ public class GamePanel extends JPanel {
     JPanel foodPanel;
     JPanel movementPanel;
     JPanel pausePanel;
+    JPanel shieldPanel;
     PacLabel scoreLabel;
     PacLabel livesLabel;
     PacLabel getReadyLabel;
@@ -39,11 +40,18 @@ public class GamePanel extends JPanel {
         this.gameMap = gameMap;
         this.pacmans = pacmans;
         this.ghosts = ghosts;
+
         this.pausePanel = new PausePanel();
         this.add(pausePanel);
         this.pausePanel.setLocation(300, 175);
         this.pausePanel.setSize(new Dimension(200, 250));
         this.hidePausePanel();
+
+        this.shieldPanel = new ShieldPanel();
+        this.add(shieldPanel);
+        this.shieldPanel.setLocation(100, 150); //Random numbers
+        this.shieldPanel.setSize(new Dimension(600, 480));
+        this.hideShieldPanel();
     }
 
     public void updateScore(int score){
@@ -180,11 +188,20 @@ public class GamePanel extends JPanel {
     public void hideGetReady(){
         getReadyLabel.setVisible(false);
     }
+
     public void showPausePanel(){
         pausePanel.setVisible(true);
     }
     public void hidePausePanel(){
         pausePanel.setVisible(false);
     }
+
+    public void showShieldPanel(){
+        shieldPanel.setVisible(true);
+    }
+    public void hideShieldPanel(){
+        shieldPanel.setVisible(false);
+    }
+
     public void resetFood(){ foodChanged = true;}
 }
