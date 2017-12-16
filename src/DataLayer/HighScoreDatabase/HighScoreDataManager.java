@@ -17,7 +17,7 @@ public class HighScoreDataManager {
 
     int score;
 
-    public HighScoreData setHighScoreData(int score){
+    public static HighScoreData setHighScoreData(String name, int score){
         HighScoreData hsd = new HighScoreData();
         hsd.setScore(score);
         return hsd;

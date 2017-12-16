@@ -13,18 +13,26 @@ import java.io.Serializable;
 public class Shield implements Serializable{
     private ShieldType type;
     private int effectTime;
+    private int cost;
 
     public Shield(ShieldType type){
         this.type = type;
         switch (type){
-            case COPPER: case GOLD:
+            case COPPER:
                 effectTime = 1000;
+                cost = 3000;
                 break;
-            default:
+            case GOLD:
+                effectTime = 1000;
+                cost = 7000;
+                break;
+            default: //SILVER
                 effectTime = 1333;
+                cost = 5000;
                 break;
         }
     }
+
 
     public ShieldType getType() {
         return type;
@@ -41,6 +49,8 @@ public class Shield implements Serializable{
     public void setEffectTime(int effectTime) {
         this.effectTime = effectTime;
     }
+
+    public int getCost(){return cost;}
 
     private void writeObject(java.io.ObjectOutputStream stream) throws IOException {
         stream.defaultWriteObject();

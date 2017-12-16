@@ -94,7 +94,9 @@ public class TimeController implements ActionListener {
         }else if (p.getShield() != null && p.getShield().getEffectTime() == 0){
             if (p.getShield().getType() != ShieldType.GOLD)
                 p.setShield(null);
-            p.getShield().setEffectTime(-1);
+            if (p.getShield() != null){ //I needed to make this check here since it tries to use a shield method (setEffectTime)
+                p.getShield().setEffectTime(-1);
+            }
         }
     }
 }

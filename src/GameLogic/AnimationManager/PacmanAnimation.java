@@ -52,7 +52,7 @@ public class PacmanAnimation{
         String subFolder = "";
 
         if (shield != null) {
-            subFolder = shield.getType().name();
+            subFolder = shield.getType().name() + "/";
         }
         if (animationtype != PacmanAnimationType.DOWN && animationtype != PacmanAnimationType.UP &&
                 animationtype != PacmanAnimationType.LEFT && animationtype != PacmanAnimationType.RIGHT)

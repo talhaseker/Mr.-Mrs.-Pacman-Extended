@@ -29,7 +29,6 @@ public class GameOverPanel extends JPanel implements ActionListener {
         Dimension playDim = playAgainButton.getPreferredSize();
         playAgainButton.setBounds(220, 350, playDim.width, playDim.height);
         playAgainButton.addActionListener(this);
-
     }
 
     @Override
@@ -37,7 +36,6 @@ public class GameOverPanel extends JPanel implements ActionListener {
         if (event.getSource() == playAgainButton){
             GameFrame.uiManager.view(Constants.MAIN_MENU_PANEL);
             UIManager.gameEngine = null;
-
         }
     }
 
