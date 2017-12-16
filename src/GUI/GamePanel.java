@@ -22,6 +22,7 @@ public class GamePanel extends JPanel {
     JPanel movementPanel;
     JPanel pausePanel;
     ShieldPanel shieldPanel;
+    JPanel newScorePanel;
     PacLabel scoreLabel;
     PacLabel livesLabel;
     PacLabel getReadyLabel;
@@ -52,6 +53,12 @@ public class GamePanel extends JPanel {
         this.shieldPanel.setLocation(100, 150); //Random numbers
         this.shieldPanel.setSize(new Dimension(600, 480));
         this.hideShieldPanel();
+
+        this.newScorePanel = new NewScorePanel();
+        this.add(newScorePanel);
+        this.newScorePanel.setLocation(300, 175);
+        this.newScorePanel.setSize(new Dimension(200, 250));
+        this.hideNewScorePanel();
     }
 
     public void updateScore(int score){
@@ -194,6 +201,12 @@ public class GamePanel extends JPanel {
     }
     public void hidePausePanel(){
         pausePanel.setVisible(false);
+    }
+
+    public void showNewScorePanel(){
+        newScorePanel.setVisible(true);
+    }
+    public void hideNewScorePanel(){ newScorePanel.setVisible(false);
     }
 
     public void showShieldPanel(){

@@ -173,14 +173,12 @@ public class GameEngine {
         timeController.startTimer();
         gamePanel.hidePausePanel();
         gamePanel.repaintRequest(gameMap);
-        //TODO
     }
 
     public void pauseGame() {
         timeController.stopTimer();
         isPaused = true;
         gamePanel.showPausePanel();
-        //TODO
     }
 
     public void passLevel() {
@@ -228,6 +226,8 @@ public class GameEngine {
 
 
     public void gameOver() {
+        this.gamePanel.showNewScorePanel();
+
         this.uiManager.viewGameOver();
     }
 

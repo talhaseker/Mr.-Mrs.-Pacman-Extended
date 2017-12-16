@@ -99,6 +99,11 @@ public class ShieldPanel extends JPanel implements ActionListener {
     //Methods
     public void enableShieldsByScore(int score) {
         int currentScore = UIManager.gameEngine.getScore();
+
+        copperButton.setEnabled(true);
+        silverButton.setEnabled(true);
+        goldenButton.setEnabled(true);
+
         if (currentScore < 7000) {
             goldenButton.setEnabled(false);
             if (currentScore < 5000) {
