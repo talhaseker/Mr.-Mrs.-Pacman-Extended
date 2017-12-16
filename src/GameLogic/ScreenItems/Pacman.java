@@ -6,7 +6,6 @@ import GameLogic.Enums.PacmanAnimationType;
 import GameLogic.Enums.PacmanType;
 import GameLogic.Enums.ShieldType;
 
-import javax.imageio.ImageIO;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -203,7 +202,7 @@ public class Pacman extends MovingObject implements Serializable{
         stream.writeBoolean(canEatGhost);
         stream.writeBoolean(canPassGhost);
         stream.writeBoolean(canPassWall);
-        ImageIO.write(imageIcon, "png", stream);
+        stream.writeObject(animation);
     }
 
     private void readObject(java.io.ObjectInputStream stream) throws IOException, ClassNotFoundException {
@@ -224,7 +223,7 @@ public class Pacman extends MovingObject implements Serializable{
         canEatGhost = stream.readBoolean();
         canPassGhost = stream.readBoolean();
         canPassWall = stream.readBoolean();
-        super.imageIcon = ImageIO.read(stream);
+        animation = (PacmanAnimation) stream.readObject();
     }
 
     public Shield getShield() {

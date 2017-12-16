@@ -2,10 +2,11 @@ package GameLogic.AnimationManager;
 
 import GameLogic.Enums.PacmanAnimationType;
 import GameLogic.Enums.PacmanType;
-import GameLogic.Enums.ShieldType;
 import GameLogic.ScreenItems.Shield;
 
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.*;
 
 /** A different implementation of Animation (created by Talha Seker)
  *
@@ -25,7 +26,7 @@ import java.awt.image.BufferedImage;
  * @since 1.0
  * @see Animation
  */
-public class PacmanAnimation{
+public class PacmanAnimation implements Serializable{
     private int frameCount;                 // Counts ticks for change
     private int frameDelay;                 // frame delay 1-12
     public int currentFrame;                // animations current frame
@@ -92,4 +93,36 @@ public class PacmanAnimation{
     }
 
     public BufferedImage getImage() { return frames[currentFrame];}
+
+    private void writeObject(java.io.ObjectOutputStream stream) throws IOException {
+//        stream.defaultWriteObject();
+        stream.writeObject(pacmanType);
+        stream.writeInt(frameCount);
+        stream.writeInt(frameDelay);
+        stream.writeInt(currentFrame);
+        stream.writeInt(totalFrames);
+        byte[][] byteArr = new byte[frames.length][];
+        for (int i=0; i<frames.length; i++){
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(frames[i], "png", baos);
+            byte[] img = baos.toByteArray();
+            byteArr[i] = img;
+        }
+        stream.writeObject(byteArr);
+    }
+
+    private void readObject(java.io.ObjectInputStream stream) throws IOException, ClassNotFoundException {
+//        stream.defaultReadObject();
+        pacmanType = (PacmanType) stream.readObject();
+        frameCount = stream.readInt();
+        frameDelay = stream.readInt();
+        currentFrame = stream.readInt();
+        totalFrames = stream.readInt();
+        byte[][] byteArr = (byte[][]) stream.readObject();
+        this.frames = new BufferedImage[byteArr.length];
+        for (int i = 0; i<byteArr.length; i++){
+            InputStream is = new ByteArrayInputStream(byteArr[i]);
+            this.frames[i] = ImageIO.read(is);
+        }
+    }
 }

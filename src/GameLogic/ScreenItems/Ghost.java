@@ -169,6 +169,7 @@ public class Ghost extends MovingObject implements Serializable {
     private void writeObject(java.io.ObjectOutputStream stream) throws IOException {
         stream.defaultWriteObject();
         stream.writeObject(type);
+        stream.writeObject(currentAnimationType);
         stream.writeBoolean(isAlive);
         stream.writeInt(countdownTimer);
         stream.writeBoolean(isAttacking);
@@ -184,6 +185,7 @@ public class Ghost extends MovingObject implements Serializable {
     private void readObject(java.io.ObjectInputStream stream) throws IOException, ClassNotFoundException {
         stream.defaultReadObject();
         type = (GhostType) stream.readObject();
+        currentAnimationType = (GhostAnimationType) stream.readObject();
         isAlive = stream.readBoolean();
         countdownTimer = stream.readInt();
         isAttacking = stream.readBoolean();
