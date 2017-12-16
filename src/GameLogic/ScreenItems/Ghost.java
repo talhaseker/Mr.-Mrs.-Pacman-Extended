@@ -17,7 +17,6 @@ import java.io.Serializable;
 
 import static GameLogic.Constants.ATTACK;
 import static GameLogic.Constants.SCATTER;
-import static GameLogic.Enums.GhostType.INKY;
 
 /** Represent ghost's data
  * @author SEVVAL EKICI
@@ -197,4 +196,17 @@ public class Ghost extends MovingObject implements Serializable {
         super.imageIcon = ImageIO.read(stream);
     }
 
+    @Override
+    public String toString() {
+        return "Ghost{" +
+                "type=" + type +
+                ", currentAnimationType=" + currentAnimationType +
+                ", points=" + points +
+                ", isAlive=" + isAlive +
+                ", countdownTimer=" + countdownTimer +
+                ", isAttacking=" + isAttacking +
+                ", scatter=" + scatter +
+                ", initialOutOfCageY=" + initialOutOfCageY +
+                '}';
+    }
 }

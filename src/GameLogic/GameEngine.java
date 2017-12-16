@@ -84,6 +84,9 @@ public class GameEngine {
             ghosts[1] = new Ghost(GhostType.PINKY);
             ghosts[2] = new Ghost(GhostType.INKY);
             ghosts[3] = new Ghost(GhostType.CLYDE);
+//            for (Ghost g:ghosts) {
+//                System.out.println(g);
+//            }
 
 
             map = new GameMap();

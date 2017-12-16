@@ -76,21 +76,24 @@ public class Pacman extends MovingObject implements Serializable{
      */
     public void eatFood(Food food) {
 //        score += food.getPoints();
-        this.foodEffectSeconds = food.getSideEffectSeconds();
-        int sideEffect = food.getSideEffect();
+        int sideEffect = 0;
+        if (food.getSideEffect() != 0){
+            this.foodEffectSeconds = food.getSideEffectSeconds();
+             sideEffect = food.getSideEffect();
 
-        if (sideEffect == 1) {
-            canEatGhost = true;
-            canPassWall = false;
-            canPassGhost = false;
-        }else if (sideEffect == 2){
-            canEatGhost = false;
-            canPassWall = true;
-            canPassGhost = false;
-        }else if(sideEffect == 3){
-            canEatGhost = false;
-            canPassWall = false;
-            canPassGhost = true;
+            if (sideEffect == 1) {
+                canEatGhost = true;
+                canPassWall = false;
+                canPassGhost = false;
+            }else if (sideEffect == 2){
+                canEatGhost = false;
+                canPassWall = true;
+                canPassGhost = false;
+            }else if(sideEffect == 3){
+                canEatGhost = false;
+                canPassWall = false;
+                canPassGhost = true;
+            }
         }
     }
 
@@ -176,7 +179,7 @@ public class Pacman extends MovingObject implements Serializable{
     }
 
     public boolean isCanPassGhost() {
-        return canPassGhost;
+        return canPassGhost || (shield != null);
     }
 
     public void setCanPassGhost(boolean canPassGhost) {

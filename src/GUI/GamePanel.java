@@ -93,7 +93,7 @@ public class GamePanel extends JPanel {
                 if (isFirstDraw){
                     for (int i = 0; i < height; i++){
                         for (int j = 0; j < width; j++){
-                            if (gameMap[i][j] == 1){
+                            if (gameMap[i][j] == 1 || gameMap[i][j] == -2){
                                 wallBricks.add(new WallBrick(g, mainPanel,(initialX + j*28), (initalY + i*28)));
                             }
                         }

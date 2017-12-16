@@ -68,32 +68,32 @@ public class CreateMapPanel extends JPanel implements ActionListener {
         ClassLoader loader = this.getClass().getClassLoader();
         ButtonGroup buttonGroup = new ButtonGroup();
 
-//        wallBtn = new JRadioButton(new ImageIcon(loader.getResource("ImageIcons/wall.png")));
-//        wallBtn.setSelectedIcon(new ImageIcon(loader.getResource("ImageIcons/wall.png")));
-        wallBtn = new JRadioButton(new ImageIcon(loader.getResource("img-src/ImageIcons/wall.png")));
-        wallBtn.setSelectedIcon(new ImageIcon(loader.getResource("img-src/ImageIcons/wall.png")));
+        wallBtn = new JRadioButton(new ImageIcon(loader.getResource("ImageIcons/wall.png")));
+        wallBtn.setSelectedIcon(new ImageIcon(loader.getResource("ImageIcons/wall.png")));
+//        wallBtn = new JRadioButton(new ImageIcon(loader.getResource("img-src/ImageIcons/wall.png")));
+//        wallBtn.setSelectedIcon(new ImageIcon(loader.getResource("img-src/ImageIcons/wall.png")));
         wallBtn.addActionListener(this);
         wallBtn.setToolTipText("Add Wall To Map");
         wallBtn.setSelected(true);
 
-//        yellowFoodBtn = new JRadioButton(new ImageIcon(loader.getResource("ImageIcons/yellow.png")));
-//        yellowFoodBtn.setSelectedIcon(new ImageIcon(loader.getResource("ImageIcons/yellow.png")));
-        yellowFoodBtn = new JRadioButton(new ImageIcon(loader.getResource("img-src/ImageIcons/yellow.png")));
-        yellowFoodBtn.setSelectedIcon(new ImageIcon(loader.getResource("img-src/ImageIcons/yellow.png")));
+        yellowFoodBtn = new JRadioButton(new ImageIcon(loader.getResource("ImageIcons/yellow.png")));
+        yellowFoodBtn.setSelectedIcon(new ImageIcon(loader.getResource("ImageIcons/yellow.png")));
+//        yellowFoodBtn = new JRadioButton(new ImageIcon(loader.getResource("img-src/ImageIcons/yellow.png")));
+//        yellowFoodBtn.setSelectedIcon(new ImageIcon(loader.getResource("img-src/ImageIcons/yellow.png")));
         yellowFoodBtn.addActionListener(this);
         yellowFoodBtn.setToolTipText("Add Yellow Food To Map");
 
-//        greenFoodBtn = new JRadioButton(new ImageIcon(loader.getResource("ImageIcons/green.png")));
-//        greenFoodBtn.setSelectedIcon(new ImageIcon(loader.getResource("ImageIcons/green.png")));
-        greenFoodBtn = new JRadioButton(new ImageIcon(loader.getResource("img-src/ImageIcons/green.png")));
-        greenFoodBtn.setSelectedIcon(new ImageIcon(loader.getResource("img-src/ImageIcons/green.png")));
+        greenFoodBtn = new JRadioButton(new ImageIcon(loader.getResource("ImageIcons/green.png")));
+        greenFoodBtn.setSelectedIcon(new ImageIcon(loader.getResource("ImageIcons/green.png")));
+//        greenFoodBtn = new JRadioButton(new ImageIcon(loader.getResource("img-src/ImageIcons/green.png")));
+//        greenFoodBtn.setSelectedIcon(new ImageIcon(loader.getResource("img-src/ImageIcons/green.png")));
         greenFoodBtn.addActionListener(this);
         greenFoodBtn.setToolTipText("Add Green Food To Map");
 
-//        bigFoodBtn = new JRadioButton(new ImageIcon(loader.getResource("ImageIcons/big.png")));
-//        bigFoodBtn.setSelectedIcon(new ImageIcon(loader.getResource("ImageIcons/big.png")));
-        bigFoodBtn = new JRadioButton(new ImageIcon(loader.getResource("img-src/ImageIcons/big.png")));
-        bigFoodBtn.setSelectedIcon(new ImageIcon(loader.getResource("img-src/ImageIcons/big.png")));
+        bigFoodBtn = new JRadioButton(new ImageIcon(loader.getResource("ImageIcons/big.png")));
+        bigFoodBtn.setSelectedIcon(new ImageIcon(loader.getResource("ImageIcons/big.png")));
+//        bigFoodBtn = new JRadioButton(new ImageIcon(loader.getResource("img-src/ImageIcons/big.png")));
+//        bigFoodBtn.setSelectedIcon(new ImageIcon(loader.getResource("img-src/ImageIcons/big.png")));
         bigFoodBtn.addActionListener(this);
         bigFoodBtn.setToolTipText("Add Big Food To Map");
 

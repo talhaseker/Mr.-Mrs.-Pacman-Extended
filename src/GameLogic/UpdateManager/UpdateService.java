@@ -54,17 +54,23 @@ public class UpdateService {
         if (isMultiplayer){
             updatePacman(pacmans[1]);
             canEat = canEat || pacmans[1].isCanEatGhost();
+            if (interactionCheckerAndHandler.doBumpGhosts(1 ,canEat)){
+                if (canEat)
+                    ge.addScore(100);
+                else if(!pacmans[1].isCanPassGhost())
+                    ge.pacmanDied();
+            }
         }
-        if (interactionCheckerAndHandler.doBumpGhosts(canEat)){
+        if (interactionCheckerAndHandler.doBumpGhosts(0 ,canEat)){
             if (canEat)
                 ge.addScore(100);
-            else
+            else if(!pacmans[0].isCanPassGhost())
                 ge.pacmanDied();
         }
 
         ghostController.move();
         for (Ghost g: ghosts){
-            if (interactionCheckerAndHandler.isMoveAllowed(g, g.lastMovement)){
+            if (interactionCheckerAndHandler.isMoveAllowed(g, g.lastMovement, false)){
             switch (g.lastMovement){
                 case LEFT:
                     g.setXpos(g.getXpos() - g.getSpeed());
@@ -95,14 +101,12 @@ public class UpdateService {
         return foods.isEmpty();
     }
 
-
-
-
     private void updatePacman(Pacman pm){
         pm.updateAnimation();  //First update animation, then change animation in the next iteration according to the movement update below
-
+        if (pm.getFoodEffectSeconds() == 1 && pm.isCanPassWall())
+            interactionCheckerAndHandler.savePacmanFromWalls(pm);
         if (pm.getPacmanType() == PacmanType.MRPACMAN)
-            if (pm.curMovement != pm.lastMovement && interactionCheckerAndHandler.isMoveAllowed(pm, pm.curMovement)){
+            if (pm.curMovement != pm.lastMovement && interactionCheckerAndHandler.isMoveAllowed(pm, pm.curMovement, pm.isCanPassWall())){
                 pm.lastMovement = pm.curMovement;
             }else if (pacMrMoveThreshold == 0){
                 pm.curMovement = pm.lastMovement;
@@ -112,7 +116,7 @@ public class UpdateService {
             }
 
         if (pm.getPacmanType() == PacmanType.MRSPACMAN)
-            if (pm.curMovement != pm.lastMovement && interactionCheckerAndHandler.isMoveAllowed(pm, pm.curMovement)){
+            if (pm.curMovement != pm.lastMovement && interactionCheckerAndHandler.isMoveAllowed(pm, pm.curMovement, pm.isCanPassWall())){
                 pm.lastMovement = pm.curMovement;
             }else if (pacMrsMoveThreshold == 0){
                 pm.curMovement = pm.lastMovement;
@@ -121,7 +125,7 @@ public class UpdateService {
                 pacMrsMoveThreshold--;
             }
 
-        if (interactionCheckerAndHandler.isMoveAllowed(pm, pm.lastMovement)) {
+        if (interactionCheckerAndHandler.isMoveAllowed(pm, pm.lastMovement, pm.isCanPassWall())) {
             switch (pm.lastMovement) {
                 case LEFT:
                     pm.setXpos(pm.getXpos() - pm.getSpeed());

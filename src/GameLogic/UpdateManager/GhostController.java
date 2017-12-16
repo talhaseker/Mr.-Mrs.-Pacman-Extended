@@ -388,6 +388,6 @@ public class GhostController {
     }
 
     private boolean moveIsAllowed(Ghost ghost, Movement curMovement){
-        return interactionCheckerAndHandler.isMoveAllowed(ghost, curMovement);
+        return interactionCheckerAndHandler.isMoveAllowed(ghost, curMovement, false);
     }
 }

@@ -1,6 +1,7 @@
 package GameLogic.UpdateManager;
 
 import GameLogic.Enums.Movement;
+import GameLogic.Enums.PacmanType;
 import GameLogic.ScreenItems.Food;
 import GameLogic.ScreenItems.Ghost;
 import GameLogic.ScreenItems.MovingObject;
@@ -28,7 +29,8 @@ public class InteractionCheckerAndHandler {
         this.pacmans = pacmans;
     }
 
-    public boolean isMoveAllowed(MovingObject movingObject, Movement curMovement){
+    public boolean isMoveAllowed(MovingObject movingObject, Movement curMovement, boolean canPassWall){
+//    public boolean isMoveAllowed(MovingObject movingObject, Movement curMovement){
         int currentX = movingObject.getXpos() - initialX;
         int currentY = movingObject.getYpos() - initialY;
 
@@ -40,18 +42,28 @@ public class InteractionCheckerAndHandler {
         switch (curMovement){
             case UP:
                 if (firstIndexColumns+1 <= lastIndexColumns && (firstIndexColumns+1)*28 == currentX){
-                    if (gameMap[firstIndexRows][firstIndexColumns+1] == 1){
-                        return firstIndexRows + 1 <= lastIndexRows && (firstIndexRows + 1) * 28 < currentY;
+                    if (gameMap[firstIndexRows][firstIndexColumns+1] == 1 || gameMap[firstIndexRows][firstIndexColumns+1] == -2){
+                        if (gameMap[firstIndexRows][firstIndexColumns+1] == -2)
+                            return firstIndexRows + 1 <= lastIndexRows && (firstIndexRows + 1) * 28 < currentY;
+                        if (gameMap[firstIndexRows][firstIndexColumns+1] == 1)
+                            return (firstIndexRows + 1 <= lastIndexRows && (firstIndexRows + 1) * 28 < currentY) || canPassWall;
                     }else{return true;}
                 }else{
-                    return false;
+                    return (firstIndexRows != 0) && canPassWall;
                 }
             case RIGHT:
                 if (firstIndexRows+1 <= lastIndexRows && (firstIndexRows+1)*28 == currentY){
-                    if (firstIndexColumns+2 <= lastIndexColumns && gameMap[firstIndexRows+1][firstIndexColumns+2] == 1){
-                        return false;
+                    if (firstIndexColumns+2 <= lastIndexColumns && (gameMap[firstIndexRows+1][firstIndexColumns+2] == 1 || gameMap[firstIndexRows+1][firstIndexColumns+2] == -2)){
+                        if (gameMap[firstIndexRows+1][firstIndexColumns+2] == -2)
+                            return false;
+                        if (gameMap[firstIndexRows+1][firstIndexColumns+2] == 1)
+                            return canPassWall;
                     }else{
                         if (firstIndexColumns+3 <= lastIndexColumns && gameMap[firstIndexRows+1][firstIndexColumns+3] == 1){
+                            if ((firstIndexColumns+3)*28 > currentX || canPassWall){
+                                return true;}
+                        }
+                        if (firstIndexColumns+3 <= lastIndexColumns && gameMap[firstIndexRows+1][firstIndexColumns+3] == -2){
                             if ((firstIndexColumns+3)*28 > currentX){
                                 return true;}
                         }
@@ -59,29 +71,36 @@ public class InteractionCheckerAndHandler {
                         return true;
                     }
                 }else{
-                    return false;
+                    return ((firstIndexColumns + 2 <= lastIndexColumns) && (firstIndexColumns +2 != 19) && canPassWall) ;
                 }
             case DOWN:
                 if (firstIndexColumns+1 <= lastIndexColumns && (firstIndexColumns+1)*28 == currentX){
-                    if (firstIndexRows+2 <= lastIndexRows && (gameMap[firstIndexRows+2][firstIndexColumns+1] == 1 || gameMap[firstIndexRows+2][firstIndexColumns+1] == 0)){
-                        return false;
+                    if (firstIndexRows+2 <= lastIndexRows && (gameMap[firstIndexRows+2][firstIndexColumns+1] == 1 || gameMap[firstIndexRows+2][firstIndexColumns+1] == 0 || gameMap[firstIndexRows+2][firstIndexColumns+1] == -2)){
+                        if (gameMap[firstIndexRows+2][firstIndexColumns+1] == 1 || gameMap[firstIndexRows+2][firstIndexColumns+1] == 0)
+                            return canPassWall;
+                        else
+                            return false;
                     }else{
-                        if (firstIndexRows+3 <= lastIndexRows && (gameMap[firstIndexRows+3][firstIndexColumns+1] == 1 || gameMap[firstIndexRows+3][firstIndexColumns+1] == 0))
-                            if ((firstIndexRows+3)*28 > currentY)
-                                return true;
+                        if (firstIndexRows+3 <= lastIndexRows && (gameMap[firstIndexRows+3][firstIndexColumns+1] == 1 || gameMap[firstIndexRows+3][firstIndexColumns+1] == 0 || gameMap[firstIndexRows+3][firstIndexColumns+1] == -2))
+                            if (gameMap[firstIndexRows+3][firstIndexColumns+1] == -2)
+                                return (firstIndexRows+3)*28 > currentY;
+                            else if (gameMap[firstIndexRows+3][firstIndexColumns+1] == 1 || gameMap[firstIndexRows+3][firstIndexColumns+1] == 0)
+                                return (firstIndexRows+3)*28 > currentY || canPassWall;
                         return true;
                     }
                 }else{
-                    return false;
+                    return ((firstIndexRows + 2 <= lastIndexRows) && (firstIndexRows +2 != 10) && canPassWall);
                 }
             case LEFT:
                 if (firstIndexRows+1 <= lastIndexRows && (firstIndexRows+1)*28 == currentY){
-                    //TODO: "indexOutOfBoundsException : 25" occured on if statement below, find why
-                    if (gameMap[firstIndexRows+1][firstIndexColumns] == 1){
-                        return firstIndexColumns + 1 <= lastIndexColumns && (firstIndexColumns + 1) * 28 < currentX;
+                    if (gameMap[firstIndexRows+1][firstIndexColumns] == 1 || gameMap[firstIndexRows+1][firstIndexColumns] == -2){
+                        if (gameMap[firstIndexRows+1][firstIndexColumns] == -2)
+                            return firstIndexColumns + 1 <= lastIndexColumns && (firstIndexColumns + 1) * 28 < currentX;
+                        if (gameMap[firstIndexRows+1][firstIndexColumns] == 1)
+                            return (firstIndexColumns + 1 <= lastIndexColumns && (firstIndexColumns + 1) * 28 < currentX) || canPassWall;
                     }else{return true;}
                 }else{
-                    return false;
+                    return (firstIndexColumns != 0) && canPassWall;
                 }
         }
 
@@ -160,11 +179,11 @@ public class InteractionCheckerAndHandler {
         return score;
     }
 
-    public boolean doBumpGhosts(boolean canEat){
-        if (isMultiplayer){
-            return checkPandGhosts(pacmans[0], canEat) || checkPandGhosts(pacmans[1], canEat);
-        }
-        return checkPandGhosts(pacmans[0], canEat);
+    public boolean doBumpGhosts(int index, boolean canEat){
+//        if (isMultiplayer){
+//            return checkPandGhosts(pacmans[0], canEat) || checkPandGhosts(pacmans[1], canEat);
+//        }
+        return checkPandGhosts(pacmans[index], canEat);
     }
 
     private boolean checkPandGhosts(Pacman pm, boolean canEat){
@@ -178,6 +197,39 @@ public class InteractionCheckerAndHandler {
             }
         }
         return false;
+    }
+
+    public void savePacmanFromWalls(Pacman pm){
+        int row = (pm.getYpos() - initialY)/28;
+        int column = (pm.getXpos() - initialX)/28;
+        pm.setCanPassWall(false);
+        if (!isWall(row, column)){
+            pm.setXpos(column*28 + initialX);
+            pm.setYpos(row*28 + initialY);
+            return;
+        }else {
+            for(int i = -1; i<2; i++){
+                for (int j = -1; j<2; j++){
+                    if ((0 <= row+i && row+i<=10) && (0 <= column+j && column+j<=19) && isWall(row+i, column+j)){
+                        pm.setXpos((column + i)*28 + initialX);
+                        pm.setYpos((row+j)*28 + initialY);
+                        return;
+                    }
+                }
+            }
+            if (pm.getPacmanType() == PacmanType.MRPACMAN){
+                pm.setXpos(372);
+                pm.setYpos(348);
+            }else {
+                pm.setXpos(316);
+                pm.setYpos(348);
+            }
+        }
+
+    }
+
+    private boolean isWall(int row, int column){
+        return (gameMap[row][column] == 1 || gameMap[row][column] == -2 || gameMap[row][column] == 0);
     }
 
 }
