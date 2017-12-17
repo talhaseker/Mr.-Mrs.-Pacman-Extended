@@ -123,7 +123,7 @@ public class InteractionCheckerAndHandler {
         if ((pm.getYpos() - 96)%28 == 14){
             foodsToRemove = new ArrayList<Food>();
             for (Food f: foods) {
-                int intervalError = 15;
+                int intervalError = 20;
                 boolean isfoodeaten = false;
                 for (int yInterval = 14 - intervalError; yInterval < 14 + intervalError + 1 && !isfoodeaten; yInterval++) {
                     for (int xInterval = - intervalError ; xInterval < intervalError + 1 && !isfoodeaten; xInterval++) {
