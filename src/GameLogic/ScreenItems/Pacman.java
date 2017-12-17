@@ -23,10 +23,10 @@ public class Pacman extends MovingObject implements Serializable{
     int foodEffectSeconds;
     Shield shield;
     private int livesLeft = 3;
-    private boolean dieByEatenGhost = false, newBigFoodEaten = false;
-    private boolean canEatGhost = false, canPassWall = false, canPassGhost = false;
+    private boolean dieByEatenGhost = false;
+    private static boolean newBigFoodEaten = false, canEatGhost = false, canPassWall = false, canPassGhost = false;
     private boolean shieldChanged = false;
-    private boolean[] ghostEaten = {false, false, false, false};
+    private static boolean[] ghostEaten = {false, false, false, false};
     private PacmanType pacmanType;
 
     //Constructor(s)
