@@ -7,8 +7,11 @@ import GameLogic.ScreenItems.Ghost;
 import GameLogic.ScreenItems.Pacman;
 import GameLogic.ScreenItems.WallBrick;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -182,10 +185,10 @@ public class GamePanel extends JPanel {
         repaintRequest(gameMap);
 
     }
-
     public void showGetReady(){
-        getReadyLabel.setVisible(true);
-    }
+        GameFrame.uiManager.setSoundGetReady();
+        getReadyLabel.setVisible(true);}
+
     public void hideGetReady(){
         getReadyLabel.setVisible(false);
     }

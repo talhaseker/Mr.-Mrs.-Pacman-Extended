@@ -3,11 +3,11 @@ package GUI;
 import GUI.UIBase.PacButton;
 import GUI.UIBase.PacLabel;
 import GameLogic.Constants;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 
 /**
  * Created by Aziz Osman on 30.10.2017.
@@ -15,13 +15,16 @@ import java.awt.event.ActionListener;
 public class MainMenuPanel extends JPanel{
     private String loadMapName;
     private String loadGameName;
+    public boolean sound = true;
+    private int count = 0;
+    JButton soundButton;
     public MainMenuPanel(){
         super(new GridBagLayout());
         this.setBackground(Color.BLACK);
         JPanel soundPanel = new JPanel();
         soundPanel.setBackground(Color.BLACK);
         ImageIcon soundOnIcon = new ImageIcon(("img-src/icons/sound-on.png"));
-        JButton soundButton = new JButton( soundOnIcon);
+        soundButton = new JButton( soundOnIcon);
         soundButton.setBorderPainted(false);
         soundButton.setBackground(Color.BLACK);
         soundPanel.add(soundButton);
@@ -104,7 +107,7 @@ public class MainMenuPanel extends JPanel{
         createMapButton.addActionListener(new createMapListener());
         loadGameButton.addActionListener(new loadGameListener());
         loadMapButton.addActionListener(new loadMapListener());
-        //soundButton.addActionListener(new soundListener());
+        soundButton.addActionListener(new soundListener());
     }
 
     public class helpButtonListener implements ActionListener {
@@ -153,4 +156,24 @@ public class MainMenuPanel extends JPanel{
             GameFrame.uiManager.viewGame(0, loadGameName);
         }
     }
+    public class soundListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(e.getSource() == soundButton) {
+                count++;
+                sound = !sound;
+            }
+            if (count % 2 == 1)
+                soundButton.setIcon(new ImageIcon("img-src/icons/sound-off.png"));
+            else{
+                soundButton.setIcon(new ImageIcon("img-src/icons/sound-on.png"));
+            }
+
+        }
+    }
+    public boolean isSound(){
+        return this.sound;
+    }
+
+
 }

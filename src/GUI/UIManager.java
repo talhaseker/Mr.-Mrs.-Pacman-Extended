@@ -3,8 +3,11 @@ package GUI;
 import GameLogic.Constants;
 import GameLogic.GameEngine;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 
 /**
  * Created by Aziz Osman on 30.10.2017.
@@ -104,14 +107,12 @@ public class UIManager extends JPanel {
         CardLayout cl = (CardLayout)(this.getLayout());
         cl.show(this, Constants.CREATE_MAP_PANEL);
     }
-
     public void viewGameOver(int score){
         gameOverPanel = new GameOverPanel(score);
         this.add(gameOverPanel, Constants.GAME_OVER_PANEL);
         CardLayout cl = (CardLayout)(this.getLayout());
         cl.show(this, Constants.GAME_OVER_PANEL);
     }
-
     /*public void viewSaveGame(){
         CardLayout c1 = (CardLayout)(this.getLayout());
         c1.show(this, Constants.SAVE_GAME_PANEL);
@@ -119,6 +120,36 @@ public class UIManager extends JPanel {
     public void view(String panelName){
         CardLayout cl = (CardLayout)(this.getLayout());
         cl.show(this, panelName);
+    }
+    public void setSoundGetReady() {
+        if (mainMenuPanel.isSound()) {
+            File so = new File("pacman_beginning.wav");
+
+            try {
+                Clip clip = AudioSystem.getClip();
+                clip.open(AudioSystem.getAudioInputStream(so));
+                clip.start();
+
+                //Thread.sleep(clip.getMicrosecondLength()/1000);
+                //clip.close();
+            } catch (Exception e) {
+            }
+        }
+    }
+    public void setSoundEatFood() {
+        if (mainMenuPanel.isSound()) {
+            File so = new File("pacman_chomp.wav");
+
+            try {
+                Clip clip = AudioSystem.getClip();
+                clip.open(AudioSystem.getAudioInputStream(so));
+                clip.start();
+
+                //Thread.sleep(clip.getMicrosecondLength()/1000);
+                //clip.close();
+            } catch (Exception e) {
+            }
+        }
     }
 
 }

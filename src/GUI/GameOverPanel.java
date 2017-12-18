@@ -34,6 +34,7 @@ public class GameOverPanel extends JPanel implements ActionListener {
         gameOverLabel.setBounds(120, 80, gameOverDim.width, gameOverDim.height);
         Dimension playDim = playAgainButton.getPreferredSize();
         playAgainButton.setBounds(220, 350, playDim.width, playDim.height);
+        playAgainButton.setLocation(290,450);
         playAgainButton.addActionListener(this);
 
         HighScoreDataManager hsdm = new HighScoreDataManager();

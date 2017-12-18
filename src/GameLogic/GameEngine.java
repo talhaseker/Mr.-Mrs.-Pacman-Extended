@@ -13,7 +13,11 @@ import GameLogic.ScreenItems.Pacman;
 import GameLogic.ScreenItems.Shield;
 import GameLogic.UpdateManager.TimeController;
 
+
+
 import javax.swing.*;
+
+
 
 import static javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW;
 
@@ -249,7 +253,7 @@ public class GameEngine {
             pacmans[0].setDieByEatenGhost(false);
             pacmans[0].setLivesLeft(pacmans[0].getLivesLeft() - 1);
             pacmans[0].setShield(null);
-            if (numPlayer == 2){
+            if (numPlayer == 2) {
                 pacmans[1].setDieByEatenGhost(false);
                 pacmans[1].setLivesLeft(pacmans[1].getLivesLeft() - 1);
                 pacmans[1].setShield(null);
@@ -266,3 +270,5 @@ public class GameEngine {
         }
     }
 }
+
+

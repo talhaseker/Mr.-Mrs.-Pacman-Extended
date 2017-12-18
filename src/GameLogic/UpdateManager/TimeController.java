@@ -46,7 +46,7 @@ public class TimeController implements ActionListener {
     // start timer
     public void startTimer() {
         timer.start();
-        waitCounter = 100;
+        waitCounter = 280;
         gamePanel.showGetReady();
     }
 

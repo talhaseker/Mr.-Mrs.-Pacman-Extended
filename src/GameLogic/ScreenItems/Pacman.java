@@ -1,11 +1,15 @@
 package GameLogic.ScreenItems;
 
+import GUI.GameFrame;
 import GameLogic.AnimationManager.PacmanAnimation;
 import GameLogic.Enums.Movement;
 import GameLogic.Enums.PacmanAnimationType;
 import GameLogic.Enums.PacmanType;
 import GameLogic.Enums.ShieldType;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -78,7 +82,7 @@ public class Pacman extends MovingObject implements Serializable{
      */
     public void eatFood(Food food) {
 //        score += food.getPoints();
-
+        GameFrame.uiManager.setSoundEatFood();
         if (food.getSideEffect() != 0){
             this.foodEffectSeconds = food.getSideEffectSeconds();
              foodEffect = food.getSideEffect();
