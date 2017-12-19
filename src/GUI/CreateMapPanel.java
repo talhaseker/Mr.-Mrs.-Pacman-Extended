@@ -4,6 +4,7 @@ import DataLayer.GameDatabase.GameDataManager;
 import GUI.UIBase.PacButton;
 import GameLogic.AnimationManager.Sprite;
 import GameLogic.Constants;
+import GameLogic.Enums.GameOptions;
 import GameLogic.Enums.GhostType;
 import GameLogic.Enums.PacmanType;
 import GameLogic.GameMap;
@@ -17,6 +18,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
+import java.util.Arrays;
 
 /**
  * Created by Aziz Osman on 30.10.2017.
@@ -237,9 +239,16 @@ public class CreateMapPanel extends JPanel implements ActionListener {
             for (int i = 0; i<numbOfGhosts; i++)
                 ghosts[i] = new Ghost(GhostType.values()[i]);
 
+            //Create a deep copy of gameMap
+            int[][] gameMapRestore = new int[gameMap.length][gameMap[0].length];
+
+            for (int i = 0; i < gameMap.length; i++)
+                for (int j = 0; j < gameMap[0].length; j++) {
+                    gameMapRestore[i][j] = gameMap[i][j];
+                }
             GameDataManager gameDataManager = new GameDataManager();
-            gameDataManager.saveGameData("temp.map", 0, 1, numbOfPacmans,3,pacmans, ghosts, gameMap);
-            GameFrame.uiManager.viewGame(0, "temp.map");
+            gameDataManager.saveGameData("temp.map", 0, 1, numbOfPacmans,3,pacmans, ghosts, gameMap, gameMapRestore);
+            GameFrame.uiManager.viewGame(numbOfPacmans, GameOptions.SAVEDMAP, "temp.map");
         }
         if(source == saveButton){
             Pacman[] pacmans = new Pacman[numbOfPacmans];
@@ -251,6 +260,12 @@ public class CreateMapPanel extends JPanel implements ActionListener {
             for (int i = 0; i<numbOfGhosts; i++)
                 ghosts[i] = new Ghost(GhostType.values()[i]);
 
+            //Create a deep copy of gameMap
+            int[][] gameMapRestore = new int[gameMap.length][gameMap[0].length];
+            for (int i = 0; i < gameMap.length; i++)
+                for (int j = 0; j < gameMap[0].length; i++)
+                    gameMapRestore[i][j] = gameMap[i][j];
+
             GameDataManager gameDataManager = new GameDataManager();
             saveMapName = JOptionPane.showInputDialog("Enter Map Name to Save");
             while (saveMapName.length() == 0) {
@@ -258,7 +273,7 @@ public class CreateMapPanel extends JPanel implements ActionListener {
             }
             if(saveMapName.length() > 0){
                 GameFrame.uiManager.view(Constants.MAIN_MENU_PANEL);
-                gameDataManager.saveGameData(saveMapName + ".map", 0, 1, numbOfPacmans,3,pacmans, ghosts, gameMap);
+                gameDataManager.saveGameData(saveMapName + ".map", 0, 1, numbOfPacmans,3,pacmans, ghosts, gameMap, gameMapRestore);
             }
         }
     }

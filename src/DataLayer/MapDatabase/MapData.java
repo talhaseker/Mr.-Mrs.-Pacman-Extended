@@ -20,13 +20,14 @@ public class MapData implements Serializable{
     //Properties
     private Pacman[] pacmans;
     private Ghost ghosts[];
-    private int[][] mapTable;
+    private int[][] mapTable, mapRestoreTable;
 
     private void writeObject(java.io.ObjectOutputStream stream) throws IOException {
         stream.defaultWriteObject();
         stream.writeObject(pacmans);
         stream.writeObject(ghosts);
         stream.writeObject(mapTable);
+        stream.writeObject(mapRestoreTable);
     }
 
     private void readObject(java.io.ObjectInputStream stream) throws IOException, ClassNotFoundException {
@@ -34,6 +35,7 @@ public class MapData implements Serializable{
         pacmans = (Pacman[]) stream.readObject();
         ghosts = (Ghost[]) stream.readObject();
         mapTable = (int[][]) stream.readObject();
+        mapRestoreTable = (int[][]) stream.readObject();
     }
 
     public Pacman[] getPacmans() {
@@ -58,5 +60,13 @@ public class MapData implements Serializable{
 
     public void setMapTable(int[][] mapTable) {
         this.mapTable = mapTable;
+    }
+
+    public int[][] getMapRestoreTable() {
+        return mapRestoreTable;
+    }
+
+    public void setMapRestoreTable(int[][] mapRestoreTable) {
+        this.mapRestoreTable = mapRestoreTable;
     }
 }

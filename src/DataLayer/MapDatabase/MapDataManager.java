@@ -14,11 +14,12 @@ import GameLogic.ScreenItems.Pacman;
  */
 public class MapDataManager {
 
-    public MapData setMapData(Pacman[] pacmans, Ghost[] ghosts, int[][] mapTable){
+    public MapData setMapData(Pacman[] pacmans, Ghost[] ghosts, int[][] mapTable, int[][] mapRestoreTable){
         MapData md = new MapData();
         md.setGhosts(ghosts);
         md.setMapTable(mapTable);
         md.setPacmans(pacmans);
+        md.setMapRestoreTable(mapRestoreTable);
         return md;
     }
 }

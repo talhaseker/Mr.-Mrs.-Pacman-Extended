@@ -1,6 +1,7 @@
 package GUI;
 
 import GameLogic.Constants;
+import GameLogic.Enums.GameOptions;
 import GameLogic.GameEngine;
 
 import javax.sound.sampled.AudioSystem;
@@ -70,10 +71,10 @@ public class UIManager extends JPanel {
         cl.show(this, Constants.HIGHSCORE_PANEL);
     }
 
-    public void viewGame(int playerNum, String name){
+    public void viewGame(int playerNum, GameOptions option , String name){
         CardLayout cl = (CardLayout)(this.getLayout());
         if (gameEngine == null){
-            gameEngine = new GameEngine(this, playerNum, name);
+            gameEngine = new GameEngine(this, playerNum, option, name);
         }
         cl.show(this, Constants.GAME_PANEL);
     }

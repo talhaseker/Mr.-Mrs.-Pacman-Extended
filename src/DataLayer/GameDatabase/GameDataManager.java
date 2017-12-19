@@ -19,17 +19,17 @@ public class GameDataManager {
 
     GameData gd = new GameData();
 
-    public void setGameData(int score, int level, int numbPlayer, int livesLeft, Pacman[] pacmans, Ghost[] ghosts, int[][] mapTable){
+    public void setGameData(int score, int level, int numbPlayer, int livesLeft, Pacman[] pacmans, Ghost[] ghosts, int[][] mapTable, int[][] mapRestoreTable){
         MapDataManager mdManager = new MapDataManager();
         gd.setLevel(level);
         gd.setLivesLeft(livesLeft);
-        gd.setMapData(mdManager.setMapData(pacmans, ghosts, mapTable));
+        gd.setMapData(mdManager.setMapData(pacmans, ghosts, mapTable, mapRestoreTable));
         gd.setScore(score);
         gd.setNumPlayer(numbPlayer);
     }
 
-    public void saveGameData(String name, int score, int level, int numbPlayer, int livesLeft, Pacman[] pacmans, Ghost[] ghosts, int[][] mapTable){
-        setGameData(score, level, numbPlayer,livesLeft,pacmans, ghosts, mapTable);
+    public void saveGameData(String name, int score, int level, int numbPlayer, int livesLeft, Pacman[] pacmans, Ghost[] ghosts, int[][] mapTable, int[][] mapRestoreTable){
+        setGameData(score, level, numbPlayer,livesLeft,pacmans, ghosts, mapTable, mapRestoreTable);
         File gameFile = new File(name);
         try {
             FileOutputStream fileOutput = new FileOutputStream(gameFile);

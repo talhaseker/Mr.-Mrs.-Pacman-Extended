@@ -4,6 +4,7 @@ import DataLayer.GameDatabase.GameData;
 import DataLayer.GameDatabase.GameDataManager;
 import GUI.GamePanel;
 import GUI.UIManager;
+import GameLogic.Enums.GameOptions;
 import GameLogic.Enums.GhostType;
 import GameLogic.Enums.PacmanType;
 import GameLogic.InputManager.PacManMovementController;
@@ -13,12 +14,7 @@ import GameLogic.ScreenItems.Pacman;
 import GameLogic.ScreenItems.Shield;
 import GameLogic.UpdateManager.TimeController;
 
-
-
 import javax.swing.*;
-
-
-
 import static javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW;
 
 /** GameEngine class : core game logic class, which holds and manipulates game entities and
@@ -29,7 +25,7 @@ import static javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW;
  */
 public class GameEngine {
     //Variables
-    static final int MAX_LIFE = 3;
+    static final int MAX_LIFE = 60;
     private int numPlayer, numGhost, level, score, livesLeft;
     public int[][] gameMap, gameMapRestore;
     private Pacman[] pacmans, pacmansRestore;
@@ -50,13 +46,13 @@ public class GameEngine {
     /**
      * Constructs a game engine with default configurations
      */
-    public GameEngine(UIManager uiManager, int numPlayer, String name) {
+    public GameEngine(UIManager uiManager, int numPlayer, GameOptions option, String name) {
         this.gameDataManager = new GameDataManager();
         this.numPlayer = numPlayer;
 
-        boolean isNewGame = (numPlayer != 0);
-
-        if (!isNewGame) {
+        if ( option == GameOptions.SAVEDGAME || option == GameOptions.SAVEDMAP) {
+            //Initialize Saved Game Data
+            System.out.println("Entered");
             this.gameData = gameDataManager.loadGame(name);
             level = gameData.getLevel();
             score = gameData.getScore();
@@ -66,67 +62,51 @@ public class GameEngine {
             this.numPlayer = pacmans.length;
             this.numGhost = ghosts.length;
             gameMap = gameData.getMapData().getMapTable();
+            gameMapRestore = gameData.getMapData().getMapRestoreTable();
             boolean isMap = name.substring((name.length() - 3)).equals("map");
 
-            if (isMap)
+            //Convert Created Map into a valid map (by filling empty spots with regular food)
+            if (option == GameOptions.SAVEDMAP)
                 for (int i = 0; i < 11; i++)
-                    for (int j = 0; j < 20; j++)
+                    for (int j = 0; j < 20; j++) {
                         if (gameMap[i][j] == -1)
                             gameMap[i][j] = 2;
-
-        } else {
+                    }
+        }
+        else if (option == GameOptions.DEFAULTGAME){
             level = 1;
             score = 0;
             livesLeft = MAX_LIFE;
             numGhost = 4;
             pacmans = new Pacman[numPlayer];
-            pacmans[0] = new Pacman(PacmanType.MRPACMAN); //default pacman object for now
-            if (numPlayer == 2) {
+            pacmans[0] = new Pacman(PacmanType.MRPACMAN);
+            if (numPlayer == 2)
                 pacmans[1] = new Pacman(PacmanType.MRSPACMAN);
-            }
 
             ghosts = new Ghost[numGhost];
             ghosts[0] = new Ghost(GhostType.BLINKY);
             ghosts[1] = new Ghost(GhostType.PINKY);
             ghosts[2] = new Ghost(GhostType.INKY);
             ghosts[3] = new Ghost(GhostType.CLYDE);
-//            for (Ghost g:ghosts) {
-//                System.out.println(g);
-//            }
-
 
             map = new GameMap();
             gameMap = map.map1;
         }
 
-        //Create copies of gameMap, ghosts & pacmans in order to restore at the beginning of next level
-
-        /* This restore for next level covers only scenarios of
-         * new games and previously played games
-         * It will give a problem on previously not played saved maps.
-         *
-         * TODO: add another flag for savedMap
-         *
-         * if(!isNewGame) {.. load from saved game...}
-         * else if (savedmap) {..load from saved map... it is a new game, but a special map}
-         * else {.. so this is a new game without a specified map, load default game}
-         * if (isNewGame) {create initial map to restore from}
-         */
-
-        if(isNewGame) { //Create an initial map to restore each level
+        //Create a restoration copy for new games
+        if(option == GameOptions.DEFAULTGAME || option == GameOptions.SAVEDMAP) {
             gameMapRestore = new int[gameMap.length][gameMap[0].length];
 
             for (int i = 0; i < gameMap.length; i++)
                 for (int j = 0; j < gameMap[0].length; j++)
                     gameMapRestore[i][j] = gameMap[i][j];
-
         }
 
         this.uiManager = uiManager;
 
         this.gamePanel = new GamePanel(gameMap, pacmans, ghosts);
         uiManager.add(gamePanel, Constants.GAME_PANEL);
-        counter = 3.0;
+        counter = 2.0;
         isPaused = false;
         pacmanMovementKeyBindings = new PacManMovementController(pacmans, (this.numPlayer == 2), gamePanel.getInputMap(WHEN_IN_FOCUSED_WINDOW), gamePanel.getActionMap());
         pacmanMovementKeyBindings.initMovementKeyBindings();
@@ -169,7 +149,7 @@ public class GameEngine {
      */
     public void saveGame(String saveName) {
         GameDataManager gameDataManager = new GameDataManager();
-        gameDataManager.saveGameData(saveName + ".game", score, level, numPlayer, livesLeft, pacmans, ghosts, gameMap);
+        gameDataManager.saveGameData(saveName + ".game", score, level, numPlayer, livesLeft, pacmans, ghosts, gameMap, gameMapRestore);
     }
 
     /**

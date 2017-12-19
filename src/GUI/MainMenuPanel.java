@@ -3,6 +3,8 @@ package GUI;
 import GUI.UIBase.PacButton;
 import GUI.UIBase.PacLabel;
 import GameLogic.Constants;
+import GameLogic.Enums.GameOptions;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -125,13 +127,13 @@ public class MainMenuPanel extends JPanel{
     public class onePlayerListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            GameFrame.uiManager.viewGame(1, null);
+            GameFrame.uiManager.viewGame(1, GameOptions.DEFAULTGAME, null);
         }
     }
     public class twoPlayersListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            GameFrame.uiManager.viewGame(2, null);
+            GameFrame.uiManager.viewGame(2, GameOptions.DEFAULTGAME, null);
         }
     }
     public class createMapListener implements ActionListener {
@@ -145,7 +147,7 @@ public class MainMenuPanel extends JPanel{
         public void actionPerformed(ActionEvent e) {
             //GameFrame.uiManager.view(Constants.SAVED_MAPS_LIST_PANEL);
             loadMapName = JOptionPane.showInputDialog("Enter Map Name") + ".map";
-            GameFrame.uiManager.viewGame(0, loadMapName);
+            GameFrame.uiManager.viewGame(0, GameOptions.SAVEDMAP, loadMapName);
         }
     }
     public class loadGameListener implements ActionListener {
@@ -153,7 +155,7 @@ public class MainMenuPanel extends JPanel{
         public void actionPerformed(ActionEvent e) {
 //            GameFrame.uiManager.view(Constants.SAVED_GAME_PANEL);
             loadGameName = JOptionPane.showInputDialog("Enter Game Name") + ".game";
-            GameFrame.uiManager.viewGame(0, loadGameName);
+            GameFrame.uiManager.viewGame(0, GameOptions.SAVEDGAME , loadGameName);
         }
     }
     public class soundListener implements ActionListener {
